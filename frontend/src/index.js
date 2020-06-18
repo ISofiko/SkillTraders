@@ -3,11 +3,11 @@ import ReactDOM from 'react-dom';
 import './main.css';
 import * as serviceWorker from './serviceWorker';
 
-import Landing from './pages/Landing';
+import Routes from './pages/Routes';
 
 ReactDOM.render(
 	<React.StrictMode>
-		<Landing />
+		<Routes />
 	</React.StrictMode>,
 	document.getElementById('root')
 );

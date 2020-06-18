@@ -1,0 +1,38 @@
+.sidebar {
+	background-color: aqua;
+	width: 300px;
+	height: 100vh;
+	position: fixed;
+	left: 0px;
+}
+
+.right-side {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	height: calc(100vh - 40px);
+	min-width: 400px;
+	width: calc(100vw - 340px);
+	text-align: center;
+	padding: 20px;
+}
+
+.content {
+	position: absolute;
+	max-width: 900px;
+	width: 90%;
+	left: 50%;
+	-webkit-transform: translate(-50%, 0%);
+}
+
+@media screen and (max-width: 700px) {
+	.sidebar {
+		visibility: hidden;
+	}
+
+	.content {
+		width: 100vw;
+		right: 0px;
+		left: 0px;
+	}
+}
