@@ -8,8 +8,10 @@ function Dashboard() {
 			<div className="sidebar">
 				<p>sidebar here</p>
 			</div>
-			<div className="content">
-				<FindPosting />
+			<div className="right-side">
+				<div className="content">
+					<FindPosting />
+				</div>
 			</div>
 		</div>
 	);

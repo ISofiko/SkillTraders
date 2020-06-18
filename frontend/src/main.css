@@ -2,6 +2,21 @@
 	margin: 0;
 	padding: 0;
 	font-family: "Arial", sans-serif;
+	color: #47525E;
+}
+
+h1 {
+	font-size: 50px;
+	color: #008080;
+}
+
+h2 {
+	font-size: 32px;
+	color: #64E1E1;
+}
+
+p {
+	font-size: 16px;
 }
 
 .dark-aqua {
