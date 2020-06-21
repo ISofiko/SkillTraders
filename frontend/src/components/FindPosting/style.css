@@ -45,6 +45,10 @@
 	transition: .2s;
 }
 
+.category:hover {
+	transform: scale(1.05);
+}
+
 .category h1 {
 	color: white;
 	font-size: 24px;
@@ -55,8 +59,10 @@
 	text-align: left;
 }
 
-.category:hover {
-	transform: scale(1.05);
+.category .fa {
+	font-size: 80px;
+	color: white;
+	margin-top: 30px;
 }
 
 .postings {
@@ -64,16 +70,18 @@
 }
 
 .posting {
-	width: calc(100% - 60px);
+	width: calc(100% - 80px);
 	height: 200px;
 	border: 2px #008080 solid;
 	border-radius: 10px;
 	margin: auto;
-	margin-top: 20px;
+	margin-bottom: 20px;
 	text-align: left;
 	cursor: pointer;
 	transition: .2s;
 	display: flex;
+	padding: 10px;
+	overflow-y: hidden;
 }
 
 .posting:hover {
