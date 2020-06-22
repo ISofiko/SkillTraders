@@ -1,0 +1,111 @@
+.find-posting {
+	margin-top: 30px;
+	position: relative;
+}
+
+.search-bar {
+	background-image: url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png);
+	background-position: 5px 4px;
+	background-repeat: no-repeat;
+	padding: 5px;
+	padding-left: 30px;
+	border-radius: 10px;
+	border: 2px #47525E solid;
+	outline: none;
+	transition: .5s;
+	width: 250px;
+	margin-top: 50px;
+}
+
+.search-bar:focus {
+	width: calc(100% - 60px);
+	border-color: #008080;
+}
+
+.search-bar:hover {
+	width: calc(100% - 60px);
+}
+
+.categories {
+	display: inline-flex;
+	flex-flow: row wrap;
+	margin-top: 20px;
+	justify-content: center;
+}
+
+.category {
+	height: 200px;
+	width: 250px;
+	background-color: #008080;
+	position: relative;
+	margin: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	cursor: pointer;
+	transition: .2s;
+}
+
+.category:hover {
+	transform: scale(1.05);
+}
+
+.category h1 {
+	color: white;
+	font-size: 24px;
+	padding: 10px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	text-align: left;
+}
+
+.category .fa {
+	font-size: 80px;
+	color: white;
+	margin-top: 30px;
+}
+
+.postings {
+	margin-top: 30px;
+}
+
+.posting {
+	width: calc(100% - 80px);
+	height: 200px;
+	border: 2px #008080 solid;
+	border-radius: 10px;
+	margin: auto;
+	margin-bottom: 20px;
+	text-align: left;
+	cursor: pointer;
+	transition: .2s;
+	display: flex;
+	padding: 10px;
+	overflow-y: hidden;
+}
+
+.posting:hover {
+	transform: scale(1.05);
+}
+
+.posting img {
+	height: calc(100% - 20px);
+	padding: 10px;
+}
+
+.posting h1 {
+	color: black;
+	font-size: 30px;
+	margin-top: 10px;
+}
+
+.posting h2 {
+	color: grey;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+.posting p {
+	color: black;
+	margin-top: 10px;
+}

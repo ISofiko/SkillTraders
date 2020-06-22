@@ -1,4 +1,4 @@
-.find-posting {
+.admin-panel {
 	margin-top: 30px;
 	position: relative;
 }
@@ -26,78 +26,61 @@
 	width: calc(100% - 60px);
 }
 
-.categories {
-	display: inline-flex;
-	flex-flow: row wrap;
-	margin-top: 20px;
-	justify-content: center;
-}
-
-.category {
-	height: 200px;
-	width: 250px;
-	background-color: #008080;
-	position: relative;
-	margin: 20px;
-	border-radius: 10px;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-	cursor: pointer;
-	transition: .2s;
-}
-
-.category h1 {
-	color: white;
-	font-size: 24px;
-	padding: 10px;
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	text-align: left;
-}
-
-.category:hover {
-	transform: scale(1.05);
-}
-
-.postings {
+.users {
 	margin-top: 30px;
 }
 
-.posting {
-	width: calc(100% - 60px);
+.user {
+	width: calc(100% - 80px);
 	height: 200px;
 	border: 2px #008080 solid;
 	border-radius: 10px;
 	margin: auto;
-	margin-top: 20px;
+	margin-bottom: 20px;
 	text-align: left;
-	cursor: pointer;
 	transition: .2s;
 	display: flex;
+	padding: 10px;
+	overflow-y: hidden;
+	position: relative;
 }
 
-.posting:hover {
-	transform: scale(1.05);
-}
-
-.posting img {
+.user img {
 	height: calc(100% - 20px);
 	padding: 10px;
 }
 
-.posting h1 {
+.user h1 {
 	color: black;
 	font-size: 30px;
 	margin-top: 10px;
 }
 
-.posting h2 {
+.user h2 {
 	color: grey;
 	font-size: 16px;
 	font-weight: normal;
 }
 
-.posting p {
+.user p {
 	color: black;
 	margin-top: 10px;
+}
+
+.actions {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+.actions .fa {
+	font-size: 30px;
+	transition: .2s;
+	cursor: pointer;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.actions .fa:hover {
+	transform: scale(1.1);
 }

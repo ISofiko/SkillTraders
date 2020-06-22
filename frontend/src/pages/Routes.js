@@ -14,6 +14,8 @@ function Routes() {
 			<Switch>
 				<Route exact path='/' component={Landing} />
 				<Route exact path='/dashboard' component={Dashboard} />
+				<Route exact path='/find' component={Dashboard} />
+				<Route exact path='/admin' component={Dashboard} />
 			</Switch>
 		</BrowserRouter>
 	);
