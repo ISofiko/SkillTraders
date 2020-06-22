@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import './Style.css';
 import Placeholder from '../../resources/placeholder.jpg';
 
 class Posting extends React.Component {
