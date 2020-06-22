@@ -1,0 +1,86 @@
+.admin-panel {
+	margin-top: 30px;
+	position: relative;
+}
+
+.search-bar {
+	background-image: url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png);
+	background-position: 5px 4px;
+	background-repeat: no-repeat;
+	padding: 5px;
+	padding-left: 30px;
+	border-radius: 10px;
+	border: 2px #47525E solid;
+	outline: none;
+	transition: .5s;
+	width: 250px;
+	margin-top: 50px;
+}
+
+.search-bar:focus {
+	width: calc(100% - 60px);
+	border-color: #008080;
+}
+
+.search-bar:hover {
+	width: calc(100% - 60px);
+}
+
+.users {
+	margin-top: 30px;
+}
+
+.user {
+	width: calc(100% - 80px);
+	height: 200px;
+	border: 2px #008080 solid;
+	border-radius: 10px;
+	margin: auto;
+	margin-bottom: 20px;
+	text-align: left;
+	transition: .2s;
+	display: flex;
+	padding: 10px;
+	overflow-y: hidden;
+	position: relative;
+}
+
+.user img {
+	height: calc(100% - 20px);
+	padding: 10px;
+}
+
+.user h1 {
+	color: black;
+	font-size: 30px;
+	margin-top: 10px;
+}
+
+.user h2 {
+	color: grey;
+	font-size: 16px;
+	font-weight: normal;
+}
+
+.user p {
+	color: black;
+	margin-top: 10px;
+}
+
+.actions {
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+}
+
+.actions .fa {
+	font-size: 30px;
+	transition: .2s;
+	cursor: pointer;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.actions .fa:hover {
+	transform: scale(1.1);
+}
