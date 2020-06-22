@@ -1,5 +1,5 @@
 import React from 'react';
-import './Style.css';
+import './style.css';
 import Category from './Category';
 import Posting from './Posting';
 

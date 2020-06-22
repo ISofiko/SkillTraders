@@ -4,11 +4,13 @@ import './Dashboard.css';
 import FindPosting from '../components/FindPosting';
 import AdminPanel from '../components/AdminPanel';
 
-
 function Dashboard() {
 	let location = useLocation().pathname;
 	let component;
 	switch (location) {
+		case "/find":
+			component = <FindPosting />;
+			break;
 		case "/admin":
 			component = <AdminPanel />;
 			break;

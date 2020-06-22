@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './Main.css';
-import * as ServiceWorker from './ServiceWorker';
+import './style.css';
+import * as ServiceWorker from './serviceWorker';
 
 import Routes from './pages/Routes';
 
