@@ -7,14 +7,12 @@ class Posting extends React.Component {
 		const { title, description, user, link } = this.props;
 
 		return (
-			<a href={link}>
-				<div className="posting">
-					<img src={Placeholder} alt="Placeholder" />
-					<div className="details">
-						<h1>{title}</h1>
-						<h2>Posted by {user}</h2>
-						<p>{description}</p>
-					</div>
+			<a href={link} className="posting">
+				<img src={Placeholder} alt="Placeholder" />
+				<div className="details">
+					<h1>{title}</h1>
+					<h2>Posted by {user}</h2>
+					<p>{description}</p>
 				</div>
 			</a>
 		);
