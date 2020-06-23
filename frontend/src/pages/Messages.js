@@ -1,12 +1,12 @@
 import React from 'react';
-import './messages.css';
 import ContactList from '../components/Messages/ContactList';
+import ChatSpace from '../components/Messages/ChatSpace'
+
+require('./messages.css');
 
 class Messages extends React.Component {
     constructor(props) {
         super(props);
-        this.postMessage = this.postMessage.bind(this)
-        this.getMessages = this.getMessages.bind(this)
 
         this.state = {
             messages: [],
@@ -17,19 +17,21 @@ class Messages extends React.Component {
 
     postMessage(message) {
         let messages = this.state.messages
-        messages.push(post)
+        messages.push(message)
         this.setState(messages)
     }
 
     render() {
         return (
-            <div className="sidebar"/>
-            <div className="messages">
-                <ContactList contacts={[]} />
-                <ChatSpace messages={this.state.messages} />
+            <div className="dashboard">
+                <div className="sidebar"/>
+                <div className="messages">
+                    <ContactList contacts={[]} />
+                    <ChatSpace messages={this.state.messages} />
+                </div>
             </div>
         );
     }
 }
 
-export default Dashboard;
+export default Messages;

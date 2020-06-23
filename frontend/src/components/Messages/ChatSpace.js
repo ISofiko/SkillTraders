@@ -1,12 +1,13 @@
 import React from 'react'
-import 'messages-main.css'
+import './messages-main.css'
+import TextMessage from './TextMessage';
 
 class ChatSpace extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            this.messages = this.props.messages
+            messages: this.props.messages
         }
     }
 
@@ -14,12 +15,16 @@ class ChatSpace extends React.Component {
         return (
             <div className='chat-space'>
                 {
-                    this.props.messages.map(message, index) =>
+                    this.props.messages.map((message, index) =>
                     <TextMessage
                         key={index}
                         content={message.content}
+                        sender={message.sender}
+                    />)
                 }
             </div>
         )
     }
 }
+
+export default ChatSpace;
