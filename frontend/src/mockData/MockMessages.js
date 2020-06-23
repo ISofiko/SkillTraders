@@ -1,4 +1,4 @@
-class MockMessage() {
+class MockMessage {
     constructor(content: string, sender: string) {
         this.content = content;
         this.sender = sender;
@@ -12,4 +12,5 @@ const m4 = new MockMessage("Sounds great! Here is the meeting link: meet.google.
 const m5 = new MockMessage("Thanks! See you then", "Bob");
 
 
-const messages = {m1, m2, m3, m4, m5}
+const messages = [m1, m2, m3, m4, m5]
+module.exports = messages

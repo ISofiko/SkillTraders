@@ -19,7 +19,7 @@ class TextMessage extends React.Component {
     render() {
         return (
             <div className='text-message'>
-                <div className="{{getMessageSide()}}">
+                <div className={this.getMessageSide()}>
                 this.state.content
                 </div>
             </div>

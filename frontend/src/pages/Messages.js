@@ -1,6 +1,7 @@
 import React from 'react';
 import ContactList from '../components/Messages/ContactList';
 import ChatSpace from '../components/Messages/ChatSpace'
+var mockMessages = require('../mockData/MockMessages')
 
 require('./messages.css');
 
@@ -9,7 +10,7 @@ class Messages extends React.Component {
         super(props);
 
         this.state = {
-            messages: [],
+            messages: mockMessages,
             personSending: props.personSending,
             personReceiving: props.personReceiving
         }

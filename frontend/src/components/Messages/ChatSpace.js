@@ -15,7 +15,7 @@ class ChatSpace extends React.Component {
         return (
             <div className='chat-space'>
                 {
-                    this.props.messages.map((message, index) =>
+                    this.state.messages.map((message, index) =>
                     <TextMessage
                         key={index}
                         content={message.content}
