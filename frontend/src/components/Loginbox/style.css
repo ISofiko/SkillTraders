@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+.body {
+	color:white;
+}
+
+.accessbox {
+	font-family: 'Alata', sans-serif;
+	width:40vw;
+	background-color: #6d75a3;
+	color:white;
+	border-radius:15px;
+
+	border: 3px solid #959fda;
+}
+
+.italize {
+	color:white;
+	font-family: 'Alata', sans-serif;
+}
+
+.tiny {
+	font-size: small;
+	font-weight: lighter;
+	font-family: 'Alata', sans-serif;
+	color:white;
+	padding-left: 25px;
+	padding-right:25px;
+}
+
+.header {
+	font-style: normal;
+	font-weight: bold;
+	font-size: large;
+	padding-top:200px;
+	padding-bottom:2px;
+	font-family: 'Alata', sans-serif;
+	color:white;
+	border-bottom: 3px solid rgb(217, 217, 217);;
+}
+
+.loginbutton {
+	font-family: 'Alata', sans-serif;
+	background-color: #959fda;
+	color:white;
+	padding-left: 20px;
+	padding-right:20px;
+	padding-top:5px;
+	padding-bottom:5px;
+	outline:none;
+	border-radius:15px;
+	border: 2px solid #939dd8e1;
+}
+
+.loginbutton:hover {
+	transform: scale(1.12);
+	background-color: #939dd8e1;
+	-webkit-transition: transform 0.4s ease-in-out;
+}
+
+.loginbutton:active {
+	transform: scale(0.98);
+	background-color: #7e87bde1;
+	-webkit-transition: transform 0.2s ease-in-out;
+}
+
+.inputtext {
+	font-family: 'Alata', sans-serif;
+	background-color: rgba(217, 217, 217, 0.5);
+	color:#2a2d3de1;
+	padding-left: 20px;
+	padding-right:20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-top:5px;
+	padding-bottom:5px;
+	outline:none;
+	border-radius:15px;
+	border: 2px solid #939dd8e1;
+}
+
+.incorrect{
+	color: darkred;
+	font-family: 'Alata', sans-serif;
+	font-weight: bold;
+	font-style: italic;
+	margin-top:5px;
+    opacity: 0;
+    height: 0;
+}
+
+@keyframes peekincorrect {
+	from   { 
+		opacity: 0;
+		height: 0;
+	}
+	to {
+		opacity: 1;
+		height: auto;
+	}
+  }
+
+.incorrect:hover {
+	opacity: 1;
+	height: auto;
+}
