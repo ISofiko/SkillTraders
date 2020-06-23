@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+.sidebar {
+	background-color: #5964a8;
+}
+
+.logo {
+	margin-left:30%;
+	margin-right:auto;
+	margin-top:20px;
+	width:40%;
+	border-radius: 50%;
+	border: 3px solid rgb(217, 217, 217);
+	-webkit-transition: transform 0.7s ease-in-out;
+}
+
+.logo:hover {
+	transform: scale(1.2);
+	-webkit-transition: transform 1s ease-in-out;
+}
+
+.dropicon {
+	float:right;
+	margin-right:15%;
+	width:5%;
+	padding-top:5px;
+	-webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);	
+}
+
+.logo2 {
+	position: absolute;
+	left:25%;
+	bottom:10%;
+	margin-right:auto;
+	width:45%;
+	-webkit-transition: transform 0.5s ease-in-out;
+}
+
+.logo2:hover {
+	transform: scale(1.1);
+	-webkit-transition: transform 0.8s ease-in-out;
+}
+
+.footer {
+	color: aliceblue;
+	position: absolute;
+	margin-left:10%;	
+	bottom: 0;
+	font-family: 'Alata', sans-serif;
+	padding-bottom: 5px;
+}
+
+@keyframes expand-bar {
+	from {
+		transform: translateY(-20%);
+		opacity: 0;
+	  }
+	  to {
+		transform: translateY(0);
+		opacity: 1;
+	  }
+ }
+
+.dropdown {
+    transition: all 0.15s ease-out;
+    opacity: 0;
+    height: 0;
+	overflow: hidden;
+}
+
+.innersection {
+	color:aliceblue;
+	text-align: center;
+	font-family: 'Alata', sans-serif;
+	padding-bottom: 10px;
+}
+
+.section {
+	color:aliceblue;
+	text-align: center;
+	font-size: larger;
+	font-family: 'Alata', sans-serif;
+	padding: 10px;
+	padding-bottom: 10px;
+}
+
+.section:hover .dropdown {
+	opacity: 1;
+	height: 100%;
+	transition: all 0.5s ease-out;
+	animation: expand-bar 0.5s forwards;
+}
+
+.section:hover .dropicon {
+	transform: rotate(-90deg) scale(1.1);
+	transition: all 0.8s ease-out;
+}
+
+.link {
+	color:aliceblue;
+	text-align: center;
+	font-weight: bold;
+	font-family: 'Alata', sans-serif;
+	padding: 10px;
+	border-top:1px solid rgb(217, 217, 217);
+	border-bottom:1px solid rgb(217, 217, 217);
+	-webkit-transition: transform 0.3s ease-in-out;
+}
+
+@keyframes back-change {
+	from { background: #5964a8 }
+	  to { background: #485188 }
+ }
+
+.link:hover {
+	animation: ripple 1s ease;
+	transform: scale(1.03);
+	animation: back-change 0.4s forwards;
+	-webkit-transition: transform 0.4s ease-in-out;
+}
