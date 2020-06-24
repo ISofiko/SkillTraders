@@ -3,7 +3,7 @@ import ContactList from '../components/Messages/ContactList';
 import ChatSpace from '../components/Messages/ChatSpace'
 var mockMessages = require('../mockData/MockMessages')
 
-require('./messages.css');
+require('./Messages.css');
 
 class Messages extends React.Component {
     constructor(props) {
@@ -24,13 +24,26 @@ class Messages extends React.Component {
 
     render() {
         return (
-            <div className="dashboard">
-                <div className="sidebar"/>
-                <div className="messages">
-                    <ContactList contacts={[]} />
-                    <ChatSpace messages={this.state.messages} />
-                </div>
+        <div className="main">
+            <div className="sidebar-main">
+                Sidebar here
             </div>
+            <div className="messages-main">
+                <ContactList contacts={[]} />
+                <div className="selected-contact">
+                    Alice Alison
+                </div>
+                <ChatSpace messages={this.state.messages} />
+                <form action="" className="send-message">
+                    <input
+                        type="text"
+                        id="messageText"
+                        placeholder= "Say something"
+                        className="say-something"/>
+                    <input className="send-button" type="submit" value="Send"/>
+                </form>
+            </div>
+        </div>
         );
     }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import './messages-subs.css'
 
 class TextMessage extends React.Component {
 
@@ -18,9 +19,9 @@ class TextMessage extends React.Component {
 
     render() {
         return (
-            <div className='text-message'>
-                <div className={this.getMessageSide()}>
-                this.state.content
+            <div className={this.getMessageSide()}>
+                <div className='text-message'>
+                {this.state.content}
                 </div>
             </div>
         )

@@ -1,5 +1,5 @@
 import React from 'react'
-import './messages-main.css'
+import './messages-subs.css'
 import TextMessage from './TextMessage';
 
 class ChatSpace extends React.Component {
