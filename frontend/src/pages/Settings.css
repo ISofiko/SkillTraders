@@ -78,15 +78,16 @@
 }
 
 @keyframes edit-to-save {
-    0%     {background-color:red;}
-    50.0%  {background-color:#ff6666;}
-    100.0%  {background-color:red;}
+    0%     {background-color:#6d75a3;}
+    30.0%  {background-color:#2e7575;}
+    100.0%  {background-color:#5e9253;}
  }
 
-#userinfoedit #buttonstyledinitial:hover {
-	animation-delay: 100ms;
-	animation: edit-to-save 1.5s forwards;
-}
+ @keyframes save-to-edit {
+    0%     {background-color:#5e9253;}
+    30.0%  {background-color:#2e7575;}
+    100.0%  {background-color:#6d75a3;}
+ }
 
 #editdetails {
 	float:right;
