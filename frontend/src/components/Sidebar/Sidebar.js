@@ -28,6 +28,11 @@ class Sidebar extends React.Component {
                 window.location.replace('/');
         }
 
+        changetoSettings() {
+                console.log("Changing to settings");
+                window.location.replace('/settings');
+        }
+
 	render() {
 		return (
             <div className="sidebar">
@@ -51,7 +56,7 @@ class Sidebar extends React.Component {
                 <div className="section">
                 Settings <img className="dropicon" src={dropdown}></img>
                     <div className="dropdown">
-                        <div className="link">
+                        <div className="link" onClick={this.changetoSettings}>
                                 My Profile
                         </div>
                         <div className="link" onClick={this.changetoLogin}>
