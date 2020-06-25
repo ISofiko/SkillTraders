@@ -1,6 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import './Dashboard.css';
+import Sidebar from '../components/Sidebar';
 import FindPosting from '../components/FindPosting';
 import AdminPanel from '../components/AdminPanel';
 
@@ -22,7 +23,7 @@ function Dashboard() {
 	return (
 		<div className="dashboard">
 			<div className="sidebar">
-				<p>sidebar here</p>
+				<Sidebar/>
 			</div>
 			<div className="right-side">
 				<div className="content">

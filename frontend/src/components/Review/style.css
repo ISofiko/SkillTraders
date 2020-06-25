@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+.innerreviewstyle {
+	font-family: 'Alata', sans-serif;
+	font-size: 110%;
+	color:white;
+	background-color: #50577a;
+	border-radius:15px;
+	padding-left: 5px;
+	overflow: hidden;
+    position: relative;
+	padding-right:5px;
+	padding-top:10px;
+	padding-bottom:10px;
+	margin-bottom:10px;
+	outline:none;
+	border: 3px solid rgb(44, 61, 78);
+}
+
+#innerreviewstylepicture {
+	height: 80%;
+	object-fit: cover;
+	margin-top: auto;
+	margin-bottom: auto;
+	position: absolute;
+	left: 40px;
+	border-radius: 50%;
+	border: 3px solid rgb(44, 61, 78);
+	float:left;
+	max-width:350px;
+}
+
+#innerreviewstylereview {
+	display: inline-block;
+	font-family: 'Alata', sans-serif;
+	color:white;
+	font-size: 100%;
+	margin-left: 20px;
+	font-style: italic;
+	max-width:55%;
+}
+
+#innerreviewstylename {
+	display: inline-block;
+	font-family: 'Alata', sans-serif;
+	font-size: 110%;
+	color:white;
+	font-weight:bold;
+}
+
+.innerreviewstyle:hover {
+	transform: scale(1.02);
+	opacity: 0.97;
+	-webkit-transition: transform 0.2s ease-in-out;
+}
