@@ -1,0 +1,66 @@
+body {
+    background:#ccc
+}
+
+.main {
+    display: flex;
+}
+.main > div {
+    display: inline-block;
+}
+
+.sidebar-main {
+    background-color: #008080;
+    width: 200px;
+    height: calc(100vh - 5px);
+    position: fixed;
+    left: 0px;
+}
+
+.messages-main {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+	height: calc(100vh - 15px);
+	min-width: 400px;
+	width: calc(100vw - 260px);
+	text-align: center;
+	margin: 20px;
+	background: #fff;
+
+    -moz-box-shadow:    3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow:         3px 3px 5px 6px #ccc;
+}
+
+.messages-main > div {
+    display: inline-block;
+    position: relative;
+}
+
+.selected-contact {
+    margin-top: 10px;
+    font-size: 40px;
+
+}
+
+.send-message{
+    display: inline-flex;
+}
+
+.send-button {
+    height: 30px;
+    margin-top: 15px;
+    margin-left: 0;
+    border: none;
+    width: 70px;
+}
+
+.say-something{
+    background-color: #e6e0e0;
+    border: none;
+    padding: 5px;
+    margin-top: 15px;
+    display: block;
+	width: calc(100vw - 650px);
+}

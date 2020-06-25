@@ -8,6 +8,7 @@ import {
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 import Settings from './Settings';
+import Messages from './Messages';
 
 function Routes() {
 	return (
@@ -18,6 +19,7 @@ function Routes() {
 				<Route exact path='/find' component={Dashboard} />
 				<Route exact path='/admin' component={Dashboard} />
 				<Route exact path='/settings' component={Settings} />
+				<Route exact path='/messages' component={Messages} />
 			</Switch>
 		</BrowserRouter>
 	);

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
-import * as ServiceWorker from './serviceWorker';
+import * as serviceWorker from './serviceWorker';
 
 import Routes from './pages/Routes';
 
@@ -15,4 +15,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-ServiceWorker.unregister();
+serviceWorker.unregister();
