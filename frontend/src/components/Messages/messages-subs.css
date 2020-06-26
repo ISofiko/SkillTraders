@@ -9,6 +9,7 @@
 }
 
 .contacts-title {
+    font-family: 'Alata', sans-serif;
     font-size: 30px;
     text-align: left;
     margin: 10px;
@@ -16,12 +17,14 @@
 }
 
 .contact {
-    background: #ccc;
+    font-family: 'Alata', sans-serif;
+	background-color: #3e838f;
+	width:200px;
+	color: #fff;
     padding: 10px;
     margin: 5px;
-    width: 200px;
     border: none;
-    color: #008080;
+	border-radius:15px;
 }
 
 .chat-space {
@@ -34,17 +37,22 @@
 }
 
 .selected-contact {
+    font-family: 'Alata', sans-serif;
+	color: #6d75a3;
     margin-top: 10px;
     font-size: 40px;
 }
 
 .text-message {
-    outline: 1px solid #ccc;
+    font-family: 'Alata', sans-serif;
     margin-top: 20px;
     padding: 10px 5px;
     font-size: 12px;
     max-width: 200px;
     text-align: left;
+    border: 1px solid #ccc;
+	border-radius: 15px;
+    box-sizing: border-box;
 }
 
 .me {
@@ -58,8 +66,10 @@
     display: flex;
     justify-content: flex-start;
     background-clip: border-box;
+    border: none;
 }
 
 .other > div {
-    background: aqua;
+    background: #6d75a3;
+    color: white;
 }

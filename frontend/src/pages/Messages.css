@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
 body {
     background:#fff
 }
@@ -20,13 +22,10 @@ body {
 }
 
 .messages-main {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-	height: calc(100vh - 15px);
-	min-width: 400px;
-	width: calc(100vw - 360px);
-	text-align: left;
+    position: relative;
+    left: 300px;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .messages-main > div {
@@ -37,11 +36,12 @@ body {
 .send-message{
     display: inline-flex;
     min-width: 300px;
-    float: right;
     padding-right: 30px;
+    margin-left: 275px;
 }
 
 .send-button {
+    font-family: 'Alata', sans-serif;
     height: 30px;
     margin-top: 15px;
     margin-left: 0;
@@ -50,6 +50,7 @@ body {
 }
 
 .say-something{
+    font-family: 'Alata', sans-serif;
     background-color: #e6e0e0;
     border: none;
     padding: 5px;

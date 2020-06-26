@@ -12,10 +12,13 @@ function ContactList() {
                 Alice Alison
             </button>
             <button className="contact">
-                Alice Alison
+                Muhammad Ali
             </button>
             <button className="contact">
-                Alice Alison
+                David Chen
+            </button>
+            <button className="contact">
+                Sofia Ilina
             </button>
         </div>
     )
