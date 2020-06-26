@@ -1,9 +1,11 @@
 import React from 'react';
 import ContactList from '../components/Messages/ContactList';
 import ChatSpace from '../components/Messages/ChatSpace'
+import Sidebar from '../components/Sidebar';
 var mockMessages = require('../mockData/MockMessages')
 
 require('./Messages.css');
+require('./Dashboard.css');
 
 class Messages extends React.Component {
     constructor(props) {
@@ -25,14 +27,11 @@ class Messages extends React.Component {
     render() {
         return (
         <div className="main">
-            <div className="sidebar-main">
-                Sidebar here
+            <div className="sidebar">
+                <Sidebar/>
             </div>
             <div className="messages-main">
                 <ContactList contacts={[]} />
-                <div className="selected-contact">
-                    Alice Alison
-                </div>
                 <ChatSpace messages={this.state.messages} />
                 <form action="" className="send-message">
                     <input
