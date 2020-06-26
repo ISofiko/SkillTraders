@@ -64,11 +64,11 @@ class Sidebar extends React.Component {
                 <div className="section">
                 Settings <img className="dropicon" src={dropdown}></img>
                     <div className="dropdown">
-                        <div className="link" onClick={this.changetoSettings}>
-                                My Profile
-                        </div>
                         <div className="link" onClick={this.changetoLogin}>
                                 Sign Out
+                        </div>
+                        <div className="link" onClick={this.changetoSettings}>
+                                My Profile
                         </div>
                     </div>
                 </div>
