@@ -1,10 +1,12 @@
 body {
-    background:#ccc
+    background:#fff
 }
 
 .main {
     display: flex;
+    justify-content: space-evenly;
 }
+
 .main > div {
     display: inline-block;
 }
@@ -23,14 +25,8 @@ body {
     top: 0px;
 	height: calc(100vh - 15px);
 	min-width: 400px;
-	width: calc(100vw - 260px);
-	text-align: center;
-	margin: 20px;
-	background: #fff;
-
-    -moz-box-shadow:    3px 3px 5px 6px #ccc;
-    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-    box-shadow:         3px 3px 5px 6px #ccc;
+	width: calc(100vw - 360px);
+	text-align: left;
 }
 
 .messages-main > div {
@@ -38,14 +34,11 @@ body {
     position: relative;
 }
 
-.selected-contact {
-    margin-top: 10px;
-    font-size: 40px;
-
-}
-
 .send-message{
     display: inline-flex;
+    min-width: 300px;
+    float: right;
+    padding-right: 30px;
 }
 
 .send-button {
@@ -62,5 +55,6 @@ body {
     padding: 5px;
     margin-top: 15px;
     display: block;
-	width: calc(100vw - 650px);
+	width: calc(100vw - 750px);
+	min-width: 220px;
 }

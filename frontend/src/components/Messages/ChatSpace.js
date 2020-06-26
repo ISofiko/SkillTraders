@@ -13,15 +13,20 @@ class ChatSpace extends React.Component {
 
     render() {
         return (
-            <div className='chat-space'>
-                {
-                    this.state.messages.map((message, index) =>
-                    <TextMessage
-                        key={index}
-                        content={message.content}
-                        sender={message.sender}
-                    />)
-                }
+            <div>
+                <div className="selected-contact">
+                    Alice Alison
+                </div>
+                <div className='chat-space'>
+                    {
+                        this.state.messages.map((message, index) =>
+                        <TextMessage
+                            key={index}
+                            content={message.content}
+                            sender={message.sender}
+                        />)
+                    }
+                </div>
             </div>
         )
     }

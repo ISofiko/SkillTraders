@@ -1,12 +1,11 @@
 .contact-list {
     position: absolute;
     width: 250px;
-    height: calc(100vh - 45px);
+    max-height: calc(100vh - 45px);
     float: left;
     left: 0;
     top: 0;
     margin: 10px;
-    outline: 1px solid #ccc;
 }
 
 .contacts-title {
@@ -28,11 +27,15 @@
 .chat-space {
     margin-top: 10px;
     float: left;
-    width: calc(100vw - 550px);
+    width: calc(100vw - 650px);
+    min-width: 300px;
     height: calc(100vh - 150px);
     outline: 1px solid #ccc;
+}
 
-
+.selected-contact {
+    margin-top: 10px;
+    font-size: 40px;
 }
 
 .text-message {

@@ -18,6 +18,11 @@ class Sidebar extends React.Component {
                 window.location.replace('/admin');
         }
 
+        changetoMessages() {
+            console.log("Changing to messages")
+            window.location.replace('/messages');
+        }
+
         changetoFind() {
                 console.log("Changing to find");
                 window.location.replace('/find');
@@ -45,7 +50,7 @@ class Sidebar extends React.Component {
                 <div className="section">
                     My SkillTraders <img className="dropicon" src={dropdown}></img>
                     <div className="dropdown">
-                        <div className="link">
+                        <div className="link" onClick={this.changetoMessages}>
                                 Messages
                         </div>
                         <div className="link" onClick={this.changetoFind}>
