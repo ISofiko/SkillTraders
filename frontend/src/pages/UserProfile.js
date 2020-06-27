@@ -2,6 +2,7 @@ import React from 'react';
 import './UserProfile.css';
 import ReactStars from 'react-stars';
 import Sidebar from '../components/Sidebar';
+import PostingDetails from '../components/PostingDetails';
 import StarRating from '../components/StarRating';
 import StyledButton from '../components/StyledButton';
 import Review from '../components/Review';
@@ -39,9 +40,11 @@ function UserProfile() {
 					<br/>
 					<hr/><br/>
 
-					SkillTrader Postings go here
+					<PostingDetails uid={123567} pid={1003942} />
+					<PostingDetails uid={123567} pid={1003942} />
+					<PostingDetails uid={123567} pid={1003942} />
 
-					<br/><br/>
+					<br/>
 					<hr></hr>
 					<br/>
 					<div id="userreviews">
