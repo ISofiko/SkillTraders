@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+.sidebar {
+	width: 300px;
+	height: 100vh;
+	position: fixed;
+	left: 0px;
+}
+
+.right-side {
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	height: calc(100vh - 40px);
+	min-width: 400px;
+	width: calc(100vw - 340px);
+	text-align: center;
+	padding: 20px;
+}
+
+.startitle{
+	display: inline-block;
+}
+
+.headerstar{
+	display: inline-block;
+}
+
+.content {
+	position: absolute;
+	max-width: 900px;
+	width: 90%;
+	left: 50%;
+	-webkit-transform: translate(-50%, 0%);
+}
+
+@media screen and (max-width: 700px) {
+	.sidebar {
+		visibility: hidden;
+	}
+
+	.content {
+		width: 100vw;
+		right: 0px;
+		left: 0px;
+	}
+}
+
+.profile {
+	float: left;
+	display: inline-block;
+	margin-left:5vw;
+	margin-right:auto;
+	margin-top:20px;
+	width:200px;
+	object-fit: cover;
+	height: 200px;
+	border-radius: 50%;
+	border: 3px solid rgb(217, 217, 217);
+	-webkit-transition: transform 0.7s ease-in-out;
+}
+
+.profile:hover {
+	transform: scale(1.1);
+	-webkit-transition: transform 1s ease-in-out;
+}
+
+#header {
+	font-family: 'Alata', sans-serif;
+	font-weight: bold;
+	font-size: 55px;
+	padding-bottom: 10px;
+	padding-top: 25px;
+}
+
+.myprofile #buttonstyledinitial {
+	background-color: #3e838f;
+	width:350px;
+}
+
+#userinfoedit {
+	width:100%;
+}
+
+#userinfoedit #buttonstyledinitial {
+	background-color: #6d75a3;
+	width:180px;
+}
+
+@keyframes edit-to-save {
+    0%     {background-color:#6d75a3;}
+    30.0%  {background-color:#2e7575;}
+    100.0%  {background-color:#5e9253;}
+ }
+
+ @keyframes save-to-edit {
+    0%     {background-color:#5e9253;}
+    30.0%  {background-color:#2e7575;}
+    100.0%  {background-color:#6d75a3;}
+ }
+
+#editdetails {
+	float:right;
+}
+
+#userinfoedit #buttoniconimg {
+	width:15%;
+}
+
+.infotextfields {
+	font-family: 'Alata', sans-serif;
+	font-weight: bold;
+	font-size: large;
+	background-color: rgba(217, 217, 217, 0.5);
+	color:#2a2d3de1;
+	padding-left: 20px;
+	padding-right:20px;
+	margin-top: 10px;
+	margin-bottom: 25px;
+	padding-top:5px;
+	padding-bottom:5px;
+	outline:none;
+	border-radius:15px;
+	border: 2px solid #939dd8e1;
+}
+
+.infotextfieldsheader {
+	font-family: 'Alata', sans-serif;
+	font-weight: bold;
+	font-size: 130%;
+	color:#2a2d3de1;
+}

@@ -3,6 +3,7 @@ import './Settings.css';
 import Sidebar from '../components/Sidebar';
 import StarRating from '../components/StarRating';
 import StyledButton from '../components/StyledButton';
+import ProfileImage from '../components/ProfileImage';
 import Review from '../components/Review';
 import profile from "../resources/sample.jpg";
 import profile2 from "../resources/sample2.png";
@@ -53,7 +54,7 @@ function Settings() {
 			<div className="right-side">
 				<div className="content">
 					<div>
-						<img className="profile" src={profile2}></img>
+						<ProfileImage className="profile" src={profile2} uid="filler101"></ProfileImage>
 						<div className="myprofile">
 							<div id="header">My Profile</div><br/>
 							<StyledButton id="changepic" innericon={edit} text="Change Photo"></StyledButton>
@@ -88,7 +89,6 @@ function Settings() {
 						<Review className="review" stars={3.7} reviewername="David Chen" reviewerimage={profile} review="Good teacher"></Review><br/><br/>
 					</div>
 					<br/>
-					<StarRating/>
 				</div>
 			</div>
 		</div>

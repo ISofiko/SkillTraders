@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route,Switch, Redirect, useHistory} from 'react-router-dom';
 import { uid } from "react-uid";
 import './style.css';
+import ProfileImage from "../ProfileImage";
 import profile2 from "../../resources/sample2.png";
 import placeholder2 from "../../resources/fakelogo.png";
 import dropdown from "../../resources/dropdown.png";
@@ -49,7 +50,7 @@ class Sidebar extends React.Component {
 	render() {
 		return (
             <div className="sidebar">
-                <img className="logo" src={profile2}></img>
+                <ProfileImage className="logo" src={profile2} uid="filler101"></ProfileImage>
                 <br/>
                 <br/>
                 <div className="link" onClick={this.changetoMain}>

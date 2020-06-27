@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+.innerprofileimagemgmt {
+	margin-bottom: -10px;
+	object-fit: cover;
+	border-radius: 50%;
+	border: 3px solid rgb(44, 61, 78);
+	max-width:350px;
+}
+
+.innerprofileimagemgmt:hover {
+	transform: scale(1.03);
+	-webkit-transition: transform 0.2s ease-in-out;
+}

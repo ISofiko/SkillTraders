@@ -20,6 +20,10 @@ class StarRating extends React.Component {
         submitreview() {
                 // FILLER! db code goes here
                 // get userids of reviewer and reviewee
+                let reviewee = this.props.uid;
+                const urlParams = new URLSearchParams(window.location.search);
+                let reviewer = urlParams.get('uid');
+                console.log(reviewer);
                 // get star rating and review
                 let rating = Number(localStorage.getItem("SkillTraders2020!tempstar"));
                 let review = this.review.value;
