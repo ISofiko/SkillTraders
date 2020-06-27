@@ -6,6 +6,8 @@ import profile2 from "../../resources/sample2.png";
 import placeholder2 from "../../resources/fakelogo.png";
 import dropdown from "../../resources/dropdown.png";
 
+let userredirect = ((window.localStorage.getItem("SkillTraders2020!Admin") == "true") ? 'Admin User Modification' : "Search for User"); ;
+
 class Sidebar extends React.Component {
 
         changetoMain() {
@@ -14,8 +16,14 @@ class Sidebar extends React.Component {
         }
 
         changetoAdmin() {
-                console.log("Changing to admin");
-                window.location.replace('/admin');
+                console.log("Changing to admin (if access, otherwise search for user)");
+                const adminaccess = window.localStorage.getItem("SkillTraders2020!Admin");
+                if (adminaccess == "true") {
+                        window.location.replace('/admin');
+                } else {
+                        window.location.replace('/find');
+                }
+                
         }
 
         changetoMessages() {
@@ -47,8 +55,8 @@ class Sidebar extends React.Component {
                 <div className="link" onClick={this.changetoMain}>
                         Home
                 </div>
-                <div className="link" onClick={this.changetoMain}>
-                        Search for User
+                <div className="link" onClick={this.changetoAdmin}>
+                        {userredirect}
                 </div>
                 <div className="section">
                     My SkillTraders <img className="dropicon" src={dropdown}></img>

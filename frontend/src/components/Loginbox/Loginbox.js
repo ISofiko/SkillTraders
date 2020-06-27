@@ -60,7 +60,7 @@ class Loginbox extends React.Component {
                         this.rewriteMessage(message);
                         return;
                 }
-                var re = /\S+@\S+\.\S+/;
+                const re = /\S+@\S+\.\S+/;
                 if(!re.test(this.email.value)) {
                         message.textContent = "A valid email address was not found!"
                         this.rewriteMessage(message);
@@ -74,9 +74,15 @@ class Loginbox extends React.Component {
                 const message = document.getElementById("errormessage");
                 /* db related code goes here FILLER */
                 console.log("Attempting login...");
-                if (this.username.value === "moyoonthego" && this.password.value === "muhammadali"
-                || this.username.value === "sofiailina" && this.password.value === "sofiailina"
-                || this.username.value === "davidchen" && this.password.value === "davidchen") {
+                if ((this.username.value === "user" && this.password.value === "user") || 
+                (this.username.value === "admin" && this.password.value === "admin")) {
+                        // use local Session to store admin access
+                        if (this.username.value === "admin") {
+                                window.localStorage.setItem("SkillTraders2020!Admin", "true");
+                        } else {
+                                window.localStorage.setItem("SkillTraders2020!Admin", "false");
+                        }
+                        // go to home page
                         window.location.replace('/dashboard');
                 } else {
                         // flash text saying inccorect login info

@@ -1,6 +1,7 @@
 import React from 'react';
 import './Settings.css';
 import Sidebar from '../components/Sidebar';
+import StarRating from '../components/StarRating';
 import StyledButton from '../components/StyledButton';
 import Review from '../components/Review';
 import profile from "../resources/sample.jpg";
@@ -87,6 +88,7 @@ function Settings() {
 						<Review className="review" stars={3.7} reviewername="David Chen" reviewerimage={profile} review="Good teacher"></Review><br/><br/>
 					</div>
 					<br/>
+					<StarRating/>
 				</div>
 			</div>
 		</div>

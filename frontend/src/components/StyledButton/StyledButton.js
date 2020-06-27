@@ -12,7 +12,7 @@ class StyledButton extends React.Component {
 	render() {
 		return (
             <div className="styledbutton" id={this.props.id}>
-                    <button id="buttonstyledinitial" onClick={this.props.onClick}>{this.props.text}
+                    <button id="buttonstyledinitial" className={this.props.innerclass} onClick={this.props.onClick}>{this.props.text}
                             <img id="buttoniconimg" src={this.props.innericon}></img>
                     </button>
             </div>
