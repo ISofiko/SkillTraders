@@ -57,12 +57,14 @@
 	bottom: 0px;
 	left: 0px;
 	text-align: left;
+	pointer-events: none;
 }
 
 .category .fa {
 	font-size: 80px;
 	color: white;
 	margin-top: 30px;
+	pointer-events: none;
 }
 
 .postings {
@@ -90,7 +92,8 @@
 
 .posting img {
 	height: calc(100% - 20px);
-	padding: 10px;
+	margin: 10px;
+	border-radius: 10px;
 }
 
 .posting h1 {
@@ -108,4 +111,31 @@
 .posting p {
 	color: black;
 	margin-top: 10px;
+	overflow: hidden;
+	height: 69px;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+.posting a {
+	transition: .2s;
+}
+
+.posting a:hover {
+	color: #64E1E1;
+}
+
+.tags h2 {
+	display: inline-block;
+}
+
+.tags .tag {
+	font-size: 13px;
+	color: white;
+	background-color: grey;
+	border-radius: 10px;
+	padding: 0px 5px 0px 5px;
+	margin: 0px 1px 0px 1px;
 }
