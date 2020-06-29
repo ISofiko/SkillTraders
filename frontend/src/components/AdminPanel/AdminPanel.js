@@ -26,7 +26,7 @@ class AdminPanel extends React.Component {
 				<input className="search-bar" type="search" placeholder="Search for user" value={this.state.query} onChange={this.controlInput}></input>
 
 				<div className="users">
-					{this.state.users.map(user => (
+					{this.state.users.filter(user => user.name.toLowerCase().includes(this.state.query)).map(user => (
 						<User key={uid(user)} name={user.name} avatar={user.avatar} link={user.link} />
 					))}
 				</div>

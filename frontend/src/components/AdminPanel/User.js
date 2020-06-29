@@ -12,7 +12,7 @@ class User extends React.Component {
 				<div className="details">
 					<h1>{name}</h1>
 					<div className="actions">
-						<a class="fa fa-pencil"></a>
+						<a class="fa fa-pencil" href={"/user/" + name}></a>
 						<a class="fa fa-trash"></a>
 					</div>
 				</div>
