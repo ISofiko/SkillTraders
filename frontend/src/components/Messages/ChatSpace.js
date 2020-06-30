@@ -1,6 +1,7 @@
 import React from 'react'
 import './messages-subs.css'
 import TextMessage from './TextMessage';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 class ChatSpace extends React.Component {
 
@@ -17,7 +18,7 @@ class ChatSpace extends React.Component {
                 <div className="selected-contact">
                     Alice Alison
                 </div>
-                <div className='chat-space'>
+                <ScrollToBottom className='chat-space'>
                     {
                         this.state.messages.map((message, index) =>
                         <TextMessage
@@ -26,7 +27,7 @@ class ChatSpace extends React.Component {
                             sender={message.sender}
                         />)
                     }
-                </div>
+                </ScrollToBottom>
             </div>
         )
     }

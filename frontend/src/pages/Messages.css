@@ -9,10 +9,6 @@ body {
     justify-content: space-evenly;
 }
 
-.main > div {
-    display: inline-block;
-}
-
 .sidebar-main {
     background-color: #008080;
     width: 200px;
@@ -22,10 +18,7 @@ body {
 }
 
 .messages-main {
-    position: relative;
-    left: 300px;
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 300px;
 }
 
 .messages-main > div {

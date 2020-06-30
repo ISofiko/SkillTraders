@@ -28,7 +28,13 @@
 }
 
 .chat-space {
+    overflow: auto;
+    transition: color 0.3s ;
+    &:hover {
+      color: #666666FF ;
+      };
     margin-top: 10px;
+    padding-bottom: 10px;
     float: left;
     width: calc(100vw - 650px);
     min-width: 300px;
