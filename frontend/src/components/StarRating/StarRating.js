@@ -29,6 +29,7 @@ class StarRating extends React.Component {
                 let review = this.review.value;
                 // check if user already submitted review for this user
                 // if not, push all this info to db otherwise prompt error
+                // FILLER! db code goes here
                 if (true) {
                         window.alert("You've already submitted a review for this user!");
                 }

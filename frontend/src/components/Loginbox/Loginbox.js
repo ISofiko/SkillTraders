@@ -66,13 +66,15 @@ class Loginbox extends React.Component {
                         this.rewriteMessage(message);
                         return;
                 }
-                /* db related code goes here FILLER */
+                /* db related code goes here FILLER 
+                Will register the user below before redirecting to dashboard
+                */
                 window.location.replace('/dashboard');
         }
 
         tryLogin() {
                 const message = document.getElementById("errormessage");
-                /* db related code goes here FILLER */
+                /* db related code goes here FILLER Will check for correct access credentials */
                 console.log("Attempting login...");
                 if ((this.username.value === "user" && this.password.value === "user") || 
                 (this.username.value === "admin" && this.password.value === "admin")) {

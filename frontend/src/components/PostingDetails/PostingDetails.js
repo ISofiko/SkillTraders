@@ -38,6 +38,7 @@ class PostingDetails extends React.Component {
 
         getPostInfo(pid) {
                 // ?? with given listing post id
+                // FILLER! db code goes here Sample elements currently drawn				}
                 // connecting to db and getting stuff like username, listing title, listing description, uid, price and price frequency
         }
 
