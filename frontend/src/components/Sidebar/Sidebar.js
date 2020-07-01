@@ -32,6 +32,11 @@ class Sidebar extends React.Component {
                 window.location.replace('/messages');
         }
 
+        changetoAddPosting() {
+                console.log("Changing to creating new posting");
+                window.location.replace('/add-posting');
+        }
+
         changetoFind() {
                 console.log("Changing to find");
                 window.location.replace('/find');
@@ -65,7 +70,7 @@ class Sidebar extends React.Component {
                         <div className="link" onClick={this.changetoMessages}>
                                 Messages
                         </div>
-                        <div className="link" onClick={this.changetoFind}>
+                        <div className="link" onClick={this.changetoAddPosting}>
                                 Create A Listing
                         </div>
                     </div>
