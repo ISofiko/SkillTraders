@@ -2,7 +2,6 @@
 
 .main {
     font-family: 'Alata', sans-serif;
-
 }
 
 h1 {
@@ -22,17 +21,20 @@ label {
     position: absolute;
     right: 50px;
     top: 20px;
-    height: calc(100vh - 50px);
     width: calc(100vw - 400px);
-    min-height: 400px;
+    min-height: 300px;
     min-width: 400px;
     text-align: center;
 }
 
 .posting-details {
     margin-top: 15px;
-    overflow: hidden;
-    height: calc(100vh - 120px);
+    overflow: auto;
+    transition: color 0.3s ;
+    &:hover {
+      color: #666666FF ;
+      };
+    height: calc(100vh - 130px);
     min-height: 300px;
     position: relative;
     border: 3px solid rgb(59, 82, 105);
@@ -41,14 +43,50 @@ label {
 
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+label {
     padding: 10px;
 }
 
-.create {
-	background-color: #3e838f;
-	width: 100px;
-    font-family: 'Alata', sans-serif;
-    font-size: 130%;
-    color:#2a2d3de1;
+input {
+    min-height: 25px;
+    max-height: 100px;
+    min-width: 300px;
+    padding: 5px;
+    border-radius: 15px;
+    border: 1px solid #939dd8e1;
+    padding-left: 15px;
+    padding-right: 15px;
+    overflow: auto;
 }
+
+.button-container {
+    width: 100%;
+}
+
+.summary {
+    min-height: 100px;
+    height: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 15px;
+    border: 1px solid #939dd8e1;
+    padding: 10px 15px;
+}
+
+.create-button {
+    font-family: 'Alata', sans-serif;
+    padding: 5px;
+    margin: 15px;
+    border-radius: 15px;
+	background-color: #3e838f;
+    border: none;
+	width: 70px;
+	min-height: 40px;
+    font-size: 130%;
+    color:#fff;
+}
+

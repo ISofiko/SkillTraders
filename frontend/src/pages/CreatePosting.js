@@ -1,5 +1,6 @@
 import React from 'react';
 import Sidebar from '../components/Sidebar';
+import ScrollToBottom from 'react-scroll-to-bottom';
 var mockCategories = require('../mockData/MockPostingCategories')
 
 require('./CreatePosting.css')
@@ -29,11 +30,11 @@ class CreatePosting extends React.Component {
     }
 
     handleSummaryChange(event) {
-        this.setState({title: event.target.value});
+        this.setState({summary: event.target.value});
     }
 
     handleLinkChange(event) {
-        this.setState({title: event.target.value});
+        this.setState({link: event.target.value});
     }
 
     handleSubmit(event) {
@@ -51,17 +52,26 @@ class CreatePosting extends React.Component {
             <div className='main'>
                 <div className='new-posting'>
                     <h1>Create a new Posting</h1>
+                    <ScrollToBottom>
                     <form className='posting-details'>
                         <label> Posting title <br/> </label>
                         <input type="text" value={this.state.title} onChange={this.handleTitleChange}/>
                         <label> Categories: <br/> </label>
 
                         <label> Summary <br/> </label>
-                        <input type="text" value={this.state.summary} onChange={this.handleSummaryChange}/>
+                        <textarea
+                            className='summary'
+                            type="text"
+                            id="summary"
+                            value={this.state.summary}
+                            onChange={this.handleSummaryChange}/>
                         <label> Meeting link <br/> </label>
                         <input type="text" value={this.state.link} onChange={this.handleLinkChange}/>
-                        <input className="create" type="submit" value="Create!"/>
+                        <div className="button-container">
+                            <input className="create-button" type="submit" value="Create!"/>
+                        </div>
                     </form>
+                    </ScrollToBottom>
                 </div>
             </div>
         </div>
