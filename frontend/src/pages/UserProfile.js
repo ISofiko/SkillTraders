@@ -39,7 +39,8 @@ function UserProfile() {
 					<StarRating/>
 					<br/>
 					<hr/><br/>
-
+					{// FILLER! db code goes here Sample elements currently drawn
+					}
 					<PostingDetails uid={123567} pid={1003942} />
 					<PostingDetails uid={123567} pid={1003942} />
 					<PostingDetails uid={123567} pid={1003942} />
@@ -48,6 +49,8 @@ function UserProfile() {
 					<hr></hr>
 					<br/>
 					<div id="userreviews">
+						{// FILLER! db code goes here Sample elements currently drawn
+						}
 						<Review className="review" stars={5} reviewername="David Ali" reviewerimage={profile} review="Good teacher"></Review>
 						<Review className="review" stars={4.7} reviewername="Ali Ilina" reviewerimage={profile3} review="He would put on a yoga video and watch me doing the exercise while eating a bag of doritos. Great!"></Review>
 						<Review className="review" stars={3.7} reviewername="Sofia Chen" reviewerimage={save} review="Always makes out time to help me out! Great person!"></Review><br/><br/>

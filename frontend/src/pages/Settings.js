@@ -42,8 +42,7 @@ function Settings() {
 			editbutton.lastChild.style.webkitTransform = 'rotate(360deg)';
 		}
 		
-
-		// FILLER db modification goes here
+		// FILLER db modification goes here (update db entries for user)
 	}
 
 	return (
@@ -84,6 +83,8 @@ function Settings() {
 					<hr></hr>
 					<br/>
 					<div id="userreviews">
+						{// FILLER! db code goes here Sample elements currently drawn
+						}
 						<Review className="review" stars={2.7} reviewername="Ali Bayat" reviewerimage={profile3} review="I paid for yoga classes with Muhammad.... It sucked to be honest. Not only did he not teach me anything, but he would put on a yoga video and watch me doing the exercise while eating a bag of doritos. He didn't even share!"></Review>
 						<Review className="review" stars={4.7} reviewername="Sofia Ilina" reviewerimage={save} review="Always makes out time to help me out! Great person!"></Review>
 						<Review className="review" stars={3.7} reviewername="David Chen" reviewerimage={profile} review="Good teacher"></Review><br/><br/>
