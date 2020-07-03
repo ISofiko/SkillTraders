@@ -22,7 +22,7 @@ class Sidebar extends React.Component {
                 if (adminaccess == "true") {
                         window.location.replace('/admin');
                 } else {
-                        window.location.replace('/find');
+                        window.location.replace('/admin');
                 }
                 
         }
