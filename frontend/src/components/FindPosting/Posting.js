@@ -10,7 +10,7 @@ class Posting extends React.Component {
 	};
 
 	render() {
-		const { title, user, date, description, tags, link } = this.props;
+		const { title, user, date, price, description, tags, image } = this.props;
 		let tagList = ["NONE"];
 		if (tags !== undefined) {
 			tagList = tags.toUpperCase().split(" ");
@@ -18,10 +18,13 @@ class Posting extends React.Component {
 
 		return (
 			<div className="posting" onClick={this.redirect}>
-				<img src={Placeholder} alt="Placeholder" />
+				<div className="image">
+					<img src={image} alt="Placeholder" />
+					<p>{"$" + price}/h</p>
+				</div>
 				<div className="details">
 					<h1>{title}</h1>
-					<h2>Posted by <a className="dark-aqua" href={"/user/" + user}>{user}</a> on <span className="dark-aqua">{date}</span></h2>
+					<h2>Posted by <a className="dark-aqua" href={"/userprofile?uid=" + user}>{user}</a> on <span className="dark-aqua">{date}</span></h2>
 					<div className="tags">
 						<h2>Tags:&nbsp;</h2>
 						{tagList.map(tag => (
