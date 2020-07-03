@@ -1,4 +1,4 @@
-.contact-list {
+.contacts-bar {
     position: absolute;
     width: 250px;
     max-height: calc(100vh - 45px);
@@ -12,8 +12,12 @@
     font-family: 'Alata', sans-serif;
     font-size: 30px;
     text-align: left;
-    margin: 10px;
+    margin: 11.5px;
+}
 
+.contact-list {
+    height: calc(100vh - 140px);
+    outline: 1px solid #ccc;
 }
 
 .contact {

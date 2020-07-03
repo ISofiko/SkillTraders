@@ -2,7 +2,7 @@ import React from 'react';
 import ContactList from '../components/Messages/ContactList';
 import ChatSpace from '../components/Messages/ChatSpace'
 import Sidebar from '../components/Sidebar';
-var mockMessages = require('../mockData/MockMessages')
+const mockContacts = require('../mockData/MockContacts')
 
 require('./Messages.css');
 require('./Dashboard.css');
@@ -12,7 +12,8 @@ class Messages extends React.Component {
         super(props);
 
         this.state = {
-            messages: mockMessages,
+            contacts: mockContacts,
+            messages: mockContacts[0].messages,
             personSending: props.personSending,
             personReceiving: props.personReceiving
         }
@@ -31,7 +32,7 @@ class Messages extends React.Component {
                 <Sidebar/>
             </div>
             <div className="messages-main">
-                <ContactList contacts={[]} />
+                <ContactList contacts={this.state.contacts} />
                 <ChatSpace messages={this.state.messages} />
                 <form action="" className="send-message">
                     <input

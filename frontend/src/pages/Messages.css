@@ -39,7 +39,8 @@ body {
     margin-top: 15px;
     margin-left: 0;
     border: none;
-    width: 70px;
+    min-width: 90px;
+    max-width: 90px;
 }
 
 .say-something{
