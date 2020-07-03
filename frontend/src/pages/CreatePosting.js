@@ -1,5 +1,7 @@
 import React from 'react';
+import { uid } from "react-uid";
 import Sidebar from '../components/Sidebar';
+import Category from '../components/FindPosting/Category';
 import ScrollToBottom from 'react-scroll-to-bottom';
 var mockCategories = require('../mockData/MockPostingCategories')
 
@@ -13,6 +15,7 @@ class CreatePosting extends React.Component {
 
         this.state = {
             title: '',
+		    tags: [],
             categories: mockCategories,
             summary: '',
             link: '',
@@ -42,6 +45,23 @@ class CreatePosting extends React.Component {
         event.preventDefault();
     }
 
+    setTag = event => {
+    		const tag = event.target.innerText.toLowerCase();
+    		if (!this.state.tags.includes(tag)) {
+    			this.setState({
+    				tags: this.state.tags.concat(tag)
+    			});
+    			event.target.style = "background-color: #64E1E1;";
+    			event.target.children[0].style = "text-decoration: underline;";
+    		} else {
+    			this.setState({
+    				tags: this.state.tags.filter(x => x != tag)
+    			});
+    			event.target.style = "";
+    			event.target.children[0].style = "";
+    		}
+    	};
+
 
     render() {
         return (
@@ -57,6 +77,16 @@ class CreatePosting extends React.Component {
                         <label> Posting title <br/> </label>
                         <input type="text" value={this.state.title} onChange={this.handleTitleChange}/>
                         <label> Categories: <br/> </label>
+
+                        <div className="categories">
+                            {this.state.categories.map(category => (
+                                <Category
+                                    key={uid(category)}
+                                    title={category.title}
+                                    icon={null}
+                                    click={this.setTag} />
+                            ))}
+                        </div>
 
                         <label> Summary <br/> </label>
                         <textarea
