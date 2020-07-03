@@ -71,7 +71,7 @@ class Sidebar extends React.Component {
                                 Messages
                         </div>
                         <div className="link" onClick={this.changetoAddPosting}>
-                                Create A Listing
+                                Create A Posting
                         </div>
                     </div>
                 </div>

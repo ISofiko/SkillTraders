@@ -63,21 +63,21 @@ input {
     overflow: auto;
 }
 
-.categories {
+.categories-bars {
 	display: inline-flex;
 	flex-flow: row wrap;
 	margin: 0px;
 	justify-content: left;
 }
 
-.categories >div {
+.categories-bars >div {
     height: 50px;
     padding: 0;
     width: 150px;
     margin: 17px;
 }
 
-.categories >div >h1 {
+.categories-bars >div >h1 {
     color: #fff;
 }
 

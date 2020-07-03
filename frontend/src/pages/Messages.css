@@ -19,6 +19,8 @@ body {
 
 .messages-main {
     margin-left: 300px;
+    margin-bottom: 20px;
+	position: relative;
 }
 
 .messages-main > div {
@@ -26,29 +28,30 @@ body {
     position: relative;
 }
 
-.send-message{
+.send-message {
     display: inline-flex;
     min-width: 300px;
     padding-right: 30px;
     margin-left: 275px;
+    margin-top: 0;
 }
 
 .send-button {
     font-family: 'Alata', sans-serif;
-    height: 30px;
-    margin-top: 15px;
+    margin-top: 5px;
     margin-left: 0;
     border: none;
     min-width: 90px;
     max-width: 90px;
 }
 
-.say-something{
+.say-something {
     font-family: 'Alata', sans-serif;
     background-color: #e6e0e0;
     border: none;
     padding: 5px;
-    margin-top: 15px;
+    margin-top: 5px;
+    height: auto;
     display: block;
 	width: calc(100vw - 750px);
 	min-width: 220px;

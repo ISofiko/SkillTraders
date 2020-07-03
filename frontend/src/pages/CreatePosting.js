@@ -78,7 +78,7 @@ class CreatePosting extends React.Component {
                         <input type="text" value={this.state.title} onChange={this.handleTitleChange}/>
                         <label> Categories: <br/> </label>
 
-                        <div className="categories">
+                        <div className="categories-bars">
                             {this.state.categories.map(category => (
                                 <Category
                                     key={uid(category)}
