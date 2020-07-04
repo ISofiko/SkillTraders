@@ -9,10 +9,13 @@ function Dashboard() {
 	let location = useLocation().pathname;
 	let component;
 	switch (location) {
-		case "/find":
+		case "/posts":
 			component = <FindPosting />;
 			break;
 		case "/admin":
+			component = <AdminPanel />;
+			break;
+		case "/users":
 			component = <AdminPanel />;
 			break;
 		default:

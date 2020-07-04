@@ -7,7 +7,7 @@ import profile2 from "../../resources/sample2.png";
 import placeholder2 from "../../resources/fakelogo.png";
 import dropdown from "../../resources/dropdown.png";
 
-let userredirect = ((window.localStorage.getItem("SkillTraders2020!Admin") == "true") ? 'Admin User Modification' : "Search for User"); ;
+let userredirect = ((window.localStorage.getItem("SkillTraders2020!Admin") == "true") ? 'Admin Panel' : "Search for User"); ;
 
 class Sidebar extends React.Component {
 
@@ -22,7 +22,7 @@ class Sidebar extends React.Component {
                 if (adminaccess == "true") {
                         window.location.replace('/admin');
                 } else {
-                        window.location.replace('/admin');
+                        window.location.replace('/users');
                 }
                 
         }
@@ -39,7 +39,7 @@ class Sidebar extends React.Component {
 
         changetoFind() {
                 console.log("Changing to find");
-                window.location.replace('/find');
+                window.location.replace('/posts');
         }
 
         changetoLogin() {
