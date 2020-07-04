@@ -16,6 +16,7 @@ We enable communities to support one another electronically while complying with
 3. Navigate to the `team22/frontend` directory from your local version of the repository in the command line.
 4. Run `npm install` to ensure all required packages are installed.
 5. Start the local development server with `npm start'. Shortly, your default web browser will open the application through localhost.
+
 (For the step above, please ensure that your default browser is set to Chrome, as required.)
 
 ## Required Dependencies
@@ -24,5 +25,7 @@ In case of any errors running the application due to missing user-installed pack
 packages were used by the team and should be installed using "nmp install ______", where ______ is the package name:
 
 react-stars
+
 react-scroll-to-bottom
+
 react-uid
