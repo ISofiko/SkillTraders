@@ -47,7 +47,8 @@
 }
 
 .user img {
-	height: calc(100% - 20px);
+	height: 180px;
+	width: 180px;
 	margin: 10px;
 	border-radius: 10px;
 }
@@ -67,6 +68,25 @@
 .user p {
 	color: black;
 	margin-top: 10px;
+	overflow: hidden;
+	height: 69px;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+.user a {
+	transition: .2s;
+}
+
+.user a:hover {
+	color: #64E1E1;
+}
+
+.user .details {
+	height: 190px;
+	overflow-y: hidden;
 }
 
 .actions {

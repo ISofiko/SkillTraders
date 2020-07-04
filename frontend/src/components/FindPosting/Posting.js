@@ -3,6 +3,12 @@ import { uid } from 'react-uid';
 import './style.css';
 import Placeholder from '../../resources/placeholder.jpg';
 
+const isAdmin = window.localStorage.getItem("SkillTraders2020!Admin");
+let styling = {visibility: "hidden"};
+if (isAdmin === "true") {
+	styling = {visibility: "visible"};
+}
+
 class Posting extends React.Component {
 	redirect = event => {
 		const post = event.currentTarget.children[1].children[0].innerText; // TODO: Replace with post id (also replace with user id below)
@@ -32,6 +38,10 @@ class Posting extends React.Component {
 						))}
 					</div>
 					<p>{description}</p>
+					<div className="actions" style={styling}>
+						<a className="fa fa-pencil" onClick={this.redirect}></a>
+						<a className="fa fa-trash" onClick={(e) => alert("Posting has been deleted!")}></a>
+					</div>
 				</div>
 			</div>
 		);
