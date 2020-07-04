@@ -75,13 +75,14 @@ indicator of admin access and also possesses the page where admin functionalitie
 
 ##### Sign in
 - To sign in to your admin account, you should use the username "admin" and password "admin" on the sign-in page.
-- Once you are signed in, you will see the application as you have seen it before, as well as a new "Admin User Modification" tab.
+- Once you are signed in, you will see the application as you have seen it before, as well as a new "Admin Panel" tab.
 
-##### Admin Panel (Admin User Modification)
+##### Admin Panel (Admin Panel)
 - Primarily on the admin panel you may notice a "Search for User" component. You should be able to use this to search for users, as you have seen on the site before.
 - You will next notice a series of user blocks as you have seen before on the site. You can use these to view the specific user and their photo.
 - You will now see a red delete button inside a user block. You can use this to delete that user if you so wish to.
-- There is also a gray pencil edit button. Clicking this will take you to that users profile page with enhanced options:
+- At the  page is a console window where any info can be typed and the command will show up in the window. We will be implementing some small easy menial tasks that admin can just type in this box instead of navigating the page and duplicating tasks.
+- There is also a gray pencil edit button inside of user blocks. Clicking this will take you to that users profile page with enhanced options:
 On the user's page, you are now able to modify their personal information (name, username, password, etc.), you can delete one of their review(s), or delete one of their postings (in case it wasn't in compliance with regulatory rules).
 
 (Some of this last point have not yet been implemented due to database oriented issues: we cannot implement some of these editing features until after a database is set up in Phase 2, of course).
@@ -100,4 +101,4 @@ react-scroll-to-bottom
 
 react-uid
 
-@material-ui/core/Slider
+@material-ui/core/
