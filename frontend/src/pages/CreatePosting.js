@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import Slider from '@material-ui/core/Slider';
+import { makeStyles } from '@material-ui/core/styles';
 import { uid } from "react-uid";
 import Sidebar from '../components/Sidebar';
 import StyledButton from '../components/StyledButton'
@@ -15,6 +16,7 @@ class CreatePosting extends React.Component {
     constructor(props) {
         super(props);
 
+        // we will replace mock categories with those stored in server
         this.state = {
             title: '',
 		    tags: [],
@@ -27,7 +29,8 @@ class CreatePosting extends React.Component {
 
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleSummaryChange = this.handleSummaryChange.bind(this);
-        this.handleLinkChange = this.handleLinkChange.bind(this);
+        this.handlePriceChange = this.handlePriceChange.bind(this);
+        this.handleNumSessionsChange = this.handleNumSessionsChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
 
@@ -40,10 +43,15 @@ class CreatePosting extends React.Component {
         this.setState({summary: event.target.value});
     }
 
-    handleLinkChange(event) {
-        this.setState({link: event.target.value});
+    handlePriceChange(event) {
+        this.setState({price: event.target.value});
     }
 
+    handleNumSessionsChange(event) {
+        this.setState({numSessions: event.target.value});
+    }
+
+    // we will handle the real implementation for creating a posting through the server
     handleSubmit(event) {
         console.log('A posting was made: ' + this.state.value);
         event.preventDefault();
@@ -65,7 +73,6 @@ class CreatePosting extends React.Component {
     			event.target.children[0].style = "";
     		}
     	};
-
 
     render() {
         return (
@@ -100,6 +107,9 @@ class CreatePosting extends React.Component {
                             value={this.state.summary}
                             onChange={this.handleSummaryChange}/>
                         <label> {'Price per session: $' + this.state.price} <br/> </label>
+                        <input type="text" value={this.state.price} onChange={this.handlePriceChange}/>
+
+                        {/* this slider is not working, might try to fix in the future
                         <Slider class='slider'
                             axis="x"
                             xstep={1}
@@ -108,8 +118,11 @@ class CreatePosting extends React.Component {
                             numSessions={this.state.numSessions}
                             onChange={({ x }) => this.setState({ numSessions: parseFloat(x.toFixed(2)) })}
                           />
+                         */}
                         <label> {'Number of sessions: ' + this.state.numSessions} </label>
+                        <input type="text" value={this.state.numSessions} onChange={this.handleNumSessionsChange}/>
 
+                         {/*
                           <Slider class='slider'
                             axis="x"
                             xstep={1}
@@ -118,6 +131,7 @@ class CreatePosting extends React.Component {
                             numSessions={this.state.numSessions}
                             onChange={({ x }) => this.setState({ numSessions: parseFloat(x.toFixed(2)) })}
                           />
+                          */}
 
                     </form>
                         <StyledButton

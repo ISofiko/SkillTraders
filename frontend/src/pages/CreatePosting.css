@@ -34,7 +34,7 @@ label {
     &:hover {
       color: #666666FF ;
       };
-    height: calc(100vh - 130px);
+    height: calc(100vh - 150px);
     min-height: 300px;
     position: relative;
     border: 3px solid rgb(59, 82, 105);
@@ -45,6 +45,7 @@ label {
     flex-direction: column;
     padding-left: 20px;
     padding-right: 20px;
+    padding-bottom: 20px;
 }
 
 label {
@@ -93,10 +94,6 @@ input {
     border-radius: 15px;
     border: 1px solid #939dd8e1;
     padding: 10px 15px;
-}
-
-.MuiSlider-rail {
-    width: calc(100vw - 500px);
 }
 
 .create-button {

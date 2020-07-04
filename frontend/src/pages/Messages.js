@@ -12,6 +12,7 @@ class Messages extends React.Component {
     constructor(props) {
         super(props);
 
+        // we will replace mock contacts and their messages with real data from server
         this.state = {
             contacts: mockContacts,
             messages: mockContacts[0].messages,
@@ -20,6 +21,7 @@ class Messages extends React.Component {
         }
     }
 
+    // we will be able to actually post a message when we integrate with server
     postMessage(message) {
         let messages = this.state.messages
         messages.push(message)
