@@ -3,6 +3,10 @@
 	position: relative;
 }
 
+.find-posting > h2 {
+	margin-top: 20px;
+}
+
 .search-bar {
 	background-image: url(https://static.tumblr.com/ftv85bp/MIXmud4tx/search-icon.png);
 	background-position: 5px 4px;
@@ -15,6 +19,7 @@
 	transition: .5s;
 	width: 250px;
 	margin-top: 50px;
+	height: 32px;
 }
 
 .search-bar:focus {
@@ -29,7 +34,6 @@
 .categories {
 	display: inline-flex;
 	flex-flow: row wrap;
-	margin-top: 20px;
 	justify-content: center;
 }
 
@@ -84,16 +88,11 @@
 	display: flex;
 	padding: 10px;
 	overflow-y: hidden;
+	position: relative;
 }
 
 .posting:hover {
 	transform: scale(1.05);
-}
-
-.posting img {
-	height: calc(100% - 20px);
-	margin: 10px;
-	border-radius: 10px;
 }
 
 .posting h1 {
@@ -127,6 +126,11 @@
 	color: #64E1E1;
 }
 
+.posting .details {
+	height: 190px;
+	overflow-y: hidden;
+}
+
 .tags h2 {
 	display: inline-block;
 }
@@ -138,4 +142,29 @@
 	border-radius: 10px;
 	padding: 0px 5px 0px 5px;
 	margin: 0px 1px 0px 1px;
+}
+
+.image {
+	width: 200px;
+	position: relative;
+}
+
+.image img {
+	height: 180px;
+	width: 180px;
+	margin: 10px;
+	border-radius: 10px;
+	object-fit: cover;
+}
+
+.image p {
+	font-size: 13px;
+	position: absolute;
+	bottom: 15px;
+	left: 15px;
+	background-color: rgba(0, 0, 0, 0.8);
+	padding: 3px;
+	color: yellow;
+	height: inherit;
+	border-radius: 10px;
 }

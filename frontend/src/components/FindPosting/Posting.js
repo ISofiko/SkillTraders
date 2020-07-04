@@ -3,6 +3,12 @@ import { uid } from 'react-uid';
 import './style.css';
 import Placeholder from '../../resources/placeholder.jpg';
 
+const isAdmin = window.localStorage.getItem("SkillTraders2020!Admin");
+let styling = {visibility: "hidden"};
+if (isAdmin === "true") {
+	styling = {visibility: "visible"};
+}
+
 class Posting extends React.Component {
 	redirect = event => {
 		const post = event.currentTarget.children[1].children[0].innerText; // TODO: Replace with post id (also replace with user id below)
@@ -10,7 +16,7 @@ class Posting extends React.Component {
 	};
 
 	render() {
-		const { title, user, date, description, tags, link } = this.props;
+		const { title, user, date, price, description, tags, image } = this.props;
 		let tagList = ["NONE"];
 		if (tags !== undefined) {
 			tagList = tags.toUpperCase().split(" ");
@@ -18,10 +24,13 @@ class Posting extends React.Component {
 
 		return (
 			<div className="posting" onClick={this.redirect}>
-				<img src={Placeholder} alt="Placeholder" />
+				<div className="image">
+					<img src={image} alt="Placeholder" />
+					<p>{"$" + price}/h</p>
+				</div>
 				<div className="details">
 					<h1>{title}</h1>
-					<h2>Posted by <a className="dark-aqua" href={"/user/" + user}>{user}</a> on <span className="dark-aqua">{date}</span></h2>
+					<h2>Posted by <a className="dark-aqua" href={"/userprofile?uid=" + user}>{user}</a> on <span className="dark-aqua">{date}</span></h2>
 					<div className="tags">
 						<h2>Tags:&nbsp;</h2>
 						{tagList.map(tag => (
@@ -29,6 +38,10 @@ class Posting extends React.Component {
 						))}
 					</div>
 					<p>{description}</p>
+					<div className="actions" style={styling}>
+						<a className="fa fa-pencil" onClick={this.redirect}></a>
+						<a className="fa fa-trash" onClick={(e) => alert("Posting has been deleted!")}></a>
+					</div>
 				</div>
 			</div>
 		);

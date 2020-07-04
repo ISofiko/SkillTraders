@@ -15,6 +15,7 @@
 	transition: .5s;
 	width: 250px;
 	margin-top: 50px;
+	height: 32px;
 }
 
 .search-bar:focus {
@@ -46,7 +47,8 @@
 }
 
 .user img {
-	height: calc(100% - 20px);
+	height: 180px;
+	width: 180px;
 	margin: 10px;
 	border-radius: 10px;
 }
@@ -66,6 +68,25 @@
 .user p {
 	color: black;
 	margin-top: 10px;
+	overflow: hidden;
+	height: 69px;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+
+.user a {
+	transition: .2s;
+}
+
+.user a:hover {
+	color: #64E1E1;
+}
+
+.user .details {
+	height: 190px;
+	overflow-y: hidden;
 }
 
 .actions {
@@ -92,4 +113,64 @@
 
 .actions .fa-trash {
 	color: red;
+}
+
+.console {
+	text-align: left;
+	background-color: black;
+	width: calc(100% - 40px);
+	height: 400px;
+	color: white;
+	padding: 20px;
+	border-radius: 10px;
+	position: relative;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	margin-bottom: 20px;
+	margin-top: 50px;
+}
+
+.console .log {
+	height: 320px;
+	overflow-y: scroll;
+}
+
+.console .log p {
+	color: lightgrey;
+	font-size: 14px;
+}
+
+.console input {
+	position: absolute;
+	bottom: 30px;
+	left: 0px;
+	right: 0px;
+	outline: none;
+	width: calc(100% - 57px);
+	border: 1px black solid;
+	border-radius: 0px;
+	padding-left: 40px;
+}
+
+.console .blinking-arrow {
+	position: absolute;
+	bottom: 37px;
+	left: 10px;
+	color: #008080;
+	-webkit-animation: blinking 0.9s infinite;
+	opacity: 1;
+}
+
+.console .console-title {
+	position: absolute;
+	top: 5px;
+	right: 15px;
+	background-color: rgba(0, 0, 0, 0.8);
+}
+
+@keyframes blinking {
+	0%   { opacity: 1; }
+	50%  { opacity: 1; }
+	60%  { opacity: 0; }
+	99%  { opacity: 0; }
+	100% { opacity: 1; }
 }
