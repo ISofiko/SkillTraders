@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Slider from '@material-ui/core/Slider';
 import { uid } from "react-uid";
 import Sidebar from '../components/Sidebar';
+import StyledButton from '../components/StyledButton'
 import Category from '../components/FindPosting/Category';
 import ScrollToBottom from 'react-scroll-to-bottom';
 var mockCategories = require('../mockData/MockPostingCategories')
@@ -19,6 +21,8 @@ class CreatePosting extends React.Component {
             categories: mockCategories,
             summary: '',
             link: '',
+            numSessions: 1,
+            price: 0
         };
 
         this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -95,12 +99,33 @@ class CreatePosting extends React.Component {
                             id="summary"
                             value={this.state.summary}
                             onChange={this.handleSummaryChange}/>
-                        <label> Meeting link <br/> </label>
-                        <input type="text" value={this.state.link} onChange={this.handleLinkChange}/>
-                        <div className="button-container">
-                            <input className="create-button" type="submit" value="Create!"/>
-                        </div>
+                        <label> {'Price per session: $' + this.state.price} <br/> </label>
+                        <Slider class='slider'
+                            axis="x"
+                            xstep={1}
+                            xmin={0}
+                            xmax={100}
+                            numSessions={this.state.numSessions}
+                            onChange={({ x }) => this.setState({ numSessions: parseFloat(x.toFixed(2)) })}
+                          />
+                        <label> {'Number of sessions: ' + this.state.numSessions} </label>
+
+                          <Slider class='slider'
+                            axis="x"
+                            xstep={1}
+                            xmin={0}
+                            xmax={20}
+                            numSessions={this.state.numSessions}
+                            onChange={({ x }) => this.setState({ numSessions: parseFloat(x.toFixed(2)) })}
+                          />
+
                     </form>
+                        <StyledButton
+                            id="create-posting"
+                            innerclass="create-button"
+                            text="Create Posting!"
+                            onClick={() => { console.log("posting created!") }}>>
+                        </StyledButton>
                     </ScrollToBottom>
                 </div>
             </div>

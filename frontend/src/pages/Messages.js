@@ -1,4 +1,5 @@
 import React from 'react';
+import StyledButton from '../components/StyledButton'
 import ContactList from '../components/Messages/ContactList';
 import ChatSpace from '../components/Messages/ChatSpace'
 import Sidebar from '../components/Sidebar';
@@ -40,7 +41,12 @@ class Messages extends React.Component {
                         id="messageText"
                         placeholder= "Say something"
                         className="say-something"/>
-                    <input className="send-button" type="submit" value="Send"/>
+
+                    <StyledButton
+                        innerclass="send-button"
+                        text="Send"
+                        onClick={() => { console.log("message sent") }}>>
+                    </StyledButton>
                 </form>
             </div>
         </div>
