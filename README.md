@@ -99,3 +99,5 @@ react-stars
 react-scroll-to-bottom
 
 react-uid
+
+@material-ui/core/Slider
