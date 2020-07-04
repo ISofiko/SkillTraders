@@ -61,7 +61,11 @@ We enable communities to support one another electronically while complying with
 - Once ready, you can click the "Create!" button to make your Skilltrader posting and publish.
 
 ##### My Profile
-
+- Firstly, on this page you can view your profile picture and update it with the "Change Photo" button that is animate.
+- Next, if you scroll down you can view all your personal information currently saved. You cannot edit it.
+- Clicking the "Edit Info" button will unlock the personal information fields to be updated.
+- When editing, the "Edit Info" button will transform into a "Save" button. You can click this again to save your changes and lock the results in.
+- Finally, at the bottom you can see your reviews and witness what people are saying about you/your service.
 
 ### Admin
 
