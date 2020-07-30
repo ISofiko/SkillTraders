@@ -52,10 +52,22 @@ class Sidebar extends React.Component {
                 window.location.replace('/settings');
         }
 
+        showCreation() {
+                const adminaccess = window.localStorage.getItem("SkillTraders2020!Admin");
+                if (adminaccess === "true") {
+                        return;
+                } else {
+                        return (<div className="link" onClick={this.changetoAddPosting}>Create A Posting</div>);
+                }
+        }
+
 	render() {
+
+                let creation = this.showCreation();
+
 		return (
             <div className="sidebar">
-                <ProfileImage className="logo" src={profile2} uid="filler101"></ProfileImage>
+                <ProfileImage self="true" className="logo" src={profile2} uid="filler101"></ProfileImage>
                 <br/>
                 <br/>
                 <div className="link" onClick={this.changetoMain}>
@@ -70,9 +82,7 @@ class Sidebar extends React.Component {
                         <div className="link" onClick={this.changetoMessages}>
                                 Messages
                         </div>
-                        <div className="link" onClick={this.changetoAddPosting}>
-                                Create A Posting
-                        </div>
+                        {creation}
                     </div>
                 </div>
                 <div className="section">

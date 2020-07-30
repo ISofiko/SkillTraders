@@ -11,15 +11,20 @@ class ProfileImage extends React.Component {
                 this.moveToProfile = this.moveToProfile.bind(this);
         }
 
-        moveToProfile() {
-                window.location.replace("/userprofile?uid="+this.props.uid);
+        moveToProfile(self) {
+                if (self === "true") {
+                        window.location.replace("/settings");
+                } else {
+                        window.location.replace("/userprofile?uid="+this.props.uid);
+                }
         }
 
 	render() {
+                let self = this.props.self;
 
 		return (
             <div>
-                        <img className={[this.props.className, "innerprofileimagemgmt"].join(" ")} onClick={this.moveToProfile} src={this.props.src} id={this.props.id} ></img>
+                        <img alt="Profile" className={[this.props.className, "innerprofileimagemgmt"].join(" ")} onClick={() => this.moveToProfile(self)} src={this.props.src} id={this.props.id} ></img>
             </div>
 		);
 	}

@@ -17,6 +17,18 @@
 	border: 3px solid rgb(44, 61, 78);
 }
 
+.removepic{
+	margin-top:12px;
+	border: 0px solid !important;
+	background-color: #a05454;
+	width:120px;
+}
+
+.removepic #buttoniconimg{
+	width:24px;
+	margin-top:4px;
+}
+
 #innerreviewstylepicture {
 	height: 80%;
 	object-fit: cover;

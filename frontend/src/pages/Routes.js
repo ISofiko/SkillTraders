@@ -10,7 +10,7 @@ import Dashboard from './Dashboard';
 import Settings from './Settings';
 import UserProfile from './UserProfile';
 import Messages from './Messages';
-import CreatePosting from './CreatePosting'
+import CreatePosting from './CreatePosting';
 
 function Routes() {
 	return (
@@ -21,7 +21,6 @@ function Routes() {
 				<Route exact path='/posts' component={Dashboard} />
 				<Route exact path='/admin' component={Dashboard} />
 				<Route exact path='/users' component={Dashboard} />
-				
 				<Route exact path='/settings' component={Settings} />
 				<Route exact path='/userprofile' component={UserProfile} />
 				<Route exact path='/messages' component={Messages} />
