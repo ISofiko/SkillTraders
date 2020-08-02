@@ -6,11 +6,39 @@ import Sidebar from '../components/Sidebar';
 import StyledButton from '../components/StyledButton'
 import Category from '../components/FindPosting/Category';
 import ScrollToBottom from 'react-scroll-to-bottom';
+import upload from "../resources/upload.png";
 var mockCategories = require('../mockData/MockPostingCategories')
 
 require('./CreatePosting.css')
 require('./Dashboard.css');
 
+function createPosting() {
+    // front end animation
+    const createbox = document.getElementsByClassName("posting-details")[0];
+    createbox.style.WebkitAnimation = "upload 2.3s forwards";
+    const after = document.getElementById("afterthought");
+    after.style.display = "block";
+    after.style.WebkitAnimation = "fade-in 2.5s forwards";
+
+}
+
+function checkSessions(sessions) {
+    if (sessions > 900) {
+        return "Ongoing";
+    }
+    else return sessions;
+
+    // MAKE SURE TO HANDLE THIS IN DB
+}
+
+function checkPrice(price) {
+    if (price < 1) {
+        return "Free";
+    }
+    return "$" + price;
+
+    // MAKE SURE TO HANDLE THIS IN DB
+}
 
 class CreatePosting extends React.Component {
     constructor(props) {
@@ -54,6 +82,12 @@ class CreatePosting extends React.Component {
     // we will handle the real implementation for creating a posting through the server
     handleSubmit(event) {
         console.log('A posting was made: ' + this.state.value);
+        // DB code goes here -> uploading
+        // first check if all fields are full and not empty
+
+        // DB - ONGOING SESSIONS ARE >=900
+
+        createPosting(); // call asynch animation
         event.preventDefault();
     }
 
@@ -63,8 +97,7 @@ class CreatePosting extends React.Component {
     			this.setState({
     				tags: this.state.tags.concat(tag)
     			});
-    			event.target.style = "background-color: #64E1E1;";
-    			event.target.children[0].style = "text-decoration: underline;";
+    			event.target.style = "background-color: #5ac7c7;";
     		} else {
     			this.setState({
     				tags: this.state.tags.filter(x => x != tag)
@@ -82,12 +115,12 @@ class CreatePosting extends React.Component {
             </div>
             <div className='main'>
                 <div className='new-posting'>
-                    <h1>Create a new Posting</h1>
+                    <h1>Create a new Skill Posting</h1>
                     <ScrollToBottom>
                     <form className='posting-details'>
-                        <label> Posting title <br/> </label>
-                        <input type="text" value={this.state.title} onChange={this.handleTitleChange}/>
-                        <label> Categories: <br/> </label>
+                        <label> Posting Title <br/> </label>
+                        <input class="input" type="text" id="postingtitle" value={this.state.title} onChange={this.handleTitleChange}/>
+                        <label> Select applicable categories <br/> </label>
 
                         <div className="categories-bars">
                             {this.state.categories.map(category => (
@@ -99,15 +132,15 @@ class CreatePosting extends React.Component {
                             ))}
                         </div>
 
-                        <label> Summary <br/> </label>
-                        <textarea
+                        <label> Description <br/> </label>
+                        <textarea class="input"
                             className='summary'
                             type="text"
                             id="summary"
                             value={this.state.summary}
                             onChange={this.handleSummaryChange}/>
-                        <label> {'Price per session: $' + this.state.price} <br/> </label>
-                        <input type="text" value={this.state.price} onChange={this.handlePriceChange}/>
+                        <label> {'Price (per session): ' + checkPrice(this.state.price)} <br/> </label>
+                        <input class="slider" type="range" min="0" max="1000" placeholder={0} value={this.state.price} onChange={this.handlePriceChange}/>
 
                         {/* this slider is not working, might try to fix in the future
                         <Slider class='slider'
@@ -119,8 +152,8 @@ class CreatePosting extends React.Component {
                             onChange={({ x }) => this.setState({ numSessions: parseFloat(x.toFixed(2)) })}
                           />
                          */}
-                        <label> {'Number of sessions: ' + this.state.numSessions} </label>
-                        <input type="text" value={this.state.numSessions} onChange={this.handleNumSessionsChange}/>
+                        <label> {'Number of sessions: ' + checkSessions(this.state.numSessions)} </label>
+                        <input class="slider" type="range" min="1" max="1000" placeholder={1} value={this.state.numSessions} onChange={this.handleNumSessionsChange}/>
 
                          {/*
                           <Slider class='slider'
@@ -132,14 +165,17 @@ class CreatePosting extends React.Component {
                             onChange={({ x }) => this.setState({ numSessions: parseFloat(x.toFixed(2)) })}
                           />
                           */}
-
-                    </form>
+                        <br/><br/>
                         <StyledButton
                             id="create-posting"
                             innerclass="create-button"
-                            text="Create Posting!"
-                            onClick={() => { console.log("posting created!") }}>>
+                            innericon={upload}
+                            text="Create Posting"
+                            onClick={this.handleSubmit}>
                         </StyledButton>
+
+                    </form>
+                    <div id="afterthought"><h2>Thank You</h2><br/><a>Your post has been submitted</a></div>
                     </ScrollToBottom>
                 </div>
             </div>
