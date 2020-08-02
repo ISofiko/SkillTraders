@@ -69,6 +69,11 @@ class Loginbox extends React.Component {
                 /* db related code goes here FILLER 
                 Will register the user below before redirecting to dashboard
                 */
+
+                // create user session FILL WITH DB VALUES
+                const usersess = {"uid":null, "username":null, "password":null, "email":null, "fname":null, "lname":null};
+                window.localStorage.setItem("SkillTraders2020!UserSession", usersess);
+
                 window.location.replace('/dashboard');
         }
 
@@ -84,6 +89,11 @@ class Loginbox extends React.Component {
                         } else {
                                 window.localStorage.setItem("SkillTraders2020!Admin", "false");
                         }
+
+                        // create user session FILL WITH DB VALUES
+                        const usersess = {"uid":null, "username":null, "password":null, "email":null, "fname":null, "lname":null};
+                        window.localStorage.setItem("SkillTraders2020!UserSession", usersess);
+
                         // go to home page
                         window.location.replace('/dashboard');
                 } else {

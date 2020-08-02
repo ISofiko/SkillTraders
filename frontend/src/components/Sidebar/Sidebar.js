@@ -43,6 +43,8 @@ class Sidebar extends React.Component {
         }
 
         changetoLogin() {
+                // delete user session
+                window.localStorage.setItem("SkillTraders2020!UserSession", null);
                 console.log("Changing to login");
                 window.location.replace('/');
         }
