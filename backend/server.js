@@ -34,7 +34,20 @@ server.get("*", (req, res) => {
 });
 */
 
+// Configuring socket server
+const http = require("http").createServer(server);
+const io = require("socket.io")(http);
+io.on("connection", (socket) => {
+	console.log("User connected");
+	socket.on("disconnect", () => {
+		console.log("User disconnected")
+	});
+	socket.on("chat message", (message) => {
+		io.emit("chat message", message);
+	});
+});
+
 // Starting server
-server.listen(port, () => {
-	console.log(`Server started on port ${port}.`);
+http.listen(port, () => {
+	console.log(`Chat server started on port ${port}.`);
 });
