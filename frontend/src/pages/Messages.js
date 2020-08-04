@@ -4,6 +4,7 @@ import ContactList from '../components/Messages/ContactList';
 import ChatSpace from '../components/Messages/ChatSpace'
 import Sidebar from '../components/Sidebar';
 const mockContacts = require('../mockData/MockContacts')
+const socket = require("socket.io-client")();
 
 require('./Messages.css');
 require('./Dashboard.css');
