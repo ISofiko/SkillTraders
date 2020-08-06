@@ -22,8 +22,10 @@ mongoose.connect(mongoURI, {
 
 // Routing API endpoints
 const messageEndpoint = require("./endpoints/MessageEndpoint");
-const userEndpoint = require("./endpoints/UserEndpoint");
+const usersEndpoint = require("./endpoints/Users");
+const userEndpoint = require("./endpoints/User");
 server.use("/api/message", messageEndpoint);
+server.use("/api/users", usersEndpoint);
 server.use("/api/user", userEndpoint);
 
 // TODO: I WILL SET THIS UP AFTER FRONTEND IS IN PROD STAGE
