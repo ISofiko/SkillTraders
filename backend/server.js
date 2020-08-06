@@ -2,15 +2,14 @@
 
 // Configuring Express server
 const express = require("express");
+const mongoose = require("mongoose");
 const server = express();
-const port = process.env.PORT || 5000;
-const parser = require("body-parser");
-server.use(parser.json());
+server.use(express.urlencoded({ extended: true }));
+server.use(express.json());
+
 
 // Connecting to MongoDB
-const mongoose = require("mongoose");
-// Replace with MongoDB Atlas URI in the future
-const mongoURI = "mongodb://localhost:27017/SkillTraders";
+const mongoURI = "mongodb+srv://stadmin:STAdmin@skilltraders.kb2nk.mongodb.net/<dbname>?retryWrites=true&w=majority";
 mongoose.connect(mongoURI, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
@@ -23,7 +22,9 @@ mongoose.connect(mongoURI, {
 
 // Routing API endpoints
 const messageEndpoint = require("./endpoints/MessageEndpoint");
+const userEndpoint = require("./endpoints/UserEndpoint");
 server.use("/api/message", messageEndpoint);
+server.use("/api/user", userEndpoint);
 
 // TODO: I WILL SET THIS UP AFTER FRONTEND IS IN PROD STAGE
 // Routing non-API URLs to frontend
@@ -48,6 +49,7 @@ io.on("connection", (socket) => {
 });
 
 // Starting server
+const port = process.env.PORT || 5000;
 http.listen(port, () => {
 	console.log(`Chat server started on port ${port}.`);
 });
