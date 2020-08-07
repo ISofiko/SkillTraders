@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const { ObjectID } = require('mongodb')
 
 const schema = new mongoose.Schema({
-	userId: ObjectId,
-	reviewer: ObjectId,
+	userId: ObjectID,
+	reviewer: ObjectID,
 	rating: Number,
 	content: String
 });
