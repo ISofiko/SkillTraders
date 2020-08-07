@@ -8,6 +8,8 @@ import {
 import Landing from './Landing';
 import Dashboard from './Dashboard';
 import Settings from './Settings';
+import PrivateRoute from './PrivateRoute';
+import AdminRoute from './AdminRoute';
 import UserProfile from './UserProfile';
 import Messages from './Messages';
 import CreatePosting from './CreatePosting';
@@ -17,14 +19,14 @@ function Routes() {
 		<BrowserRouter>
 			<Switch>
 				<Route exact path='/' component={Landing} />
-				<Route exact path='/dashboard' component={Dashboard} />
-				<Route exact path='/posts' component={Dashboard} />
-				<Route exact path='/admin' component={Dashboard} />
-				<Route exact path='/users' component={Dashboard} />
-				<Route exact path='/settings' component={Settings} />
-				<Route exact path='/userprofile' component={UserProfile} />
-				<Route exact path='/messages' component={Messages} />
-				<Route exact path='/add-posting' component={CreatePosting} />
+				<PrivateRoute exact path='/dashboard' component={Dashboard} />
+				<PrivateRoute exact path='/posts' component={Dashboard} />
+				<AdminRoute exact path='/admin' component={Dashboard} />
+				<PrivateRoute exact path='/users' component={Dashboard} />
+				<PrivateRoute exact path='/settings' component={Settings} />
+				<PrivateRoute exact path='/userprofile' component={UserProfile} />
+				<PrivateRoute exact path='/messages' component={Messages} />
+				<PrivateRoute exact path='/add-posting' component={CreatePosting} />
 			</Switch>
 		</BrowserRouter>
 	);

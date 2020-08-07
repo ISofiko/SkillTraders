@@ -19,7 +19,7 @@ class Sidebar extends React.Component {
         changetoAdmin() {
                 console.log("Changing to admin (if access, otherwise search for user)");
                 const adminaccess = window.localStorage.getItem("SkillTraders2020!Admin");
-                if (adminaccess == "true") {
+                if (adminaccess === "true") {
                         window.location.replace('/admin');
                 } else {
                         window.location.replace('/users');
@@ -44,7 +44,8 @@ class Sidebar extends React.Component {
 
         changetoLogin() {
                 // delete user session
-                window.localStorage.setItem("SkillTraders2020!UserSession", null);
+                window.localStorage.removeItem("SkillTraders2020!UserSession");
+                window.localStorage.removeItem("SkillTraders2020!Admin");
                 console.log("Changing to login");
                 window.location.replace('/');
         }
