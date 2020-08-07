@@ -9,7 +9,7 @@ let title = "Find User";
 let styling = {visibility: "hidden"};
 if (isAdmin === "true") {
 	title = "Admin Panel";
-	styling = {visibility: "visible"};
+	styling = {visibility: "hidden"}; // Replace with visible
 }
 
 class AdminPanel extends React.Component {

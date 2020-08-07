@@ -13,7 +13,6 @@ class ContactList extends React.Component {
     }
 
     render() {
-        console.log(this.state.contacts)
         return (
             <div className='contacts-bar'>
                 <div className="contacts-title">
