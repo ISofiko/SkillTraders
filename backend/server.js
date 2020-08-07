@@ -9,7 +9,7 @@ server.use(express.json());
 
 
 // Connecting to MongoDB
-const mongoURI = "mongodb+srv://stadmin:STAdmin@skilltraders.kb2nk.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const mongoURI = "mongodb+srv://stadmin:STAdmin@skilltraders.kb2nk.mongodb.net/SkillTraders?retryWrites=true&w=majority";
 mongoose.connect(mongoURI, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
@@ -21,12 +21,22 @@ mongoose.connect(mongoURI, {
 });
 
 // Routing API endpoints
-const messageEndpoint = require("./endpoints/MessageEndpoint");
-const usersEndpoint = require("./endpoints/Users");
+//const categoryEndpoint = require("./endpoints/Category");
+//const messageEndpoint = require("./endpoints/MessageEndpoint");
+//const messagesEndpoint = require("./endpoints/MessagesEndpoint");
+//const postingEndpoint = require("./endpoints/Posting");
+const reviewEndpoint = require("./endpoints/Review");
+const reviewsEndpoint = require("./endpoints/Reviews");
 const userEndpoint = require("./endpoints/User");
-server.use("/api/message", messageEndpoint);
-server.use("/api/users", usersEndpoint);
+const usersEndpoint = require("./endpoints/Users");
+//server.use("/api/category", categoryEndpoint);
+//server.use("/api/message", messageEndpoint);
+//server.use("/api/messages", messagesEndpoint);
+//server.use("/api/posting", postingEndpoint);
+server.use("/api/review", reviewEndpoint);
+server.use("/api/reviews", reviewsEndpoint);
 server.use("/api/user", userEndpoint);
+server.use("/api/users", usersEndpoint);
 
 // TODO: I WILL SET THIS UP AFTER FRONTEND IS IN PROD STAGE
 // Routing non-API URLs to frontend

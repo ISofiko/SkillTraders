@@ -8,6 +8,7 @@ const schema = new mongoose.Schema({
     admin: Boolean,
     bio: String,
     avgRating: Number,
+    numRatings: Number,
     firstLogin: Date,
     lastSeen: Date
 });
