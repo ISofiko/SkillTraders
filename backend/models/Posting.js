@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
+const { ObjectID } = require('mongodb')
 
 const schema = new mongoose.Schema({
-	category: ObjectId,
-	username: {type: String, unique: true, required : true},
+	categories: [ObjectID],
+	userId: ObjectID,
 	title: String,
 	timestamp: Date,
 	price: Number,
