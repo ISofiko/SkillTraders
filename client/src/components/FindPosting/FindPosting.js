@@ -5,6 +5,21 @@ import Category from './Category';
 import Posting from './Posting';
 
 class FindPosting extends React.Component {
+
+    constructor(props) {
+            super(props);
+            fetch("/app/categories")
+                .then(res => {
+                    // todo: this listens to port 3000 instead of 5000
+//                    this.setState({categories: res.json()})
+                    console.log(res)
+                    return res
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+    }
+
 	state = {
 		query: "",
 		categories: [

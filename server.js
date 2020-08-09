@@ -44,12 +44,11 @@ server.use("/api/users", usersEndpoint);
 
 // TODO: I WILL SET THIS UP AFTER FRONTEND IS IN PROD STAGE
 // Routing non-API URLs to frontend
-/*
 server.use(express.static("../frontend/build"));
 server.get("*", (req, res) => {
 	res.sendFile("index.html", { root: __dirname });
 });
-*/
+
 
 // Configuring socket server
 const http = require("http").createServer(server);
@@ -65,6 +64,7 @@ io.on("connection", (socket) => {
 		console.log(message);
 	});
 });
+
 
 // Starting server
 const port = process.env.PORT || 5000;
