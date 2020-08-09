@@ -11,8 +11,7 @@ class FindPosting extends React.Component {
             fetch("http://localhost:5000/api/categories")
                 .then(res => {
                     // todo: this listens to port 3000 instead of 5000
-                    console.log(res)
-                    this.setState({categories: res.json()})
+                    this.state.categories = res.json()
                     console.log(this.state)
                     return res
                 })
