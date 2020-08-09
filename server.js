@@ -20,6 +20,13 @@ mongoose.connect(mongoURI, {
 	console.log(error);
 });
 
+
+server.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
+
 // Routing API endpoints
 const categoryEndpoint = require("./endpoints/Category");
 const categoriesEndpoint = require("./endpoints/Categories");
