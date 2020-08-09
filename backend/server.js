@@ -21,18 +21,22 @@ mongoose.connect(mongoURI, {
 });
 
 // Routing API endpoints
-//const categoryEndpoint = require("./endpoints/Category");
+const categoryEndpoint = require("./endpoints/Category");
+const categoriesEndpoint = require("./endpoints/Categories");
 //const messageEndpoint = require("./endpoints/MessageEndpoint");
 //const messagesEndpoint = require("./endpoints/MessagesEndpoint");
-//const postingEndpoint = require("./endpoints/Posting");
+const postingEndpoint = require("./endpoints/Posting");
+const postingsEndpoint = require("./endpoints/Postings");
 const reviewEndpoint = require("./endpoints/Review");
 const reviewsEndpoint = require("./endpoints/Reviews");
 const userEndpoint = require("./endpoints/User");
 const usersEndpoint = require("./endpoints/Users");
-//server.use("/api/category", categoryEndpoint);
+server.use("/api/category", categoryEndpoint);
+server.use("/api/categories", categoriesEndpoint);
 //server.use("/api/message", messageEndpoint);
 //server.use("/api/messages", messagesEndpoint);
-//server.use("/api/posting", postingEndpoint);
+server.use("/api/posting", postingEndpoint);
+server.use("/api/postings", postingsEndpoint);
 server.use("/api/review", reviewEndpoint);
 server.use("/api/reviews", reviewsEndpoint);
 server.use("/api/user", userEndpoint);

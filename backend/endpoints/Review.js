@@ -28,7 +28,10 @@ router.get("/:id", (req, res) => {
     if (!result) {
         res.status(404).send('Resource not found')
     } else {
-        res.send(result);
+        const user = User.findById(review.userId)
+        // todo: User could be null, so display "Unknown user" in UI
+        // ex if user who left the review got deleted
+        res.send({result, user});
     }
     }).catch((error) => {
         res.sendStatus(500);
@@ -40,7 +43,6 @@ router.get("/:id", (req, res) => {
 * Creating a new review for user with id <user_id>
 */
 router.post("/", (req, res) => {
-	// check mongoose connection established.
     if (mongoose.connection.readyState != 1) {
         log('Issue with mongoose connection')
         res.status(500).send('Internal server error')
