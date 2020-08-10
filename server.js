@@ -53,7 +53,7 @@ server.use("/api/users", usersEndpoint);
 // Routing non-API URLs to frontend
 server.use(express.static(__dirname + "/client"));
 server.get("*", (req, res) => {
-	res.sendFile("/client/src/index.js", { root: __dirname });
+	res.sendFile("/client", { root: __dirname });
 });
 
 
