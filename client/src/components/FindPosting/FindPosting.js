@@ -3,33 +3,19 @@ import { uid } from "react-uid";
 import './style.css';
 import Category from './Category';
 import Posting from './Posting';
+import { getCategories } from './../../actions/categories'
+const log = console.log
 
 class FindPosting extends React.Component {
 
-    constructor(props) {
-            super(props);
-            fetch("http://localhost:5000/api/categories")
-                .then(res => {
-                    // todo: this listens to port 3000 instead of 5000
-                    this.state.categories = res.json()
-                    console.log(this.state)
-                    return res
-                })
-                .catch(error => {
-                    console.log(error);
-                })
+    componentDidMount() {
+        getCategories(this)
+        log(this.state)
     }
 
 	state = {
 		query: "",
-		categories: [
-			{ title: "Fitness", icon: "soccer-ball-o" },
-			{ title: "Technology", icon: "code" },
-			{ title: "Health", icon: "medkit" },
-			{ title: "Finance", icon: "usd" },
-			{ title: "Gaming", icon: "gamepad" },
-			{ title: "Music", icon: "music" }
-		],
+		categories: [],
 		tags: [],
 		postings: [
 			{ title: "Game Development in Unity", user: "Moe Ali", date: "June 28, 2020", price: "80", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", tags: "technology gaming", image: "https://oyster.ignimgs.com/wordpress/stg.ign.com/2020/04/sale_21892_primary_image_wide.jpg" },
@@ -71,7 +57,7 @@ class FindPosting extends React.Component {
 				<h2>Categories</h2>
 				<div className="categories">
 					{this.state.categories.map(category => (
-						<Category key={uid(category)} title={category.title} icon={category.icon} click={this.setTag} />
+						<Category key={uid(category)} title={category.name} icon={category.icon} click={this.setTag} />
 					))}
 				</div>
 
