@@ -5,7 +5,7 @@ import ChatSpace from '../components/Messages/ChatSpace'
 import Sidebar from '../components/Sidebar';
 import { useLocation } from 'react-router-dom';
 import ScrollToBottom from 'react-scroll-to-bottom';
-const mockContacts = require('../mockData/MockContacts')
+//const mockContacts = require('../mockData/MockContacts')
 
 require('./Messages.css');
 require('./Dashboard.css');
@@ -17,7 +17,7 @@ class Messages extends React.Component {
         // we will replace mock contacts and their messages with real data from server
         this.state = {
             message: "",
-            contacts: mockContacts,
+            contacts: [],
             messages: [],
             personSending: "me",
             personReceiving: "other"

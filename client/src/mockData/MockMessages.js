@@ -20,4 +20,4 @@ const m5 = new MockMessage("Thanks! See you then", "Bob");
 
 
 const messages = [v1, v2, v3, v4, v5, v6, m1, m2, m3, m4, m5]
-module.exports = messages
+//module.exports = messages
