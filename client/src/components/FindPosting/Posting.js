@@ -68,11 +68,9 @@ class Posting extends React.Component {
 		return (
 			<div className={[this.props.className, "posting", "innerpoststyle"].join(" ")} id={this.props.id}>
 				<div id="innerpoststyleheader">
-						<img id="innerpoststylepicture" src={image}></img><br/>
-						<div id="innerpoststyleheader">
-								<div><a id="innerpoststyleheadername">{user}</a></div><br/>
-								{date}<br/>
-						</div>
+						<img id="innerpicture" src={image}></img><br/>
+						<div><a id="innerpoststyleheadername">{user}</a></div><br/>
+						{date}<br/>
 				</div><br/>
 				<div id="innerpoststylelistingtitle">{title}</div> <br/>
 				<div id="innerpoststylestrprice">{strprice}</div><br/>

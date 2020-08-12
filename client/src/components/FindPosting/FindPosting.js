@@ -61,7 +61,7 @@ class FindPosting extends React.Component {
 					))}
 				</div>
 
-				<h2>Search Results</h2>
+				<h2>Search Results</h2><br/>
 				<div className="postings">
 					{this.state.postings.filter(posting => (posting.title.toLowerCase().includes(this.state.query) || posting.user.toLowerCase().includes(this.state.query)) && this.state.tags.every(tag => posting.tags.includes(tag))).map(posting => (
 						<Posting key={uid(posting)} title={posting.title} user={posting.user} date={posting.date} price={posting.price} numsessions={posting.numsessions} rating={posting.rating} description={posting.description} tags={posting.tags} image={posting.image} />

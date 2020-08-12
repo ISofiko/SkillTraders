@@ -24,7 +24,7 @@
 	margin-bottom:10px;
 	margin-left: 10px;
 	width:35%;
-	height:500px;
+	height:490px;
 	outline:none;
 	border: 3px solid #005e5e;
 }
@@ -91,10 +91,10 @@
 
 @keyframes small-to-big {
     0%     {width:35%; height:500px;}
-    100.0%  {width:47%; height:1050px; background-color: #016f91;}
+    100.0%  {width:47%; height:900px; background-color: #016f91;}
  }
 
  @keyframes big-to-small {
-    0%     {width:47%; height:1050px;background-color: #016f91;}
+    0%     {width:47%; height:900px;background-color: #016f91;}
     100.0%  {width:35%; height:500px; background-color: #009999;}
  }
