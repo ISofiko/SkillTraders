@@ -7,7 +7,7 @@ import StyledButton from '../components/StyledButton'
 import Category from '../components/FindPosting/Category';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import upload from "../resources/upload.png";
-var mockCategories = require('../mockData/MockPostingCategories')
+//var mockCategories = require('../mockData/MockPostingCategories')
 
 require('./CreatePosting.css')
 require('./Dashboard.css');
@@ -48,7 +48,7 @@ class CreatePosting extends React.Component {
         this.state = {
             title: '',
 		    tags: [],
-            categories: mockCategories,
+            categories: [],
             summary: '',
             link: '',
             numSessions: 1,

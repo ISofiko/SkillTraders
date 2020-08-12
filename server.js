@@ -20,19 +20,30 @@ mongoose.connect(mongoURI, {
 	console.log(error);
 });
 
+
+server.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
+
 // Routing API endpoints
-//const categoryEndpoint = require("./endpoints/Category");
+const categoryEndpoint = require("./endpoints/Category");
+const categoriesEndpoint = require("./endpoints/Categories");
 //const messageEndpoint = require("./endpoints/MessageEndpoint");
 //const messagesEndpoint = require("./endpoints/MessagesEndpoint");
-//const postingEndpoint = require("./endpoints/Posting");
+const postingEndpoint = require("./endpoints/Posting");
+const postingsEndpoint = require("./endpoints/Postings");
 const reviewEndpoint = require("./endpoints/Review");
 const reviewsEndpoint = require("./endpoints/Reviews");
 const userEndpoint = require("./endpoints/User");
 const usersEndpoint = require("./endpoints/Users");
-//server.use("/api/category", categoryEndpoint);
+server.use("/api/category", categoryEndpoint);
+server.use("/api/categories", categoriesEndpoint);
 //server.use("/api/message", messageEndpoint);
 //server.use("/api/messages", messagesEndpoint);
-//server.use("/api/posting", postingEndpoint);
+server.use("/api/posting", postingEndpoint);
+server.use("/api/postings", postingsEndpoint);
 server.use("/api/review", reviewEndpoint);
 server.use("/api/reviews", reviewsEndpoint);
 server.use("/api/user", userEndpoint);
@@ -40,12 +51,11 @@ server.use("/api/users", usersEndpoint);
 
 // TODO: I WILL SET THIS UP AFTER FRONTEND IS IN PROD STAGE
 // Routing non-API URLs to frontend
-/*
-server.use(express.static("../frontend/build"));
+server.use(express.static(__dirname + "/client/build"));
 server.get("*", (req, res) => {
-	res.sendFile("index.html", { root: __dirname });
+    res.sendFile(__dirname + "/client/build/index.html");
 });
-*/
+
 
 // Configuring socket server
 const http = require("http").createServer(server);
@@ -61,6 +71,7 @@ io.on("connection", (socket) => {
 		console.log(message);
 	});
 });
+
 
 // Starting server
 const port = process.env.PORT || 5000;
