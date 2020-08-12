@@ -1,0 +1,92 @@
+# API Endpoints
+
+/api/users
+    GET: Return a list of all the users
+        Use cases: list of all users on the find users page
+/api/user
+    POST: Create a user
+        Returns new user object with creation/last accessed time stamp, avgRating=0 and numRatings=0
+        ex. in post body:
+        {
+            "username": "Name Lastname",
+            "password": "password",
+            "salt": "salt",
+            "email": "name@mail.com",
+            "admin": false,
+            "bio": "User's bio"
+        }
+/api/user/{user_id}
+    GET: Return user details
+        Ex. if user_id = 5f2ca2270a241c23501702c4, returns object with user named Moe
+    POST: Modify user details
+        (again, suppose user_id=5f2ca2270a241c23501702c4)
+        Use case: when user updates their own account (by clicking on their own icon)
+        Ex. these are all the fields we are able to modify for user "Name Lastname" (created above):
+        {
+            "username": "Name Lastname 2",
+            "password": "password2",
+            "salt": "salt2",
+            "email": "name2@mail.com",
+            "admin": true,
+            "bio": "User's bio 2"
+        }
+    DELETE: Delete user
+        Ex if user_id=5f2ca2270a241c23501702c4, we are deleting user with name "Name Lastname"
+
+/api/review/
+    POST: Create a review
+        Ex. if we want to post a review where New User rates David, the body will be:
+        Use cases: when viewing someones profile, the current user can leave a review
+        {
+            "userId": "5f2ca2530a241c23501702c5",
+        	"reviewer": "5f2ca2850a241c23501702c6",
+        	"rating": 1,
+        	"content": "New User rates David"
+        }
+/api/reviews/{user_id}
+    GET: Return all reviews for a user with id user_id (reviewed by some other users)
+        Ex. if user_id=5f2ca2530a241c23501702c5 we get all reviews for David
+        Use cases: when viewing someone's profile, we display all the reviews for that person
+/api/reviews/{review_id}
+    DELETE: Delete a review
+        Ex. if review_id=5f335568761b9910544e3feb we delete the "New User rates David" review
+        Use cases: an admin deems a review inappropriate and deletes it (by viewing someones profile
+        from their admin account)
+
+/api/category
+    POST: Create a new category (DBA can only do this via postman, not supported by UI).
+        This is to have some categories which we can display on the dashboard or when a user is creating a posting
+        ex. post body:
+        {
+            "name": "Entertainment",
+            "icon": "music"
+        }
+/api/category/5f309d01a2511111c8813366
+    DELETE: Remove category by id (in this case, the "Tutuoring" category will be removed)
+/api/categories
+    GET: Return all categories
+        This is to be able to get all the categories to display on the dashboar / create a posting page
+        Returns a list of all category objects
+
+
+
+/api/postings/category_id
+    GET: Return all postings in category
+/api/postings/user_id
+    GET: Return all postings by a user
+/api/posting/
+    GET: View a specific posting (pass id as a url param or request body?)
+    POST: Create a posting by a user
+        ex.
+        {
+            "categories": ["5f2dd92fb141973c10505640"],         // medicine category uuid
+            "userId": "5f2ca2530a241c23501702c5",               // David's uuid
+            "title": "Professional medical consultation",
+            "price": 100,
+            "numSessions": 1,
+            "content": "David's medical consultations",
+            "meetingLink": "david@medicine.com"
+        }
+    PUT: Modify a posting
+        Body: Refer to schema
+    DELETE: Delete a posting
