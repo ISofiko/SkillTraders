@@ -51,9 +51,9 @@ server.use("/api/users", usersEndpoint);
 
 // TODO: I WILL SET THIS UP AFTER FRONTEND IS IN PROD STAGE
 // Routing non-API URLs to frontend
-server.use(express.static(__dirname + "/client/build"));
+app.use(express.static(__dirname + "/client/build"));
 server.get("*", (req, res) => {
-	res.sendFile("/client/build/index.html", { root: __dirname });
+    res.sendFile(__dirname + "/client/build/index.html");
 });
 
 
