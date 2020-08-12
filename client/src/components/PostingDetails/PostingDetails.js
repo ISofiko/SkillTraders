@@ -74,7 +74,7 @@ class PostingDetails extends React.Component {
 		return (
             <div className={[this.props.className, "innerpoststyle"].join(" ")} id={this.props.id}>
                         <div id="innerpoststyleheader">
-                                <ProfileImage id="innerpoststylepicture" src={profile3} uid="filler101"></ProfileImage><br/>
+                                <img id="innerpicture" src={profile3}></img><br/>
                                 <div id="innerpoststyleheader">
                                         <div id="innerpoststyleheadername">{username}</div><br/>
                                         {postdate}<br/>

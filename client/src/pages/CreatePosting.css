@@ -9,6 +9,54 @@
     text-align: left;
 }
 
+.buttonareaposting {
+  display: inline-block;
+  margin-right:25%;
+  margin-top: 5%;
+  float:right;
+}
+
+.custom-file-upload {
+  font-family: 'Alata', sans-serif;
+	color:white;
+  padding-left: 5px;
+  background-color: rgb(82, 111, 207);
+	padding-right:5px;
+  padding-top:5px;
+  border-radius: 10px;
+  padding-bottom:5px;
+  width: 3000px;
+  outline:none;
+	border: 3px solid rgb(99, 112, 126);
+}
+
+#file-input-posting {
+  display:none;
+}
+
+.custom-file-upload:hover {
+	transform: scale(1.05);
+	opacity: 0.9;
+	-webkit-transition: transform 0.4s ease-in-out;
+}
+
+.custom-file-upload:hover #buttoniconimg{
+	transform: rotate(90deg);
+	-webkit-transition: transform 0.4s ease-in-out;
+}
+
+.custom-file-upload:active {
+	transform: scale(0.98);
+	opacity:0.85;
+	-webkit-transition: transform 0.2s ease-in-out;
+}
+
+.imageareaposting {
+  display: inline-block;
+  margin-left: 20%;
+  float:left;
+}
+
 label {
     padding-top: 5px;
     font-family: 'Alata', sans-serif;

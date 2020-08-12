@@ -34,6 +34,24 @@ function Settings() {
 
 	let reviews = showReviews();
 
+	function changePhoto(e) {
+			let preview = document.getElementsByClassName("profile")[0];
+			let file    = document.getElementById("file-input-posting").files[0];
+			let reader  = new FileReader();
+		
+			reader.onloadend = function () {
+			preview.src = reader.result;
+			}
+			console.log(file);
+			if (file) {
+			reader.readAsDataURL(file);
+			} else {
+			preview.src = "";
+			}
+
+			// DB CODE GOES HERE -> REPLACE IMG TO DB
+    }
+
 	function StartEdit(e) {
 		e.preventDefault();
 		savevalue = !savevalue;
@@ -75,7 +93,8 @@ function Settings() {
 						<ProfileImage className="profile" src={profile2} uid="filler101"></ProfileImage>
 						<div className="myprofile">
 							<div id="header">My Profile</div><br/>
-							<StyledButton id="changepic" innericon={edit} text="Change Photo"></StyledButton>
+							<label for="file-input-posting" class="custom-file-upload"> Choose  Profile  Picture </label>
+                            <input id="file-input-posting" type="file" accept=".png, .jpeg, .jpg" name="name" onChange={changePhoto} />
 						</div>
 					</div>
                 	<br/>
