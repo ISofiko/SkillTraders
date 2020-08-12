@@ -7,7 +7,7 @@ import profile2 from "../../resources/sample2.png";
 import placeholder2 from "../../resources/fakelogo.png";
 import dropdown from "../../resources/dropdown.png";
 
-let userredirect = ((window.localStorage.getItem("SkillTraders2020!Admin") == "true") ? 'Admin Panel' : "Search for User"); ;
+let userredirect = ((window.localStorage.getItem("SkillTraders2020!Admin") === "true") ? 'Admin Panel' : "Search for User"); ;
 
 class Sidebar extends React.Component {
 
