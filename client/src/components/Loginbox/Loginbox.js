@@ -77,6 +77,12 @@ class Loginbox extends React.Component {
                 window.location.replace('/dashboard');
         }
 
+        checkAlreadySignedIn() {
+              if (window.localStorage.getItem("SkillTraders2020!UserSession") !== null) {
+                window.location.replace('/dashboard');    
+              }  
+        }
+
         tryLogin() {
                 const message = document.getElementById("errormessage");
                 /* db related code goes here FILLER Will check for correct access credentials */
@@ -103,6 +109,7 @@ class Loginbox extends React.Component {
         }
 
 	render() {
+                this.checkAlreadySignedIn();
 		return (
         <div>
             <div className="accessbox" id="logininfo">
