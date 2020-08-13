@@ -3,6 +3,7 @@
 /api/users
     GET: Return a list of all the users
         Use cases: list of all users on the find users page
+
 /api/user
     POST: Create a user
         Returns new user object with creation/last accessed time stamp, avgRating=0 and numRatings=0
@@ -15,9 +16,11 @@
             "admin": false,
             "bio": "User's bio"
         }
+
 /api/user/{user_id}
     GET: Return user details
         Ex. if user_id = 5f2ca2270a241c23501702c4, returns object with user named Moe
+
     POST: Modify user details
         (again, suppose user_id=5f2ca2270a241c23501702c4)
         Use case: when user updates their own account (by clicking on their own icon)
@@ -30,6 +33,7 @@
             "admin": true,
             "bio": "User's bio 2"
         }
+
     DELETE: Delete user
         Ex if user_id=5f2ca2270a241c23501702c4, we are deleting user with name "Name Lastname"
 
@@ -43,10 +47,12 @@
         	"rating": 1,
         	"content": "New User rates David"
         }
+
 /api/reviews/{user_id}
     GET: Return all reviews for a user with id user_id (reviewed by some other users)
         Ex. if user_id=5f2ca2530a241c23501702c5 we get all reviews for David
         Use cases: when viewing someone's profile, we display all the reviews for that person
+
 /api/reviews/{review_id}
     DELETE: Delete a review
         Ex. if review_id=5f335568761b9910544e3feb we delete the "New User rates David" review
@@ -61,9 +67,11 @@
             "name": "Entertainment",
             "icon": "music"
         }
+
 /api/category/{category_id}
     DELETE: Remove category by id
-        Ex. if category_id=5f309d01a2511111c8813366, the "Tutuoring" category will be removed
+        Ex. if category_id=5f309d01a2511111c8813366, the "Tutoring" category will be removed
+
 /api/categories
     GET: Return all categories
         Use case: get all the categories to display on the dashboard / create a posting page
@@ -72,12 +80,15 @@
 /api/postings/{category_id}
     GET: Return all postings in category
         Ex. if category_id=5f309b27a2511111c8813362, we will get all the postings in category "Medical consultations"
+
 /api/postings/{user_id}
     GET: Return all postings by a user
         Ex. if user_id=5f2ca2530a241c23501702c5, we will get all of the posts by David
+
 /api/posting/{post_id}
     GET: View a specific posting with id <post_id>
         Ex. if post_id=5f347ced52c74a1c64488e35, we will get the posting with the title "Personal coach"
+
     POST: Create a posting by a user
         ex.
         {
@@ -89,6 +100,7 @@
             "content": "David's medical consultations",
             "meetingLink": "david@medicine.com"
         }
+
     PUT: Modify a posting
         Ex. here are all the categories that are modifiable (assuming post_id=5f347fffa9936827780e01c1):
         {
@@ -100,5 +112,6 @@
             "content": "Sofia's finance lessons pt 2",
             "meetingLink": "sofia2@finance.com"
         }
+
     DELETE: Delete a posting
         ex post_id=5f347fffa9936827780e01c1 deletes "Sofia's finance lessons"
