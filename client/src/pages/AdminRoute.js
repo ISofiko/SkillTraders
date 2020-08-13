@@ -4,8 +4,12 @@ import { Redirect, Route } from 'react-router-dom'
 const PrivateRoute = ({ component: Component, ...rest }) => {
 
   // Authentication check on the below lines.
-  const adminaccess = window.localStorage.getItem("SkillTraders2020!Admin");
-  const isAdmin = adminaccess === "true";
+  const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
+  let isAdmin = false;
+  if (usersess !== null) {
+    isAdmin = usersess["isAdmin"];
+  }
+
 
   // rerouting code below
   const useraccess = window.localStorage.getItem("SkillTraders2020!UserSession");

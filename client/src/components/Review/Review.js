@@ -18,8 +18,12 @@ class Review extends React.Component {
         }
 
         adminDelete() {
-                const adminaccess = window.localStorage.getItem("SkillTraders2020!Admin");
-                if (adminaccess === "true") {
+                const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
+                let isAdmin = false;
+                if (usersess !== null) {
+                  isAdmin = usersess["isAdmin"] === true;
+                }
+                if (isAdmin) {
                         return (<StyledButton text="Delete" onClick={this.deleteReview} innerclass="removepic" innericon={remove}></StyledButton>);
                 } else {
                         return;

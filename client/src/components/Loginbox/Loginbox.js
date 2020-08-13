@@ -70,9 +70,9 @@ class Loginbox extends React.Component {
                 Will register the user below before redirecting to dashboard
                 */
 
-                // create user session FILL WITH DB VALUES
-                const usersess = {"uid":null, "username":null, "password":null, "email":null, "fname":null, "lname":null};
-                window.localStorage.setItem("SkillTraders2020!UserSession", usersess);
+                // create user session FILL WITH DB VALUES                                                                  FALSE DEFAULT V
+                const usersess = {"uid":null, "username":null, "password":null, "email":null, "fname":null, "lname":null, "isAdmin":false};
+                window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
 
                 window.location.replace('/dashboard');
         }
@@ -87,18 +87,13 @@ class Loginbox extends React.Component {
                 const message = document.getElementById("errormessage");
                 /* db related code goes here FILLER Will check for correct access credentials */
                 console.log("Attempting login...");
+                // replace the below IF statement with DB password and username check
                 if ((this.username.value === "user" && this.password.value === "user") || 
                 (this.username.value === "admin" && this.password.value === "admin")) {
-                        // use local Session to store admin access
-                        if (this.username.value === "admin") {
-                                window.localStorage.setItem("SkillTraders2020!Admin", "true");
-                        } else {
-                                window.localStorage.setItem("SkillTraders2020!Admin", "false");
-                        }
 
-                        // create user session FILL WITH DB VALUES
-                        const usersess = {"uid":null, "username":null, "password":null, "email":null, "fname":null, "lname":null};
-                        window.localStorage.setItem("SkillTraders2020!UserSession", usersess);
+                        // create user session FILL WITH DB VALUES                                                              ADMIN DB VALUE V
+                        const usersess = {"uid":null, "username":null, "password":null, "email":null, "fname":null, "lname":null, "isAdmin":true};
+                        window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
 
                         // go to home page
                         window.location.replace('/dashboard');

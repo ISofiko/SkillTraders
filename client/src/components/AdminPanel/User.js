@@ -2,9 +2,13 @@ import React from 'react';
 import './style.css';
 import Placeholder from '../../resources/placeholder.jpg';
 
-const isAdmin = window.localStorage.getItem("SkillTraders2020!Admin");
+const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
+let isAdmin = false;
+if (usersess !== null) {
+  isAdmin = usersess["isAdmin"] === true;
+}
 let styling = {visibility: "hidden"};
-if (isAdmin === "true") {
+if (isAdmin) {
 	styling = {visibility: "visible"};
 }
 
