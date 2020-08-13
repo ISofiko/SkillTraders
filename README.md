@@ -1,4 +1,9 @@
 # SkillTraders
+
+URL: https://skilltraders.herokuapp.com/
+
+See backend API's and documentation in: **<ins>apis.txt</ins>**
+
 SkillTraders allows you to support community members while maintaining social distance by sharing or selling service skills with one another online with locals.
 
 We enable communities to support one another electronically while complying with social distancing policy and furthering the regional business. The ripples of our current world state will last for generations, and although there are some platforms to allow trades of skills, these existing applications are not distance-based and will not help boost local business and a sense of community, as we envision.
