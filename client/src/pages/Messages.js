@@ -5,6 +5,7 @@ import ChatSpace from '../components/Messages/ChatSpace'
 import Sidebar from '../components/Sidebar';
 import { useLocation } from 'react-router-dom';
 import ScrollToBottom from 'react-scroll-to-bottom';
+const axios = require("axios");
 //const mockContacts = require('../mockData/MockContacts')
 
 require('./Messages.css');
@@ -14,22 +15,36 @@ class Messages extends React.Component {
     constructor(props) {
         super(props);
 
-        // we will replace mock contacts and their messages with real data from server
+        const getPersonSending = () => {
+            return "5f2ca2530a241c23501702c5";
+        };
+
+        const getConversations = () => {
+            this.conversations = axios.get("/api/conversations/");
+        };
+
+        const getContacts = () => {
+            return [{name: "David"}];
+        };
+
         this.state = {
             message: "",
-            contacts: [],
+            conversations: [],
+            contacts: getContacts(),
             messages: [],
-            personSending: "me",
-            personReceiving: "other"
-        }
+            personSending: String(window.localStorage.getItem("SkillTraders2020!Admin")),
+            personReceiving: String(!window.localStorage.getItem("SkillTraders2020!Admin"))
+        };
     }
 
     componentDidMount() {
         this.socket = require("socket.io-client")("http://localhost:5000");
         this.socket.on("message", (message) => {
-            this.setState({
-                messages: this.state.messages.concat(message)
-            });
+            if (message.receiver === this.state.personSending) {
+                this.setState({
+                    messages: this.state.messages.concat(message)
+                });
+            }
         });
     }
 
@@ -37,7 +52,8 @@ class Messages extends React.Component {
         event.preventDefault();
         const message = {
             content: this.state.message,
-            sender: this.state.personSending
+            sender: this.state.personSending,
+            receiver: this.state.personReceiving
         };
         this.setState({
             message: "",
@@ -68,7 +84,7 @@ class Messages extends React.Component {
                     <ScrollToBottom className='chat-space'>
                         {
                             this.state.messages.map((message, index) =>
-                            <div className={message.sender} key={index}>
+                            <div className={message.sender + " me"} key={index}>
                                 <div className='text-message'>{message.content}</div>
                             </div>
                             )

@@ -30,8 +30,9 @@ server.use((req, res, next) => {
 // Routing API endpoints
 const categoryEndpoint = require("./endpoints/Category");
 const categoriesEndpoint = require("./endpoints/Categories");
-//const messageEndpoint = require("./endpoints/MessageEndpoint");
-//const messagesEndpoint = require("./endpoints/MessagesEndpoint");
+const conversationsEndpoint = require("./endpoints/Conversations");
+const messageEndpoint = require("./endpoints/Message");
+const messagesEndpoint = require("./endpoints/Messages");
 const postingEndpoint = require("./endpoints/Posting");
 const postingsEndpoint = require("./endpoints/Postings");
 const reviewEndpoint = require("./endpoints/Review");
@@ -40,8 +41,9 @@ const userEndpoint = require("./endpoints/User");
 const usersEndpoint = require("./endpoints/Users");
 server.use("/api/category", categoryEndpoint);
 server.use("/api/categories", categoriesEndpoint);
-//server.use("/api/message", messageEndpoint);
-//server.use("/api/messages", messagesEndpoint);
+server.use("/api/conversations", conversationsEndpoint);
+server.use("/api/message", messageEndpoint);
+server.use("/api/messages", messagesEndpoint);
 server.use("/api/posting", postingEndpoint);
 server.use("/api/postings", postingsEndpoint);
 server.use("/api/review", reviewEndpoint);
@@ -66,7 +68,6 @@ io.on("connection", (socket) => {
 		console.log("User disconnected")
 	});
 	socket.on("message", (message) => {
-		message.sender = "other";
 		io.emit("message", message);
 		console.log(message);
 	});
