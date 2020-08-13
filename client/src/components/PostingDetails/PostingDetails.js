@@ -86,7 +86,7 @@ class PostingDetails extends React.Component {
                                 {description}<br/> <br/>
                                 Total Sessions: {numsessions}<br/><br/>
                                 <i>{rating} Star Patron</i><br/>
-                                <StyledButton id="tomessageskilltrader" innerclass="contactskilltrader2" text="Contact SkillTrader" onClick={() => { this.SkillTradertoMessages(uid) }}></StyledButton>
+                                <StyledButton id="tomessageskilltrader" innerclass="contactskilltrader2" text="Message SkillTrader" onClick={() => { this.SkillTradertoMessages(uid) }}></StyledButton>
                         </div><br/>
                         <StyledButton id="postmoveon" innerclass="contactskilltrader" text="View Details" onClick={(e) => { this.switchState(e) }}></StyledButton>
             </div>
