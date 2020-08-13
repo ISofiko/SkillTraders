@@ -124,7 +124,7 @@ On the user's page, you are now able to modify their personal information (name,
 - :pencil2: Instead of clicking the edit button, you can also access the above by clicking the user's name and then going to their profile.
 - :pencil2: The options explained above have now been connected to the backend, so deleting an acount, posting, or other modifications will reflect in the database and on the site.
 - :pencil2: Session handling has been added. When accessing this page logged in you'll be taken to it, but when logged out, a user will not be able to access this URL.
-- :pencil2: <b>Admin</b> session handling has been added. When accessing this page logged in but <b>not</b> as an admin, you will be kicked back to the home page.
+- :gift: <b>Admin</b> session handling has been added. When accessing this page logged in but <b>not</b> as an admin, you will be kicked back to the home page.
 
 All other pages and views for the admin are in line and accordance with that of a general user, and the admin will be able to navigate the site and have a primarily unhindered experience as a user.
 
