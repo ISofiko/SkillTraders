@@ -30,7 +30,9 @@ class Posting extends React.Component {
 	}
 
 	SkillTradertoMessages(user) {
-			window.location.replace("/userprofile?uid=" + user);
+			window.location.replace("/messages?uid=" + user);
+
+			// DB CODE GOES HERE
 	}
 
 	getPostInfo(pid) {
@@ -69,7 +71,7 @@ class Posting extends React.Component {
 			<div className={[this.props.className, "posting", "innerpoststyle"].join(" ")} id={this.props.id}>
 				<div id="innerpoststyleheader">
 						<img id="innerpicture" src={image}></img><br/>
-						<div><a id="innerpoststyleheadername">{user}</a></div><br/>
+						<div><a id="innerpoststyleheadername" href={"/userprofile?uid=" + user}>{user}</a></div><br/>
 						{date}<br/>
 				</div><br/>
 				<div id="innerpoststylelistingtitle">{title}</div> <br/>
@@ -84,7 +86,7 @@ class Posting extends React.Component {
 									<span key={uid(tag)} className="tag">{tag}</span>
 								))}
 						</div><br/>
-						<StyledButton id="tomessageskilltrader" innerclass="contactskilltrader2" text="Contact SkillTrader" onClick={() => { this.SkillTradertoMessages(user) }}></StyledButton>
+						<StyledButton id="tomessageskilltrader" innerclass="contactskilltrader2" text="Message SkillTrader" onClick={() => { this.SkillTradertoMessages(user) }}></StyledButton>
 				</div><br/>
 				<StyledButton id="postmoveon" innerclass="contactskilltrader" text="View Details" onClick={(e) => { this.switchState(e) }}></StyledButton>
 				<div className="actions" style={styling}>
