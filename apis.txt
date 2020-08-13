@@ -35,8 +35,8 @@
 
 /api/review/
     POST: Create a review
-        Ex. if we want to post a review where New User rates David, the body will be:
         Use cases: when viewing someones profile, the current user can leave a review
+        Ex. if we want to post a review where New User rates David, the body will be:
         {
             "userId": "5f2ca2530a241c23501702c5",
         	"reviewer": "5f2ca2850a241c23501702c6",
@@ -61,25 +61,27 @@
             "name": "Entertainment",
             "icon": "music"
         }
-/api/category/5f309d01a2511111c8813366
-    DELETE: Remove category by id (in this case, the "Tutuoring" category will be removed)
+/api/category/{category_id}
+    DELETE: Remove category by id
+        Ex. if category_id=5f309d01a2511111c8813366, the "Tutuoring" category will be removed
 /api/categories
     GET: Return all categories
-        This is to be able to get all the categories to display on the dashboar / create a posting page
+        Use case: get all the categories to display on the dashboard / create a posting page
         Returns a list of all category objects
 
-
-
-/api/postings/category_id
+/api/postings/{category_id}
     GET: Return all postings in category
-/api/postings/user_id
+        Ex. if category_id=5f309b27a2511111c8813362, we will get all the postings in category "Medical consultations"
+/api/postings/{user_id}
     GET: Return all postings by a user
-/api/posting/
-    GET: View a specific posting (pass id as a url param or request body?)
+        Ex. if user_id=5f2ca2530a241c23501702c5, we will get all of the posts by David
+/api/posting/{post_id}
+    GET: View a specific posting with id <post_id>
+        Ex. if post_id=5f347ced52c74a1c64488e35, we will get the posting with the title "Personal coach"
     POST: Create a posting by a user
         ex.
         {
-            "categories": ["5f2dd92fb141973c10505640"],         // medicine category uuid
+            "categories": ["5f309b27a2511111c8813362"],         // medicine category uuid
             "userId": "5f2ca2530a241c23501702c5",               // David's uuid
             "title": "Professional medical consultation",
             "price": 100,
@@ -88,5 +90,15 @@
             "meetingLink": "david@medicine.com"
         }
     PUT: Modify a posting
-        Body: Refer to schema
+        Ex. here are all the categories that are modifiable (assuming post_id=5f347fffa9936827780e01c1):
+        {
+            "categories": ["5f309bd0a2511111c8813363", "5f309d01a2511111c8813366"],
+            "userId": "5f2ca1ff0a241c23501702c3",
+            "title": "Sofia's finance lessons pt 2",
+            "price": 80,
+            "numSessions": 10,
+            "content": "Sofia's finance lessons pt 2",
+            "meetingLink": "sofia2@finance.com"
+        }
     DELETE: Delete a posting
+        ex post_id=5f347fffa9936827780e01c1 deletes "Sofia's finance lessons"
