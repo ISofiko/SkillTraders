@@ -7,7 +7,12 @@ import profile2 from "../../resources/sample2.png";
 import placeholder2 from "../../resources/fakelogo.png";
 import dropdown from "../../resources/dropdown.png";
 
-let userredirect = ((window.localStorage.getItem("SkillTraders2020!Admin") === "true") ? 'Admin Panel' : "Search for User"); ;
+const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
+let isAdmin = false;
+if (usersess !== null) {
+  isAdmin = usersess["isAdmin"] === true;
+}
+let userredirect = (isAdmin ? 'Admin Panel' : "Search for User"); ;
 
 class Sidebar extends React.Component {
 
@@ -18,8 +23,8 @@ class Sidebar extends React.Component {
 
         changetoAdmin() {
                 console.log("Changing to admin (if access, otherwise search for user)");
-                const adminaccess = window.localStorage.getItem("SkillTraders2020!Admin");
-                if (adminaccess === "true") {
+                const adminaccess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"))["isAdmin"];
+                if (adminaccess) {
                         window.location.replace('/admin');
                 } else {
                         window.location.replace('/users');
@@ -45,7 +50,6 @@ class Sidebar extends React.Component {
         changetoLogin() {
                 // delete user session
                 window.localStorage.removeItem("SkillTraders2020!UserSession");
-                window.localStorage.removeItem("SkillTraders2020!Admin");
                 console.log("Changing to login");
                 window.location.replace('/');
         }
@@ -56,8 +60,12 @@ class Sidebar extends React.Component {
         }
 
         showCreation() {
-                const adminaccess = window.localStorage.getItem("SkillTraders2020!Admin");
-                if (adminaccess === "true") {
+                const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
+                let isAdmin = false;
+                if (usersess !== null) {
+                  isAdmin = usersess["isAdmin"] === true;
+                }
+                if (isAdmin) {
                         return;
                 } else {
                         return (<div className="link" onClick={this.changetoAddPosting}>Create A Posting</div>);

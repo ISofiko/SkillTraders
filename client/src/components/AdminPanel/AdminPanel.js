@@ -4,10 +4,14 @@ import './style.css';
 import User from './User';
 import Console from './Console';
 
-const isAdmin = window.localStorage.getItem("SkillTraders2020!Admin");
+const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
+let isAdmin = false;
+if (usersess !== null) {
+  isAdmin = usersess["isAdmin"] === true;
+}
 let title = "Find User";
 let styling = {visibility: "hidden"};
-if (isAdmin === "true") {
+if (isAdmin) {
 	title = "Admin Panel";
 	styling = {visibility: "hidden"}; // Replace with visible
 }
