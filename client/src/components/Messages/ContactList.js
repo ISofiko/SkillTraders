@@ -1,14 +1,14 @@
 import React from 'react';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import './messages-subs.css'
-const mockContacts = require('../../mockData/MockContacts')
+//const mockContacts = require('../../mockData/MockContacts')
 
 class ContactList extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            contacts: mockContacts
+            contacts: this.props.contacts
         }
     }
 
@@ -21,8 +21,8 @@ class ContactList extends React.Component {
                 <ScrollToBottom className="contact-list">
                     {
                         this.state.contacts.map((contact, index) =>
-                        <button className="contact">
-                            {contact.name}
+                        <button className="contact" key={index}>
+                            {contact.username}
                         </button>)
                     }
                 </ScrollToBottom>
