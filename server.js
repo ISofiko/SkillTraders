@@ -32,6 +32,7 @@ server.use((req, res, next) => {
 const categoryEndpoint = require("./endpoints/Category");
 const categoriesEndpoint = require("./endpoints/Categories");
 const conversationsEndpoint = require("./endpoints/Conversations");
+const imageEndpoint = require("./endpoints/Image");
 const messageEndpoint = require("./endpoints/Message");
 const messagesEndpoint = require("./endpoints/Messages");
 const postingEndpoint = require("./endpoints/Posting");
@@ -43,6 +44,7 @@ const usersEndpoint = require("./endpoints/Users");
 server.use("/api/category", categoryEndpoint);
 server.use("/api/categories", categoriesEndpoint);
 server.use("/api/conversations", conversationsEndpoint);
+server.use("/api/image", imageEndpoint);
 server.use("/api/message", messageEndpoint);
 server.use("/api/messages", messagesEndpoint);
 server.use("/api/posting", postingEndpoint);
