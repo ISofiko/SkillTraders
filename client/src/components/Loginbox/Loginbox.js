@@ -107,9 +107,11 @@ class Loginbox extends React.Component {
                 
                 const userdata = {};
                 // try logging in with username
-                getUserByUserName(userdata, this.username.value, this.password.value);
-                console.log(this.state.user);
-                if (this.state.user !== null) {
+                let ret = this.getUserByUserName(this.username.value, this.password.value);
+                console.log(this.state);
+                // if it didnt fail anymore
+                if (ret !== -1) {
+
                         // create user session with db values                                                             
                         const usersess = {"id":this.state.user._id, "username":this.state.user.username, "password":this.state.user.password, "email":this.state.user.email, "fname":this.state.user.fname, "lname":this.state.user.lname, "isAdmin":this.state.user.admin};
                         window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(this.state.user));
@@ -136,7 +138,7 @@ class Loginbox extends React.Component {
                 </div>
                 <br/>
                 <br/>
-                Username or Email<br/>
+                Username<br/>
                 <input className="inputtext" type="text" id="userinfo" ref={(c) => this.username = c} name="username"></input>
                 <br/>
                 Password <br/>
