@@ -1,25 +1,25 @@
 const log = console.log
 
 // gets user by username from mongo
-const getUserByUserName = (user, username, password) => {
+const async getUserByUserName = (user, username, password) => {
+    log(user, username, password)
     const url = "/api/user/" + username
     fetch(url)
         .then(res => {
+            log("res", res)
             if (res.status === 200) {
-                res.json().then(function(data) {
-                    return data;
-                  });
+                return res.json();
             } else {
                 alert("Could not load users");
             }
         })
         .then(res => {
             if (res.password === password) {
-                log("passwords match")
-                user.setState({ "user": user });
+                log("passwords match");
+                user.setState({ "user": res });
             } else {
-                user.setState({"user": null})
-                log("Passwords dont match")
+                log("Passwords dont match");
+                user.setState({"user": null});
             }
         })
         .catch(error => {
