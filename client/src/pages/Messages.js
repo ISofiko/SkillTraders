@@ -4,6 +4,9 @@ import ContactList from '../components/Messages/ContactList';
 import Sidebar from '../components/Sidebar';
 import { useLocation } from 'react-router-dom';
 import ScrollToBottom from 'react-scroll-to-bottom';
+import ProfileImage from '../components/ProfileImage';
+import tempProfile from '../resources/templateposting.png';
+
 const axios = require("axios");
 const serverURL = "http://localhost:5000";
 
@@ -23,7 +26,7 @@ class Messages extends React.Component {
             messages: [],
             conversation: null,
             personSending: this.user,
-            personReceiving: { username: "Loading..." }
+            personReceiving: { fname: "Connecting", lname:"..." }
         };
     }
 
@@ -127,6 +130,13 @@ class Messages extends React.Component {
         }
     }
 
+    setMessagePicture(avatar) {
+        if (avatar == null) {
+            return tempProfile;
+        }
+        return avatar;
+    }
+
     render() {
         return (
         <div className="main">
@@ -142,14 +152,16 @@ class Messages extends React.Component {
                         {
                             this.state.contacts.map((contact, index) =>
                             <button className="contact" key={index} onClick={this.selectContact.bind(this)}>
-                                {contact.username}
+                                @{contact.username}
                             </button>)
                         }
                     </ScrollToBottom>
                 </div>
                 <div>
                     <div className="selected-contact">
-                        {this.state.personReceiving.username}
+                        <ProfileImage self="false" className="messages-logo" src={this.setMessagePicture(this.state.personReceiving.avatar)} uid={this.state.personReceiving._id}></ProfileImage>
+                        <a className="selected-contact-name" href={"/userprofile?uid=" + this.state.personReceiving._id}>{this.state.personReceiving.fname} {this.state.personReceiving.lname}</a>
+                        <a className="selected-contact-time">Last Seen: {String(new Date(this.state.personReceiving.lastSeen)).split(" ").splice(1, 3).join(" ")}</a>
                     </div>
                     <ScrollToBottom className='chat-space'>
                         {
@@ -163,6 +175,7 @@ class Messages extends React.Component {
                 </div>
                 <form action="" className="send-message">
                     <input
+                        autoComplete="off"
                         type="text"
                         id="messageText"
                         placeholder= "Say something"
@@ -171,11 +184,10 @@ class Messages extends React.Component {
                         onChange={this.controlInput.bind(this)}
                         disabled
                     />
-                    <StyledButton
-                        innerclass="send-button"
-                        text="Send"
-                        onClick={this.sendMessage.bind(this)}>
-                    </StyledButton>
+                    <button
+                        className="send-button"
+                        onClick={this.sendMessage.bind(this)}> Send
+                    </button>
                 </form>
             </div>
         </div>
