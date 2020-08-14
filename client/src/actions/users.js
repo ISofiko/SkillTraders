@@ -24,6 +24,7 @@ const getUsersInternal = () => {
     const url = "/api/users/"
     fetch(url)
         .then(res => {
+            console.log(res);
             if (res.status === 200) {
                 return res.json();
             } else {
@@ -37,11 +38,12 @@ const getUsersInternal = () => {
 
 // gets user by username from mongo
 const getUserByUserName = (user, username, password) => {
-    const userbase = {users:[]}
+    let userbase = {users:[]}
     try {
-        userbase.users = getUsersInternal();
+        userbase = getUsersInternal();
         console.log(userbase);
         const uid = userbase.users.filter(x => x.username === username && x.password === password).id;
+        console.log(uid);
         getUser(user, uid);
     } catch (e) {
         return -1;
@@ -50,9 +52,9 @@ const getUserByUserName = (user, username, password) => {
 
 // gets user by email from mongo
 const getUserByEmail = (user, email, password) => {
-    const userbase = {users:[]}
+    let userbase = {users:[]}
     try {
-        userbase.users = getUsersInternal();
+        userbase = getUsersInternal();
         const uid = userbase.users.filter(x => x.email === email && x.password === password).id;
         getUser(user, uid);
     } catch (e) {
