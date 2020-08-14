@@ -31,7 +31,8 @@ router.post("/", (req, res) => {
         numRatings: 0,
         reviewers:[],
         firstLogin: new Date(),
-        lastSeen: new Date()
+        lastSeen: new Date(),
+        image_url: req.body.image_url
     })
 
     user.save().then((result) => {
@@ -103,6 +104,7 @@ router.post("/:id", (req, res) => {
             result.numRatings = req.body.numRatings ? req.body.numRatings : result.numRatings
             result.reviewers = req.body.reviewers ? req.body.reviewers : result.reviewers
             result.lastSeen = new Date()
+            result.image_url = req.body.image_url ? req.body.image_url : result.image_url
 
             result.save().then((result) => {
                 res.send(result)
