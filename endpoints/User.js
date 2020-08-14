@@ -31,7 +31,8 @@ router.post("/", (req, res) => {
         numRatings: 0,
         reviewers:[],
         firstLogin: new Date(),
-        lastSeen: new Date()
+        lastSeen: new Date(),
+        image_url: req.body.image_url
     })
 
     user.save().then((result) => {
