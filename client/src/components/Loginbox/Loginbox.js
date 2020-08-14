@@ -101,15 +101,12 @@ class Loginbox extends React.Component {
         }
 
         tryLogin() {
-            log(this.state)
             const message = document.getElementById("errormessage");
             console.log("Attempting login...");
 
             const userdata = {};
             // try logging in with username
             getUserByUserName(this, this.username.value, this.password.value).then((user) => {
-                console.log("user", user)
-                console.log("state", this.state);
                 // if it didnt fail anymore
                 if (this.state.user !== null) {
                         // create user session with db values
