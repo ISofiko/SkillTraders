@@ -6,6 +6,7 @@
     left: 0;
     top: 0;
     margin: 10px;
+    text-align: center;
 }
 
 .contacts-title {
@@ -29,7 +30,19 @@
     margin: 5px;
     border: none;
 	border-radius:15px;
+    cursor: pointer;
+    transition: .2s;
 }
+
+.contact:hover {
+    transform: scale(1.05);
+}
+
+.contact:focus {
+    outline: 0px;
+}
+
+
 
 .chat-space {
     overflow: auto;
