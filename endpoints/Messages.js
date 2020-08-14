@@ -14,6 +14,7 @@ router.get("/:conversation_id", (req, res) => {
 
 router.post("/:conversation_id", (req, res) => {
 	const { conversation_id } = req.params;
+	console.log(req.body)
 	const message = new Message({
 		conversation: conversation_id,
 		sender: req.body.sender,

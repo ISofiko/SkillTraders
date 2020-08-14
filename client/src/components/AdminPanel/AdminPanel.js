@@ -3,6 +3,8 @@ import { uid } from "react-uid";
 import './style.css';
 import User from './User';
 import Console from './Console';
+const axios = require("axios");
+const serverURL = "http://localhost:5000";
 
 const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
 let isAdmin = false;
@@ -17,21 +19,32 @@ if (isAdmin) {
 }
 
 class AdminPanel extends React.Component {
-	state = {
-		query: "",
-		users: [
-			{ name: "David Chen", avatar: "https://placekitten.com/200/200", stars: "0.1", date: "January 1, 2018", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
-			{ name: "Sofia Ilina", avatar: "https://placekitten.com/200/201", stars: "3.6", date: "March 4, 2016", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." },
-			{ name: "Moe Ali", avatar: "https://placekitten.com/201/200", stars: "4.4", date: "June 27, 2020", bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."}
-		],
-		console: true
-	};
+	constructor(props) {
+		super(props);
+		this.state = {
+			query: "",
+			users: [],
+			console: true
+		};
+	}
 
-	controlInput = event => {
+	componentDidMount() {
+		const getUsers = async () => {
+			await axios.get(serverURL + "/api/users").then((result) => {
+				console.log(result.data)
+				this.setState({
+					users: result.data
+				});
+			});
+		};
+		getUsers();
+	}
+
+	controlInput(event) {
 		this.setState({
 			query: event.target.value
 		});
-	};
+	}
 
 	render() {
 		return (
@@ -40,8 +53,16 @@ class AdminPanel extends React.Component {
 
 				<input className="search-bar" type="search" placeholder="Search for user" value={this.state.query} onChange={this.controlInput}></input>
 				<div className="users">
-					{this.state.users.filter(user => user.name.toLowerCase().includes(this.state.query)).map(user => (
-						<User key={uid(user)} name={user.name} avatar={user.avatar} stars={user.stars} date={user.date} bio={user.bio} link={user.link} />
+					{this.state.users.filter(user => user.username.toLowerCase().includes(this.state.query)).map(user => (
+						<User 
+						key={uid(user)} 
+						name={user.username} 
+						avatar={user.avatar} 
+						stars={Math.round(user.avgRating * 100) / 100} 
+						date={String(new Date(user.firstLogin)).split(" ").splice(1, 3).join(" ")} 
+						bio={user.bio} 
+						link={user.link} 
+						/>
 					))}
 				</div>
 
