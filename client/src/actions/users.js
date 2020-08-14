@@ -21,12 +21,13 @@ const getUser = (user, userId) => {
 
 // gets the list of users from web server for INTERNAL usage
 const getUsersInternal = () => {
-    const url = "/api/users/"
+    const url = "/api/users/" 
     fetch(url)
         .then(res => {
-            console.log(res);
             if (res.status === 200) {
-                return res.json();
+                res.json().then(function(data) {
+                    return data;
+                  });
             } else {
                 alert("Could not load users");
             }
@@ -38,9 +39,8 @@ const getUsersInternal = () => {
 
 // gets user by username from mongo
 const getUserByUserName = (user, username, password) => {
-    let userbase = {users:[]}
     try {
-        userbase = getUsersInternal();
+        let userbase = getUsersInternal();
         console.log(userbase);
         const uid = userbase.users.filter(x => x.username === username && x.password === password).id;
         console.log(uid);
