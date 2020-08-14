@@ -7,7 +7,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
   let isAdmin = false;
   if (usersess !== null) {
-    isAdmin = usersess["isAdmin"];
+    isAdmin = usersess["isAdmin"] === true;
   }
 
 

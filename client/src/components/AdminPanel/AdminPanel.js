@@ -55,13 +55,17 @@ class AdminPanel extends React.Component {
 				<div className="users">
 					{this.state.users.filter(user => user.username.toLowerCase().includes(this.state.query)).map(user => (
 						<User 
-						key={uid(user)} 
-						name={user.username} 
+						key={uid(user)}
+						uid={uid(user)} 
+						username={user.username}
+						fname={user.fname} 
+						lname={user.lname}
 						avatar={user.avatar} 
 						stars={Math.round(user.avgRating * 100) / 100} 
-						date={String(new Date(user.firstLogin)).split(" ").splice(1, 3).join(" ")} 
-						bio={user.bio} 
-						link={user.link} 
+						joindate={String(new Date(user.firstLogin)).split(" ").splice(1, 3).join(" ")} 
+						lastseen={String(new Date(user.lastSeen)).split(" ").splice(1, 3).join(" ")} 
+						admin={String(user.admin)} 
+						email={user.email}
 						/>
 					))}
 				</div>
