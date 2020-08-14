@@ -9,7 +9,7 @@ server.use(express.json());
 
 
 // Connecting to MongoDB
-const mongoURI = "mongodb+srv://stadmin:STAdmin@skilltraders.kb2nk.mongodb.net/SkillTraders?retryWrites=true&w=majority";
+const mongoURI = process.env.MONGODB_URI || "mongodb+srv://stadmin:STAdmin@skilltraders.kb2nk.mongodb.net/SkillTraders?retryWrites=true&w=majority";
 mongoose.connect(mongoURI, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
@@ -73,9 +73,8 @@ io.on("connection", (socket) => {
 	});
 });
 
-
 // Starting server
 const port = process.env.PORT || 5000;
 http.listen(port, () => {
-	console.log(`Chat server started on port ${port}.`);
+	console.log(`Server started on port ${port}.`);
 });
