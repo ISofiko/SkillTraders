@@ -11,7 +11,6 @@ cloudinary.config({
 const Image = require("../models/Image");
 
 router.post("/", multipart, (req, res) => {
-	/*
 	cloudinary.uploader.upload(req.files.image.path, (uploaded) => {
 		const image = new Image({
 			public_id: uploaded.public_id,
@@ -23,8 +22,6 @@ router.post("/", multipart, (req, res) => {
 			res.sendStatus(500);
 		});
 	});
-	*/
-	console.log("Received")
 });
 
 router.get("/:image_id", (req, res) => {
