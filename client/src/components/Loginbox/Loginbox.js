@@ -83,12 +83,10 @@ class Loginbox extends React.Component {
                         admin: false
                 };
 
-                let caughtdata = {_id:null};
-
-                createUser(caughtdata, userdata);
+                createUser(this, userdata);
 
                 // create user session with db values                                                             
-                const usersess = {"id":caughtdata._id, "username":userdata.username, "password":userdata.password, "email":userdata.email, "fname":userdata.fname, "lname":userdata.lname, "isAdmin":userdata.admin};
+                const usersess = {"id":this.state.user._id, "username":this.state.user.username, "password":this.state.user.password, "email":this.state.user.email, "fname":this.state.user.fname, "lname":this.state.user.lname, "isAdmin":this.state.user.admin};
                 window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
 
                 window.location.replace('/dashboard');
