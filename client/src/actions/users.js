@@ -18,4 +18,30 @@ async function getUserByUserName(user, username, password) {
     return data;
 }
 
-export {getUserByUserName}
+// create user for mongo
+const createUser = (user, newuserrecord) => {
+
+    // POST request
+    const url = "/api/user/";
+    fetch(url, {
+        method: 'post',
+        body: JSON.stringify(newuserrecord)
+      })
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not create user");
+            }
+        })
+        .then(json => {
+            // the resolved promise with the JSON body
+            user.setState({ "user": json });
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+
+export {getUserByUserName, createUser}

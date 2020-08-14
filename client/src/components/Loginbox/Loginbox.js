@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route,Switch, Redirect, useHistory} from 'reac
 import { uid } from "react-uid";
 import './style.css';
 import dropdown from "../../resources/dropdown.png";
-import { getUserByUserName, getUserByEmail, createUser } from './../../actions/users';
+import { getUserByUserName, createUser } from './../../actions/users';
 const log = console.log
 
 class Loginbox extends React.Component {
