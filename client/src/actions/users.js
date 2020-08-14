@@ -1,7 +1,8 @@
+const log = console.log
 
 // gets user by id from mongo
 const getUser = (user, userId) => {
-    const url = "http://localhost:5000/api/user/" + userId
+    const url = "/api/user/" + userId
     fetch(url)
         .then(res => {
             if (res.status === 200) {
@@ -19,11 +20,68 @@ const getUser = (user, userId) => {
         })
 }
 
+// gets the list of users from web server for INTERNAL usage
+const getUsersInternal = () => {
+    const url = "/api/users/" 
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                res.json().then(function(data) {
+                    return data;
+                  });
+            } else {
+                alert("Could not load users");
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+// gets user by username from mongo
+const getUserByUserName = (user, username, password) => {
+    const url = "/api/user/" + username
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                res.json().then(function(data) {
+                    return data;
+                  });
+            } else {
+                alert("Could not load users");
+            }
+        })
+        .then(res => {
+            if (res.password === password) {
+                log("passwords match")
+                user.setState({ "user": user });
+            } else {
+                user.setState({"user": null})
+                log("Passwords dont match")
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+// gets user by email from mongo
+const getUserByEmail = (user, email, password) => {
+    let userbase = {users:[]}
+    try {
+        userbase = getUsersInternal();
+        const uid = userbase.users.filter(x => x.email === email && x.password === password).id;
+        getUser(user, uid);
+    } catch (e) {
+        return -1;
+    }
+}
+
 // gets the list of users from web server
 const getUsers = (usersList) => {
     console.log("RECIEVED");
     console.log(usersList);
-    const url = "http://localhost:5000/api/users/";
+    const url = "/api/users/";
     fetch(url)
         .then(res => {
             console.log("STATUS");
@@ -51,7 +109,7 @@ const getUsers = (usersList) => {
 const createUser = (user, newuserrecord) => {
 
     // POST request
-    const url = "http://localhost:5000/api/user/";
+    const url = "/api/user/";
     fetch(url, {
         method: 'post',
         body: JSON.stringify(newuserrecord)

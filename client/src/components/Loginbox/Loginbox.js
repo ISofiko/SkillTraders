@@ -3,22 +3,20 @@ import { BrowserRouter as Router, Route,Switch, Redirect, useHistory} from 'reac
 import { uid } from "react-uid";
 import './style.css';
 import dropdown from "../../resources/dropdown.png";
-import { getUsers, createUser, getUser } from './../../actions/users';
+import { getUserByUserName, getUserByEmail, createUser } from './../../actions/users';
 
 class Loginbox extends React.Component {
+
+        state = {
+            username: "",
+            password: ""
+        }
 
         constructor(props){
                 super(props);
                 this.tryLogin = this.tryLogin.bind(this);
                 this.tryRegister = this.tryRegister.bind(this);
         }
-
-        state = {
-                query: "",
-                users: [],
-                console: true,
-                user:{}
-        };
 
         rewriteMessage(message) {
                 message.style.display = "none";
@@ -31,36 +29,6 @@ class Loginbox extends React.Component {
                         // timing options
                         duration: 2500
                       });
-        }
-
-        // gets user by username from mongo
-        getUserByUserName(username, password) {
-                try {
-                        console.log("Sent");
-                        console.log(this);
-                        getUsers(this);
-                        console.log("Outer");
-                        console.log(this.state);
-                        const uid = this.state.users.filter(x => x.username === username && x.password === password).id;
-                        console.log(uid);
-                        getUser(this, uid);
-                } catch (e) {
-                        return -1;
-                }
-        }
-        
-        // gets user by email from mongo
-        getUserByEmail(email, password) {
-                try {
-                        getUsers(this);
-                        console.log("HI");
-                        console.log(this.state);
-                        const uid = this.state.users.filter(x => x.email === email && x.password === password).id;
-                        console.log(uid);
-                        getUser(this, uid);
-                } catch (e) {
-                        return -1;
-                }
         }
 
         switchToLogin() {
@@ -133,22 +101,18 @@ class Loginbox extends React.Component {
         }
 
         tryLogin() {
+                log(state)
                 const message = document.getElementById("errormessage");
                 console.log("Attempting login...");
                 
+                const userdata = {};
                 // try logging in with username
-                let ret = this.getUserByUserName(this.username.value, this.password.value);
-                console.log(this.state);
-                // if failed, try it as email
-                if (ret === -1) {
-                        ret = this.getUserByEmail(this.username.value, this.password.value);
-                }
-                // if it didnt fail anymore
-                if (ret !== -1) {
-
+                getUserByUserName(userdata, this.username.value, this.password.value);
+                console.log(this.state.user);
+                if (this.state.user !== null) {
                         // create user session with db values                                                             
-                        const usersess = { "username":this.state.userdata.username, "password":this.state.userdata.password, "email":this.state.userdata.email, "fname":this.state.userdata.fname, "lname":this.state.userdata.lname, "isAdmin":this.state.userdata.admin};
-                        window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
+                        const usersess = {"id":this.state.user._id, "username":this.state.user.username, "password":this.state.user.password, "email":this.state.user.email, "fname":this.state.user.fname, "lname":this.state.user.lname, "isAdmin":this.state.user.admin};
+                        window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(this.state.user));
 
                         // go to home page
                         window.location.replace('/dashboard');
