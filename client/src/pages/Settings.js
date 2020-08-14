@@ -35,21 +35,34 @@ function Settings() {
 	let reviews = showReviews();
 
 	function changePhoto(e) {
-			let preview = document.getElementsByClassName("profile")[0];
-			let file    = document.getElementById("file-input-posting").files[0];
-			let reader  = new FileReader();
-		
-			reader.onloadend = function () {
-			preview.src = reader.result;
-			}
-			console.log(file);
-			if (file) {
-			reader.readAsDataURL(file);
-			} else {
-			preview.src = "";
-			}
+		let preview = document.getElementsByClassName("profile")[0];
+		let file    = document.getElementById("file-input-posting").files[0];
+		let reader  = new FileReader();
+	
+		reader.onloadend = function () {
+		preview.src = reader.result;
+		}
+		console.log(file);
+		if (file) {
+		reader.readAsDataURL(file);
+		} else {
+		preview.src = "";
+		}
 
-			// DB CODE GOES HERE -> REPLACE IMG TO DB
+		// DB CODE GOES HERE -> REPLACE IMG TO DB
+    }
+
+    function submitPhoto(e) {
+    	e.preventDefault();
+    	const form = new FormData(e.target);
+    	const request = new Request("http://localhost:5000/api/image", {
+    		method: "post",
+    		body: form
+    	});
+
+    	fetch(request).then((result) => {
+    		console.log(result);
+    	});
     }
 
 	function StartEdit(e) {
@@ -94,7 +107,10 @@ function Settings() {
 						<div className="myprofile">
 							<div id="header">My Profile</div><br/>
 							<label for="file-input-posting" class="custom-file-upload"> Choose  Profile  Picture </label>
-                            <input id="file-input-posting" type="file" accept=".png, .jpeg, .jpg" name="name" onChange={changePhoto} />
+							<form method="post" enctype="multipart/form-data" onSubmit={submitPhoto}>
+                            	<input id="file-input-posting" type="file" accept=".png, .jpeg, .jpg" name="name" onChange={changePhoto} />
+                            	<button id="save" type="submit">Save</button>
+                        	</form>
 						</div>
 					</div>
                 	<br/>

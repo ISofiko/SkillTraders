@@ -48,14 +48,10 @@ router.post("/", (req, res) => {
 
 
 /**
-* Gets user info by id
+* Gets user info by username
 */
-router.get("/:id", (req, res) => {
-    const id = req.params.id
-    if (!ObjectID.isValid(id)) {
-        res.status(404).send()
-        return;
-    }
+router.get("/:username", (req, res) => {
+    const username = req.params.username
 
     if (mongoose.connection.readyState != 1) {
         log('Issue with mongoose connection')
@@ -63,13 +59,14 @@ router.get("/:id", (req, res) => {
         return;
     }
 
-    User.findById(id).then((result) => {
+    User.findOne({username: username}).then((result) => {
     if (!result) {
         res.status(404).send('Resource not found')
     } else {
         res.send(result);
     }
     }).catch((error) => {
+        log(error)
         res.sendStatus(500);
     });
 })
