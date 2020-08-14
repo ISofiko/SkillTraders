@@ -10,6 +10,7 @@ import profile2 from "../resources/sample2.png";
 import profile3 from "../resources/sample3.jpg";
 import edit from "../resources/edit.png";
 import save from "../resources/save.png";
+const axios = require("axios");
 
 function Settings() {
 
@@ -60,8 +61,14 @@ function Settings() {
     		body: form
     	});
 
-    	fetch(request).then((result) => {
-    		console.log(result);
+    	fetch(request).then(async (result) => {
+    		const image_url = (await result.json()).url;
+    		console.log(image_url)
+    		/*
+    		axios.post("http://localhost:5000/api/user/" + "user_id_here",{
+    			image_url: image_url
+    		});
+    		*/
     	});
     }
 
@@ -106,9 +113,9 @@ function Settings() {
 						<ProfileImage className="profile" src={profile2} uid="filler101"></ProfileImage>
 						<div className="myprofile">
 							<div id="header">My Profile</div><br/>
-							<label for="file-input-posting" class="custom-file-upload"> Choose  Profile  Picture </label>
-							<form method="post" enctype="multipart/form-data" onSubmit={submitPhoto}>
-                            	<input id="file-input-posting" type="file" accept=".png, .jpeg, .jpg" name="name" onChange={changePhoto} />
+							<label htmlFor="file-input-posting" className="custom-file-upload"> Choose  Profile  Picture </label>
+							<form method="post" encType="multipart/form-data" onSubmit={submitPhoto}>
+                            	<input id="file-input-posting" type="file" accept=".png, .jpeg, .jpg" name="image" onChange={changePhoto} />
                             	<button id="save" type="submit">Save</button>
                         	</form>
 						</div>

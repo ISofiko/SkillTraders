@@ -12,7 +12,8 @@ const schema = new mongoose.Schema({
     numRatings: Number,
     reviewers: Array,
     firstLogin: Date,
-    lastSeen: Date
+    lastSeen: Date,
+    image_url: String
 });
 
 module.exports = mongoose.model("User", schema);
