@@ -139,10 +139,6 @@ class Loginbox extends React.Component {
                 // try logging in with username
                 let ret = this.getUserByUserName(this.username.value, this.password.value);
                 console.log(this.state);
-                // if failed, try it as email
-                if (ret === -1) {
-                        ret = this.getUserByEmail(this.username.value, this.password.value);
-                }
                 // if it didnt fail anymore
                 if (ret !== -1) {
 
@@ -172,7 +168,7 @@ class Loginbox extends React.Component {
                 </div>
                 <br/>
                 <br/>
-                Username or Email<br/>
+                Username<br/>
                 <input className="inputtext" type="text" id="userinfo" ref={(c) => this.username = c} name="username"></input>
                 <br/>
                 Password <br/>
