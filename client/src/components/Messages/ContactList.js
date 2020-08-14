@@ -8,7 +8,7 @@ class ContactList extends React.Component {
         super(props);
 
         this.state = {
-            contacts: props.contacts
+            contacts: this.props.contacts
         }
     }
 
@@ -22,7 +22,7 @@ class ContactList extends React.Component {
                     {
                         this.state.contacts.map((contact, index) =>
                         <button className="contact" key={index}>
-                            {contact.name}
+                            {contact.username}
                         </button>)
                     }
                 </ScrollToBottom>
