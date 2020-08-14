@@ -102,6 +102,7 @@ class Loginbox extends React.Component {
                 const userdata = {};
                 // try logging in with username
                 let ret = getUserByUserName(userdata, this.username.value, this.password.value);
+                //console.log(userdata);
                 // if failed, try it as email
                 if (ret === -1) {
                         ret = getUserByEmail(userdata, this.username.value, this.password.value);

@@ -22,12 +22,14 @@ router.post("/", (req, res) => {
     const user = new User({
         username: req.body.username,
         password: req.body.password,
-        salt: req.body.salt,
+        fname: req.body.fname,
+        lname: req.body.lname,
+        salt: "salt",
         email: req.body.email,
         admin: req.body.admin,
-        bio: req.body.bio,
         avgRating: 0,
         numRatings: 0,
+        reviewers:[],
         firstLogin: new Date(),
         lastSeen: new Date()
     })
@@ -95,12 +97,14 @@ router.post("/:id", (req, res) => {
         } else {
             result.username = req.body.username ? req.body.username : result.username
             result.password = req.body.password ? req.body.password : result.password
+            result.fname = req.body.fname ? req.body.fname : result.fname
+            result.lname = req.body.lname ? req.body.lname : result.lname
             result.salt = req.body.salt ? req.body.salt : result.salt
             result.email = req.body.email ? req.body.email : result.email
             result.admin = false
-            result.bio = req.body.bio ? req.body.bio : result.bio
             result.avgRating = req.body.avgRating ? req.body.avgRating : result.avgRating
             result.numRatings = req.body.numRatings ? req.body.numRatings : result.numRatings
+            result.reviewers = req.body.reviewers ? req.body.reviewers : result.reviewers
             result.lastSeen = new Date()
 
             result.save().then((result) => {

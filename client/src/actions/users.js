@@ -40,6 +40,7 @@ const getUserByUserName = (user, username, password) => {
     const userbase = {users:[]}
     try {
         userbase.users = getUsersInternal();
+        console.log(userbase);
         const uid = userbase.users.filter(x => x.username === username && x.password === password).id;
         getUser(user, uid);
     } catch (e) {
@@ -80,21 +81,13 @@ const getUsers = (usersList) => {
 }
 
 // create user for mongo
-const createUser = (user, newuserinfo) => {
-    // create a new user record with attributes from newuserinfo
-    const userrecord = newuserinfo;
-    userrecord.avgRating = 0;
-    userrecord.numRatings = 0;
-    userrecord.reviewers = [];
-    userrecord.firstLogin = (new Date()).toString();
-    userrecord.lastSeen = (new Date()).toString();
-
+const createUser = (user, newuserrecord) => {
 
     // POST request
     const url = "/api/user/";
     fetch(url, {
         method: 'post',
-        body: JSON.stringify(userrecord)
+        body: JSON.stringify(newuserrecord)
       })
         .then(res => {
             if (res.status === 200) {
