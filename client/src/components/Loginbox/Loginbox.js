@@ -78,9 +78,9 @@ class Loginbox extends React.Component {
                         admin: false
                 };
 
-                let caughtdata = {};
+                let caughtdata = {_id:null};
 
-                caughtdata = createUser(caughtdata, userdata);
+                createUser(caughtdata, userdata);
 
                 // create user session with db values                                                             
                 const usersess = {"id":caughtdata._id, "username":userdata.username, "password":userdata.password, "email":userdata.email, "fname":userdata.fname, "lname":userdata.lname, "isAdmin":userdata.admin};
