@@ -1,5 +1,11 @@
 # API Endpoints
 
+/api/image
+    POST: Upload an image (request body is form data)
+
+/api/image/{image_id}
+    GET: Return image details
+
 /api/users
     GET: Return a list of all the users
         Use cases: list of all users on the find users page
