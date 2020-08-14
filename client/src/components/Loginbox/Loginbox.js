@@ -101,30 +101,28 @@ class Loginbox extends React.Component {
         }
 
         tryLogin() {
-                log(this.state)
-                const message = document.getElementById("errormessage");
-                console.log("Attempting login...");
-                
-                const userdata = {};
-                // try logging in with username
-                getUserByUserName(this, this.username.value, this.password.value)
-                .then(
-                    console.log(this.state);
-                    // if it didnt fail anymore
-                    if (this.state.user !== null) {
-                            // create user session with db values
-                            const usersess = {"id":this.state.user._id, "username":this.state.user.username, "password":this.state.user.password, "email":this.state.user.email, "fname":this.state.user.fname, "lname":this.state.user.lname, "isAdmin":this.state.user.admin};
-                            window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(this.state.user));
+            log(this.state)
+            const message = document.getElementById("errormessage");
+            console.log("Attempting login...");
 
-                            // go to home page
-                            window.location.replace('/dashboard');
-                    } else {
-                            // flash text saying inccorect login info
-                            this.rewriteMessage(message);
-                    }
+            const userdata = {};
+            // try logging in with username
+            getUserByUserName(this, this.username.value, this.password.value).then((user) => {
+                console.log("user", user)
+                console.log("state", this.state);
+                // if it didnt fail anymore
+                if (this.state.user !== null) {
+                        // create user session with db values
+                        const usersess = {"id":this.state.user._id, "username":this.state.user.username, "password":this.state.user.password, "email":this.state.user.email, "fname":this.state.user.fname, "lname":this.state.user.lname, "isAdmin":this.state.user.admin};
+                        window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(this.state.user));
 
-                )
-
+                        // go to home page
+                        window.location.replace('/dashboard');
+                } else {
+                        // flash text saying inccorect login info
+                        this.rewriteMessage(message);
+                }
+            })
         }
 
 	render() {
