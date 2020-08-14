@@ -1,43 +1,5 @@
 const log = console.log
 
-// gets user by id from mongo
-const getUser = (user, userId) => {
-    const url = "/api/user/" + userId
-    fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            } else {
-                alert("Could not load user");
-            }
-        })
-        .then(json => {
-            // the resolved promise with the JSON body
-            user.setState({ "user": json });
-        })
-        .catch(error => {
-            console.log(error);
-        })
-}
-
-// gets the list of users from web server for INTERNAL usage
-const getUsersInternal = () => {
-    const url = "/api/users/" 
-    fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                res.json().then(function(data) {
-                    return data;
-                  });
-            } else {
-                alert("Could not load users");
-            }
-        })
-        .catch(error => {
-            console.log(error);
-        })
-}
-
 // gets user by username from mongo
 const getUserByUserName = (user, username, password) => {
     const url = "/api/user/" + username
@@ -63,18 +25,6 @@ const getUserByUserName = (user, username, password) => {
         .catch(error => {
             console.log(error);
         })
-}
-
-// gets user by email from mongo
-const getUserByEmail = (user, email, password) => {
-    let userbase = {users:[]}
-    try {
-        userbase = getUsersInternal();
-        const uid = userbase.users.filter(x => x.email === email && x.password === password).id;
-        getUser(user, uid);
-    } catch (e) {
-        return -1;
-    }
 }
 
 // gets the list of users from web server
@@ -130,4 +80,4 @@ const createUser = (user, newuserrecord) => {
         })
 }
 
-export {getUser, getUsers, createUser}
+export {getUsers, createUser, getUserByUserName}
