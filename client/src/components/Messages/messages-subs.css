@@ -13,7 +13,9 @@
     font-family: 'Alata', sans-serif;
     font-size: 30px;
     text-align: left;
-    margin: 11.5px;
+    margin-left: 11.5px;
+    margin-right: 11.5px;
+    margin-bottom: 11.5px;
 }
 
 .contact-list {
@@ -73,7 +75,11 @@
     font-size: 12px;
     max-width: 200px;
     text-align: left;
-    border: 1px solid #ccc;
+    color:white;
+    background-color: #3e838f;
+    padding-left:5px;
+    padding-right:5px;
+    border: 1px solid #62b3c2;
 	border-radius: 15px;
     box-sizing: border-box;
 }
@@ -94,5 +100,6 @@
 
 .other > div {
     background: #6d75a3;
+    border: 1px solid #8f99cc;;
     color: white;
 }

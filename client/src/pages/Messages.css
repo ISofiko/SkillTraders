@@ -36,14 +36,59 @@ body {
     margin-top: 0;
 }
 
+.send-button #buttonstyledinitial {
+    border-top-right-radius: 15px !important;
+    border-bottom-right-radius: 15px !important;
+}
+
 .send-button {
-    font-family: 'Alata', sans-serif;
-    margin-top: 5px;
-    margin-left: 5px;
-    border: none;
-    width: 90px;
-    background: #3e838f;
-    cursor: pointer;
+	font-family: 'Alata', sans-serif;
+    background-color: #6d75a3;
+    font-size: smaller;
+	color:white;
+    border-bottom-right-radius:15px;
+    border-top-right-radius:15px;
+    padding-left: 20px;
+	padding-right:20px;
+    outline:none;
+    margin-top:5px;
+	border: 2px solid #505a97;
+}
+
+.send-button:hover {
+	transform: scale(1.03);
+	background-color: #555e91;
+	-webkit-transition: transform 0.4s ease-in-out;
+}
+
+.messages-logo {
+    float:left;
+    height:60px;
+    border: 1px solid black !important;
+    margin-right:20px;
+    margin-top:2px;
+    margin-bottom: 2px;
+    width:60px;
+}
+
+.selected-contact-name {
+    font-size: larger;
+    color: #6d75a3;
+    text-decoration: none;
+}
+
+.selected-contact-name:hover {
+    font-size: larger;
+	transform: scale(1.03);
+	color: #555e91;
+}
+
+.selected-contact-time {
+    font-size: small;
+    color: #424661;
+    float: right;
+    margin-right: 20px;
+    margin-top:25px;
 }
 
 .say-something {
@@ -51,7 +96,11 @@ body {
     background-color: #e6e0e0;
     border: none;
     padding: 5px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
     margin-top: 5px;
+    outline:none;
+    margin-left: -5px;
     height: auto;
     display: block;
 	width: calc(100vw - 750px);
