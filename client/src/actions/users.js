@@ -2,9 +2,13 @@ const log = console.log
 
 // gets user by username from mongo
 const getUserByUserName = (user, username, password) => {
-    const url = "/api/user/" + username
+    console.log("PASSED");
+    console.log(user);
+    console.log(username, password);
+    const url = "https://localhost:5000/api/user/" + username
     fetch(url)
         .then(res => {
+            log(res);
             if (res.status === 200) {
                 res.json().then(function(data) {
                     return data;
@@ -17,6 +21,7 @@ const getUserByUserName = (user, username, password) => {
             if (res.password === password) {
                 log("passwords match")
                 user.setState({ "user": user });
+                console.log(user);
             } else {
                 user.setState({"user": null})
                 log("Passwords dont match")

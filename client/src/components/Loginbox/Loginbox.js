@@ -8,8 +8,7 @@ import { getUserByUserName, getUserByEmail, createUser } from './../../actions/u
 class Loginbox extends React.Component {
 
         state = {
-            username: "",
-            password: ""
+                user:null
         }
 
         constructor(props){
@@ -30,6 +29,8 @@ class Loginbox extends React.Component {
                         duration: 2500
                       });
         }
+
+        
 
         switchToLogin() {
                 const logininfo = document.getElementById("logininfo");
@@ -101,20 +102,18 @@ class Loginbox extends React.Component {
         }
 
         tryLogin() {
-                log(state)
                 const message = document.getElementById("errormessage");
                 console.log("Attempting login...");
                 
-                const userdata = {};
                 // try logging in with username
-                let ret = this.getUserByUserName(this.username.value, this.password.value);
+                getUserByUserName(this, this.username.value, this.password.value);
                 console.log(this.state);
                 // if it didnt fail anymore
-                if (ret !== -1) {
+                if (this.state.user !== null) {
 
                         // create user session with db values                                                             
                         const usersess = {"id":this.state.user._id, "username":this.state.user.username, "password":this.state.user.password, "email":this.state.user.email, "fname":this.state.user.fname, "lname":this.state.user.lname, "isAdmin":this.state.user.admin};
-                        window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(this.state.user));
+                        window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
 
                         // go to home page
                         window.location.replace('/dashboard');
