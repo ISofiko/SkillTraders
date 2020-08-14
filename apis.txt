@@ -77,12 +77,15 @@
         Use case: get all the categories to display on the dashboard / create a posting page
         Returns a list of all category objects
 
-/api/postings/{category_id}
-    GET: Return all postings in category
-        Ex. if category_id=5f309b27a2511111c8813362, we will get all the postings in category "Medical consultations"
+/api/postings/
+    GET: Return all the postings (ex to display on the home page, before any categories are selected)
 
+/api/postings/{category_id}
+    GET: Return all postings in a selected category with id=category_id
+        Use cases: to display only those postings which belong to a selected category on the home page
+        Ex. if category_id=5f309b27a2511111c8813362, we will get all the postings in category "Medical consultations"
 /api/postings/{user_id}
-    GET: Return all postings by a user
+    GET: Return all postings by a user with id=user_id
         Ex. if user_id=5f2ca2530a241c23501702c5, we will get all of the posts by David
 
 /api/posting/{post_id}
@@ -92,7 +95,7 @@
     POST: Create a posting by a user
         ex.
         {
-            "categories": ["5f309b27a2511111c8813362"],         // medicine category uuid
+            "categories": ["5f309b27a2511111c8813362"],         // "Medical consultations" category uuid
             "userId": "5f2ca2530a241c23501702c5",               // David's uuid
             "title": "Professional medical consultation",
             "price": 100,

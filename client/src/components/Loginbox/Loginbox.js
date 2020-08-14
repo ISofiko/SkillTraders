@@ -2,11 +2,15 @@ import React from 'react';
 import { BrowserRouter as Router, Route,Switch, Redirect, useHistory} from 'react-router-dom';
 import { uid } from "react-uid";
 import './style.css';
-import placeholder from "../../resources/sample.jpg";
-import placeholder2 from "../../resources/fakelogo.png";
 import dropdown from "../../resources/dropdown.png";
+import { getUserByUserName, createUser } from './../../actions/users';
+const log = console.log
 
 class Loginbox extends React.Component {
+
+        state = {
+            user: null
+        }
 
         constructor(props){
                 super(props);
@@ -66,12 +70,25 @@ class Loginbox extends React.Component {
                         this.rewriteMessage(message);
                         return;
                 }
-                /* db related code goes here FILLER 
+
+                /* 
                 Will register the user below before redirecting to dashboard
                 */
+                const userdata = {
+                        username:this.newusername.value,
+                        email:this.email.value,
+                        password:this.newpassword.value,
+                        fname: "Skill",
+                        lname: "Trader",
+                        admin: false
+                };
 
-                // create user session FILL WITH DB VALUES                                                                  FALSE DEFAULT V
-                const usersess = {"uid":null, "username":null, "password":null, "email":null, "fname":null, "lname":null, "isAdmin":false};
+                let caughtdata = {_id:null};
+
+                createUser(caughtdata, userdata);
+
+                // create user session with db values                                                             
+                const usersess = {"id":caughtdata._id, "username":userdata.username, "password":userdata.password, "email":userdata.email, "fname":userdata.fname, "lname":userdata.lname, "isAdmin":userdata.admin};
                 window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
 
                 window.location.replace('/dashboard');
@@ -84,16 +101,17 @@ class Loginbox extends React.Component {
         }
 
         tryLogin() {
-                const message = document.getElementById("errormessage");
-                /* db related code goes here FILLER Will check for correct access credentials */
-                console.log("Attempting login...");
-                // replace the below IF statement with DB password and username check
-                if ((this.username.value === "user" && this.password.value === "user") || 
-                (this.username.value === "admin" && this.password.value === "admin")) {
+            const message = document.getElementById("errormessage");
+            console.log("Attempting login...");
 
-                        // create user session FILL WITH DB VALUES                                                              ADMIN DB VALUE V
-                        const usersess = {"uid":null, "username":null, "password":null, "email":null, "fname":null, "lname":null, "isAdmin":true};
-                        window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
+            const userdata = {};
+            // try logging in with username
+            getUserByUserName(this, this.username.value, this.password.value).then((user) => {
+                // if it didnt fail anymore
+                if (this.state.user !== null) {
+                        // create user session with db values
+                        const usersess = {"id":this.state.user._id, "username":this.state.user.username, "password":this.state.user.password, "email":this.state.user.email, "fname":this.state.user.fname, "lname":this.state.user.lname, "isAdmin":this.state.user.admin};
+                        window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(this.state.user));
 
                         // go to home page
                         window.location.replace('/dashboard');
@@ -101,6 +119,7 @@ class Loginbox extends React.Component {
                         // flash text saying inccorect login info
                         this.rewriteMessage(message);
                 }
+            })
         }
 
 	render() {
@@ -117,7 +136,7 @@ class Loginbox extends React.Component {
                 </div>
                 <br/>
                 <br/>
-                Username or Email<br/>
+                Username<br/>
                 <input className="inputtext" type="text" id="userinfo" ref={(c) => this.username = c} name="username"></input>
                 <br/>
                 Password <br/>

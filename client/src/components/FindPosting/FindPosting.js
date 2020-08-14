@@ -19,7 +19,11 @@ class FindPosting extends React.Component {
 		query: "",
 		categories: [],
 		tags: [],
-		postings: [],
+		postings: [
+			{ title: "Game Development in Unity", user: "Moe Ali", date: "June 28, 2020", price: "0", numsessions:"4", rating:"3.5", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", tags: "technology gaming", image: "https://oyster.ignimgs.com/wordpress/stg.ign.com/2020/04/sale_21892_primary_image_wide.jpg" },
+			{ title: "Personal Accounting", user: "Sofia Ilina", date: "June 25, 2020", price: "70.30", numsessions:"1", rating:"3.8", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", tags: "finance", image: "https://www.cpacanada.ca/-/media/site/operational/ec-education-certification/images/g10266-ec.jpg" },
+			{ title: "Piano Lessons", user: "David Chen", date: "June 14, 2020", price: "100",  numsessions:"5", rating:"4.5", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", tags: "music", image: "https://www.musicnotes.com/images2/promos/store/900x520_piano-min.jpg" }
+		],
 		users: ["Moe Ali", "Sofia Ilina", "David Chen"]
 	};
 

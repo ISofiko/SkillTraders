@@ -9,7 +9,7 @@ server.use(express.json());
 
 
 // Connecting to MongoDB
-const mongoURI = "mongodb+srv://stadmin:STAdmin@skilltraders.kb2nk.mongodb.net/SkillTraders?retryWrites=true&w=majority";
+const mongoURI = process.env.MONGODB_URI || "mongodb+srv://stadmin:STAdmin@skilltraders.kb2nk.mongodb.net/SkillTraders?retryWrites=true&w=majority";
 mongoose.connect(mongoURI, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
@@ -23,6 +23,7 @@ mongoose.connect(mongoURI, {
 
 server.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
 
@@ -31,6 +32,7 @@ server.use((req, res, next) => {
 const categoryEndpoint = require("./endpoints/Category");
 const categoriesEndpoint = require("./endpoints/Categories");
 const conversationsEndpoint = require("./endpoints/Conversations");
+const imageEndpoint = require("./endpoints/Image");
 const messageEndpoint = require("./endpoints/Message");
 const messagesEndpoint = require("./endpoints/Messages");
 const postingEndpoint = require("./endpoints/Posting");
@@ -42,6 +44,7 @@ const usersEndpoint = require("./endpoints/Users");
 server.use("/api/category", categoryEndpoint);
 server.use("/api/categories", categoriesEndpoint);
 server.use("/api/conversations", conversationsEndpoint);
+server.use("/api/image", imageEndpoint);
 server.use("/api/message", messageEndpoint);
 server.use("/api/messages", messagesEndpoint);
 server.use("/api/posting", postingEndpoint);
@@ -73,9 +76,8 @@ io.on("connection", (socket) => {
 	});
 });
 
-
 // Starting server
 const port = process.env.PORT || 5000;
 http.listen(port, () => {
-	console.log(`Chat server started on port ${port}.`);
+	console.log(`Server started on port ${port}.`);
 });

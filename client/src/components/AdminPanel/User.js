@@ -14,17 +14,19 @@ if (isAdmin) {
 
 class User extends React.Component {
 	render() {
-		const { name, avatar, stars, date, bio } = this.props;
+		const { uid, fname, lname, avatar, stars, joindate, lastseen, admin, email, username} = this.props;
 
 		return (
 			<div className="user">
 				<img src={avatar} alt="Placeholder" />
 				<div className="details">
-					<h1><a href={"/userprofile?uid=" + name}>{name}</a></h1>
-					<h2><span className="dark-aqua">{stars}</span> Star Patron | Joined <span className="dark-aqua">{date}</span></h2>
-					<p><strong>Bio:</strong> {bio}</p>
+					<h1><a href={"/userprofile?uid=" + uid}>{fname} {lname}</a></h1>
+					<h2><a>{username} | {email}</a></h2>
+					<h2><span className="dark-aqua">{stars}</span> Star Patron | Joined <span className="dark-aqua">{joindate}</span></h2>
+					<p><strong>Last Seen on:</strong> {lastseen}<br/>
+					<strong>Admin Status:</strong> {admin}<br/></p>
 					<div className="actions" style={styling}>
-						<a className="fa fa-pencil" href={"/userprofile?uid=" + name}></a>
+						<a className="fa fa-pencil" href={"/userprofile?uid=" + uid}></a>
 						<a className="fa fa-trash" onClick={(e) => alert("User has been deleted!")}></a>
 					</div>
 				</div>

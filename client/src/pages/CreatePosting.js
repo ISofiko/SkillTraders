@@ -10,6 +10,7 @@ import upload from "../resources/upload.png";
 import edit from "../resources/edit.png";
 import save from "../resources/save.png";
 import template from "../resources/templateposting.png";
+import { getCategories } from './../actions/categories';
 //var mockCategories = require('../mockData/MockPostingCategories')
 
 require('./CreatePosting.css')
@@ -44,6 +45,12 @@ function checkPrice(price) {
 }
 
 class CreatePosting extends React.Component {
+
+    componentDidMount() {
+        getCategories(this)
+        console.log(this.state)
+    }
+
     constructor(props) {
         super(props);
 
@@ -161,12 +168,8 @@ class CreatePosting extends React.Component {
                         <label> Select applicable categories <br/> </label>
 
                         <div className="categories-bars">
-                            {this.state.categories.map(category => (
-                                <Category
-                                    key={uid(category)}
-                                    title={category.title}
-                                    icon={null}
-                                    click={this.setTag} />
+                                {this.state.categories.map(category => (
+                                <Category key={uid(category)} title={category.name} icon={category.icon} click={this.setTag} />
                             ))}
                         </div><br/>
 

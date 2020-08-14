@@ -6,7 +6,8 @@
 }
 /* Optional: show position indicator in red */
 ::-webkit-scrollbar-thumb {
-    background: #FF0000;
+	background: #08aaf5 !important;
+	border-radius: 5px;
 }
 
 #innerpicture {

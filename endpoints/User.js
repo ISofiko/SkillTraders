@@ -22,12 +22,14 @@ router.post("/", (req, res) => {
     const user = new User({
         username: req.body.username,
         password: req.body.password,
-        salt: req.body.salt,
+        fname: req.body.fname,
+        lname: req.body.lname,
+        salt: "salt",
         email: req.body.email,
         admin: req.body.admin,
-        bio: req.body.bio,
         avgRating: 0,
         numRatings: 0,
+        reviewers:[],
         firstLogin: new Date(),
         lastSeen: new Date()
     })
@@ -46,14 +48,10 @@ router.post("/", (req, res) => {
 
 
 /**
-* Gets user info by id
+* Gets user info by username
 */
-router.get("/:id", (req, res) => {
-    const id = req.params.id
-    if (!ObjectID.isValid(id)) {
-        res.status(404).send()
-        return;
-    }
+router.get("/:username", (req, res) => {
+    const username = req.params.username
 
     if (mongoose.connection.readyState != 1) {
         log('Issue with mongoose connection')
@@ -61,13 +59,14 @@ router.get("/:id", (req, res) => {
         return;
     }
 
-    User.findById(id).then((result) => {
+    User.findOne({username: username}).then((result) => {
     if (!result) {
         res.status(404).send('Resource not found')
     } else {
         res.send(result);
     }
     }).catch((error) => {
+        log(error)
         res.sendStatus(500);
     });
 })
@@ -95,12 +94,14 @@ router.post("/:id", (req, res) => {
         } else {
             result.username = req.body.username ? req.body.username : result.username
             result.password = req.body.password ? req.body.password : result.password
+            result.fname = req.body.fname ? req.body.fname : result.fname
+            result.lname = req.body.lname ? req.body.lname : result.lname
             result.salt = req.body.salt ? req.body.salt : result.salt
             result.email = req.body.email ? req.body.email : result.email
-            result.admin = req.body.admin ? req.body.admin : result.admin
-            result.bio = req.body.bio ? req.body.bio : result.bio
+            result.admin = false
             result.avgRating = req.body.avgRating ? req.body.avgRating : result.avgRating
             result.numRatings = req.body.numRatings ? req.body.numRatings : result.numRatings
+            result.reviewers = req.body.reviewers ? req.body.reviewers : result.reviewers
             result.lastSeen = new Date()
 
             result.save().then((result) => {

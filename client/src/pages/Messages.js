@@ -5,7 +5,6 @@ import Sidebar from '../components/Sidebar';
 import { useLocation } from 'react-router-dom';
 import ScrollToBottom from 'react-scroll-to-bottom';
 const axios = require("axios");
-
 const serverURL = "http://localhost:5000";
 
 require('./Messages.css');
@@ -28,6 +27,14 @@ class Messages extends React.Component {
         };
     }
 
+    async getMessages() {
+        await axios.get(serverURL + "/api/messages/" + this.state.conversation._id).then((result) => {
+            this.setState({
+                messages: result.data.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))
+            });
+        });
+    }
+
     componentDidMount() {
         this.socket = require("socket.io-client")(serverURL);
         this.socket.on("message", (message) => {
@@ -38,24 +45,12 @@ class Messages extends React.Component {
             }
         });
 
-        const getConversations = async () => {
-            await axios.get(serverURL + "/api/conversations/" + this.user.uid).then((result) => {
-                this.conversations = result.data;
-                this.setState({
-                    conversation: this.conversations[0]
-                })
-            });
-        };
-
-        const getMessages = async () => {
-            await axios.get(serverURL + "/api/messages/" + this.state.conversation._id).then((result) => {
-                this.setState({
-                    messages: result.data.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp))
-                });
-            });
-        };
-
         const init = async () => {
+            const getConversations = async () => {
+                await axios.get(serverURL + "/api/conversations/" + this.user.uid).then((result) => {
+                    this.conversations = result.data;
+                });
+            };
             await getConversations();
             const uids = [];
             this.conversations.forEach((conversation) => {
@@ -66,16 +61,23 @@ class Messages extends React.Component {
                 await axios.get(serverURL + "/api/user/" + uid[0]).then((result) => {
                     contacts.push(result.data);
                     if (contacts.length === uids.length) {
-                        this.setState({
-                            contacts: contacts,
-                            personReceiving: contacts[0]
+                        const update = async () => {
+                            this.setState({
+                                contacts: contacts,
+                                personReceiving: contacts[0],
+                                conversation: this.conversations.filter((conversation) => conversation.participants.includes(contacts[0]._id))[0]
+                            });
+                        };
+                        update().then(() => {
+                            this.getMessages();
                         });
-                        getMessages();
                     }
                 }); // Does not handle group chats yet
             });
         };
-        init();
+        init().then(() => {
+            document.querySelector("#messageText").disabled = false;
+        });
     }
 
     sendMessage(event) {
@@ -90,18 +92,30 @@ class Messages extends React.Component {
             messages: this.state.messages.concat(message)
         });
         this.socket.emit("message", message);
-        /*
-        axios.post(serverURL + "/api/messages/" + this.state.conversation._id, {
-            data: message
-        }).then((result) => {
+        
+        axios.post(serverURL + "/api/messages/" + this.state.conversation._id, message).then((result) => {
             console.log(result)
         });
-        */
     }
 
     controlInput(event) {
         this.setState({
             message: event.target.value
+        });
+    }
+
+    selectContact(event) {
+        const select = async () => {
+            const username = event.target.innerText;
+            const contact = this.state.contacts.filter((contact) => contact.username === username)[0];
+            const conversation = this.conversations.filter((conversation) => conversation.participants.includes(contact._id))[0];
+            this.setState({
+                conversation: conversation,
+                personReceiving: contact
+            });
+        }
+        select().then(() => {
+            this.getMessages();
         });
     }
 
@@ -127,7 +141,7 @@ class Messages extends React.Component {
                     <ScrollToBottom className="contact-list">
                         {
                             this.state.contacts.map((contact, index) =>
-                            <button className="contact" key={index}>
+                            <button className="contact" key={index} onClick={this.selectContact.bind(this)}>
                                 {contact.username}
                             </button>)
                         }
@@ -155,6 +169,7 @@ class Messages extends React.Component {
                         value={this.state.message}
                         className="say-something"
                         onChange={this.controlInput.bind(this)}
+                        disabled
                     />
                     <StyledButton
                         innerclass="send-button"
