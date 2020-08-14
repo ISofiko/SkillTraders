@@ -1,7 +1,7 @@
 
 // gets user by id from mongo
 const getUser = (user, userId) => {
-    const url = "/api/user/" + userId
+    const url = "http://localhost:5000/api/user/" + userId
     fetch(url)
         .then(res => {
             if (res.status === 200) {
@@ -19,54 +19,15 @@ const getUser = (user, userId) => {
         })
 }
 
-// gets the list of users from web server for INTERNAL usage
-const getUsersInternal = () => {
-    const url = "/api/users/" 
-    fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                res.json().then(function(data) {
-                    return data;
-                  });
-            } else {
-                alert("Could not load users");
-            }
-        })
-        .catch(error => {
-            console.log(error);
-        })
-}
-
-// gets user by username from mongo
-const getUserByUserName = (user, username, password) => {
-    try {
-        let userbase = getUsersInternal();
-        console.log(userbase);
-        const uid = userbase.users.filter(x => x.username === username && x.password === password).id;
-        console.log(uid);
-        getUser(user, uid);
-    } catch (e) {
-        return -1;
-    }
-}
-
-// gets user by email from mongo
-const getUserByEmail = (user, email, password) => {
-    let userbase = {users:[]}
-    try {
-        userbase = getUsersInternal();
-        const uid = userbase.users.filter(x => x.email === email && x.password === password).id;
-        getUser(user, uid);
-    } catch (e) {
-        return -1;
-    }
-}
-
 // gets the list of users from web server
 const getUsers = (usersList) => {
-    const url = "/api/users/"
+    console.log("RECIEVED");
+    console.log(usersList);
+    const url = "http://localhost:5000/api/users/";
     fetch(url)
         .then(res => {
+            console.log("STATUS");
+            console.log(res.status);
             if (res.status === 200) {
                 return res.json();
             } else {
@@ -75,7 +36,11 @@ const getUsers = (usersList) => {
         })
         .then(json => {
             // the resolved promise with the JSON body
+            console.log("Inner - Before");
+            console.log(usersList);
             usersList.setState({ "users": json });
+            console.log("Inner - After");
+            console.log(usersList);
         })
         .catch(error => {
             console.log(error);
@@ -86,7 +51,7 @@ const getUsers = (usersList) => {
 const createUser = (user, newuserrecord) => {
 
     // POST request
-    const url = "/api/user/";
+    const url = "http://localhost:5000/api/user/";
     fetch(url, {
         method: 'post',
         body: JSON.stringify(newuserrecord)
@@ -107,4 +72,4 @@ const createUser = (user, newuserrecord) => {
         })
 }
 
-export {getUser, getUsers, createUser, getUserByUserName, getUserByEmail}
+export {getUser, getUsers, createUser}
