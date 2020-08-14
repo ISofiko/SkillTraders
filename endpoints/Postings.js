@@ -7,6 +7,27 @@ const router = express.Router();
 const log = console.log
 
 /**
+* Get all postings
+*/
+router.get("/", (req, res) => {
+    if (mongoose.connection.readyState != 1) {
+        log('Issue with mongoose connection')
+        res.status(500).send('Internal server error')
+        return;
+    }
+
+    Posting.find().then((result) => {
+    if (!result) {
+        res.status(404).send('Resource not found')
+    } else {
+        res.send(result);
+    }
+    }).catch((error) => {
+        res.sendStatus(500);
+    });
+})
+
+/**
 * Get all postings by user with id <id> or belonging to a category with id <id>
 */
 router.get("/:id", (req, res) => {
