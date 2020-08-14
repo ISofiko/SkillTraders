@@ -3,7 +3,7 @@ import { uid } from "react-uid";
 import './style.css';
 import Category from './Category';
 import Posting from './Posting';
-import { getCategories } from './../../actions/categories'
+import { getCategories } from './../../actions/categories';
 const log = console.log
 
 class FindPosting extends React.Component {

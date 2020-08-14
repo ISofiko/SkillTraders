@@ -19,6 +19,46 @@ const getUser = (user, userId) => {
         })
 }
 
+// gets the list of users from web server for INTERNAL usage
+const getUsersInternal = () => {
+    const url = "/api/users/"
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not load users");
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+// gets user by username from mongo
+const getUserByUserName = (user, username, password) => {
+    const userbase = {users:[]}
+    try {
+        userbase.users = getUsersInternal();
+        const uid = userbase.users.filter(x => x.username === username && x.password === password).id;
+        getUser(user, uid);
+    } catch (e) {
+        return -1;
+    }
+}
+
+// gets user by email from mongo
+const getUserByEmail = (user, email, password) => {
+    const userbase = {users:[]}
+    try {
+        userbase.users = getUsersInternal();
+        const uid = userbase.users.filter(x => x.email === email && x.password === password).id;
+        getUser(user, uid);
+    } catch (e) {
+        return -1;
+    }
+}
+
 // gets the list of users from web server
 const getUsers = (usersList) => {
     const url = "/api/users/"
@@ -39,4 +79,37 @@ const getUsers = (usersList) => {
         })
 }
 
-export {getUser, getUsers}
+// create user for mongo
+const createUser = (user, newuserinfo) => {
+    // create a new user record with attributes from newuserinfo
+    const userrecord = newuserinfo;
+    userrecord.avgRating = 0;
+    userrecord.numRatings = 0;
+    userrecord.reviewers = [];
+    userrecord.firstLogin = (new Date()).toString();
+    userrecord.lastSeen = (new Date()).toString();
+
+
+    // POST request
+    const url = "/api/user/";
+    fetch(url, {
+        method: 'post',
+        body: JSON.stringify(userrecord)
+      })
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not create user");
+            }
+        })
+        .then(json => {
+            // the resolved promise with the JSON body
+            user.setState({ "user": json });
+        })
+        .catch(error => {
+            console.log(error);
+        })
+}
+
+export {getUser, getUsers, createUser, getUserByUserName, getUserByEmail}
