@@ -23,8 +23,6 @@ class Posting extends React.Component {
     componentWillMount() {
         getUser(this, this.props.userId)
         getCategoryNames(this, this.props.tags)
-        log("this.props.tags", this.props.tags)
-        log(this.state)
     }
 
     state = {
@@ -37,7 +35,6 @@ class Posting extends React.Component {
 		let currentstatebutton = e.target.parentNode.parentNode.childNodes[9].childNodes[0];
 		let currentstatetile = e.target.parentNode.parentNode;
 		let currentstatedescription = e.target.parentNode.parentNode.childNodes[7];
-		console.log(currentstatebutton)
 		if (currentstatebutton.textContent === "View Details") {
 				currentstatetile.style.WebkitAnimation = "small-to-big 1.5s forwards";
 				currentstatebutton.textContent = "Close Details";
@@ -74,11 +71,6 @@ class Posting extends React.Component {
 
 	render() {
 		const { title, userId, date, price, numsessions, content, tags, image_url } = this.props;
-		log("Image url: ", image_url)
-//		let tagList = ["NONE"];
-//		if (tags !== undefined) {
-//			tagList = categories.toUpperCase().split(" ");
-//		}
 
 		const strprice = this.convertPricetoString(parseInt(price), parseFloat(numsessions));
 

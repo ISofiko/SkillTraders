@@ -4,14 +4,14 @@ import './style.css';
 import Category from './Category';
 import Posting from './Posting';
 import { getCategories } from './../../actions/categories'
-import { getAllPostings } from './../../actions/postings'
+import { getPostings } from './../../actions/postings'
 const log = console.log
 
 class FindPosting extends React.Component {
 
     componentDidMount() {
         getCategories(this)
-        getAllPostings(this)
+        getPostings('', this).then((postings) => {this.setState({"postings": postings})})
         log(this.state)
     }
 
@@ -64,7 +64,7 @@ class FindPosting extends React.Component {
 
 				<h2>Search Results</h2><br/>
 				<div className="postings">
-					{this.state.postings.filter(posting => (posting.title.toLowerCase().includes(this.state.query) || posting.user.toLowerCase().includes(this.state.query)) && this.state.tags.every(tag => posting.tags.includes(tag))).map(posting => (
+					{this.state.postings.filter(posting => (posting.title.toLowerCase().includes(this.state.query)) && this.state.tags.every(tag => posting.categories.includes(tag))).map(posting => (
 						<Posting
 						key={posting._id}
 						title={posting.title}

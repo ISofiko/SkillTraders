@@ -9,7 +9,7 @@ async function getPostings(id, postingsList) {
             log("Not found")
             return null;
         }
-        postingsList.setState({ "postings": data });
+        return data;
     } catch (e) {
         log(e)
         return null;
@@ -65,6 +65,7 @@ async function createPost(newpost, context = null) {
 }
 
 
+export {getPostings}
 export {getAllPostings}
 export {getPostingsByCategory}
 export {getPostingsByUser}

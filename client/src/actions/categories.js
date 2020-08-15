@@ -9,8 +9,6 @@ async function getCategory(id) {
             log("Not found")
             return null;
         }
-        log("Category data", data)
-        log("Category data.name", data.name)
         return data
     } catch (e) {
         log(e)
@@ -20,20 +18,12 @@ async function getCategory(id) {
 }
 
 const getCategoryNames = (categoriesList, ids) => {
-    log("category ids")
-    log(ids)
     const result = []
-    log("in get category names")
     for (const id in ids) {
-        log("category id", id)
         getCategory(id).then((data) => {
-            log("data", data)
-            log("data.name", data.name)
             result.push(data.name)
         })
     }
-    log("\n\n##Get category names result", result)
-//    categoriesList.setState({"tagList": result.toUpperCase().split(" ")})
     categoriesList.setState({"tagList": result})
 }
 
