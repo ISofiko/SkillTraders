@@ -50,14 +50,14 @@ class Messages extends React.Component {
 
         const init = async () => {
             const getConversations = async () => {
-                await axios.get(serverURL + "/api/conversations/" + this.user.uid).then((result) => {
+                await axios.get(serverURL + "/api/conversations/" + this.user._id).then((result) => {
                     this.conversations = result.data;
                 });
             };
             await getConversations();
             const uids = [];
             this.conversations.forEach((conversation) => {
-                uids.push(conversation.participants.filter((participant) => participant != this.user.uid));
+                uids.push(conversation.participants.filter((participant) => participant != this.user._id));
             });
             let contacts = [];
             uids.forEach(async (uid) => {
