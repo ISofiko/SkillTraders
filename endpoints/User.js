@@ -54,12 +54,6 @@ router.post("/", (req, res) => {
 router.get("/:username", (req, res) => {
     const username = req.params.username
 
-    if (mongoose.connection.readyState != 1) {
-        log('Issue with mongoose connection')
-        res.status(500).send('Internal server error')
-        return;
-    }
-
     User.findOne({username: username}).then((result) => {
     if (!result) {
         res.status(404).send('Resource not found')
