@@ -9,9 +9,16 @@ import dropdown from "../../resources/dropdown.png";
 
 const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
 let isAdmin = false;
+let profile = profile2;
 if (usersess !== null) {
   isAdmin = usersess["isAdmin"] === true;
+
+  if(usersess["image_url"] !== null && typeof usersess["image_url"] !== "undefined" ) {
+        profile = usersess["image_url"];
+        }
 }
+
+
 let userredirect = (isAdmin ? 'Admin Panel' : "Search for User"); ;
 
 class Sidebar extends React.Component {
@@ -78,7 +85,7 @@ class Sidebar extends React.Component {
 
 		return (
             <div className="sidebar">
-                <ProfileImage self="true" className="logo" src={profile2} uid="filler101"></ProfileImage>
+                <ProfileImage self="true" className="logo" src={profile} uid="filler101"></ProfileImage>
                 <br/>
                 <br/>
                 <div className="link" onClick={this.changetoMain}>

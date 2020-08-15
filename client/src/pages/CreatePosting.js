@@ -11,10 +11,13 @@ import edit from "../resources/edit.png";
 import save from "../resources/save.png";
 import template from "../resources/templateposting.png";
 import { getCategories } from './../actions/categories';
+import { createPost } from '../actions/postings';
 //var mockCategories = require('../mockData/MockPostingCategories')
 
 require('./CreatePosting.css')
 require('./Dashboard.css');
+
+const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
 
 function createPosting() {
     // front end animation
@@ -116,14 +119,22 @@ class CreatePosting extends React.Component {
 
     // we will handle the real implementation for creating a posting through the server
     handleSubmit(event) {
-        console.log('A posting was made: ' + this.state.value);
-        // DB code goes here -> uploading
+
         // first check if all fields are full and not empty
-
-        // DB - ONGOING SESSIONS ARE those >=900 number of sessions
-
-        createPosting(); // call asynch animation
-        event.preventDefault();
+        if (this.postingtitle.value === "" || this.state.tags === [] || this.sessions.value === null || this.price.value == null || this.description.value === "") {
+            alert("Not all fields have been filled in! Please note that all fields are required!");
+            return;
+        } else {
+            const avatarsrc = String(document.getElementById("innerpicture").src);
+            const temppost = {title:this.postingtitle.value, categories:this.state.tags, avatar:avatarsrc, userId:usersess._id, price:parseInt(this.price.value), numSessions:parseInt(this.sessions.value), content:this.description.value, meetingLink:""};
+            // DB - ONGOING SESSIONS ARE those >=900 number of sessions
+            createPost(temppost).then((result) => {
+                console.log('A posting was made: ');
+                console.log(result);
+                createPosting(); // call asynch animation
+                event.preventDefault();
+            });
+        }
     }
 
     setTag = event => {
@@ -164,7 +175,7 @@ class CreatePosting extends React.Component {
                             </div>
                         </div><br/>
                         <label> Posting Title <br/> </label>
-                        <input class="input" type="text" id="postingtitle" value={this.state.title} onChange={this.handleTitleChange}/><br/>
+                        <input class="input" type="text" id="postingtitle" ref={(c) => this.postingtitle = c}  value={this.state.title} onChange={this.handleTitleChange}/><br/>
                         <label> Select applicable categories <br/> </label>
 
                         <div className="categories-bars">
@@ -178,10 +189,11 @@ class CreatePosting extends React.Component {
                             className='summary'
                             type="text"
                             id="summary"
+                            ref={(c) => this.description = c} 
                             value={this.state.summary}
                             onChange={this.handleSummaryChange}/><br/>
                         <label> {'Price (per session): ' + checkPrice(this.state.price)} <br/> </label>
-                        <input class="slider" type="range" min="0" max="1000" placeholder={0} value={this.state.price} onChange={this.handlePriceChange}/><br/>
+                        <input class="slider" type="range" min="0" max="1000" ref={(c) => this.price = c}  placeholder={0} value={this.state.price} onChange={this.handlePriceChange}/><br/>
 
                         {/* this slider is not working, might try to fix in the future
                         <Slider class='slider'
@@ -194,7 +206,7 @@ class CreatePosting extends React.Component {
                           />
                          */}
                         <label> {'Number of sessions: ' + checkSessions(this.state.numSessions)} </label>
-                        <input class="slider" type="range" min="1" max="1000" placeholder={1} value={this.state.numSessions} onChange={this.handleNumSessionsChange}/>
+                        <input class="slider" type="range" min="1" max="1000" ref={(c) => this.sessions = c}  placeholder={1} value={this.state.numSessions} onChange={this.handleNumSessionsChange}/>
 
                          {/*
                           <Slider class='slider'

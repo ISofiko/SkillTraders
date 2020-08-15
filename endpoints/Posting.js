@@ -51,6 +51,7 @@ router.post("/", (req, res) => {
         title: req.body.title,
         timestamp: new Date(),
         price: req.body.price,
+        avatar: req.body.avatar,
         numSessions: req.body.numSessions,
         content: req.body.content,
         meetingLink: req.body.meetingLink

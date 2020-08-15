@@ -80,12 +80,13 @@ class Loginbox extends React.Component {
                         password:this.newpassword.value,
                         fname: "Skill",
                         lname: "Trader",
-                        admin: false
+                        admin: false,
+                        image_url:null
                 };
 
                 createUser(this, userdata).then((user) => {
                         // create user session with db values                                                         
-                        const usersess = {"id":this.state.user._id, "username":this.state.user.username, "password":this.state.user.password, "email":this.state.user.email, "fname":this.state.user.fname, "lname":this.state.user.lname, "isAdmin":this.state.user.admin};
+                        const usersess = {"id":this.state.user._id, "username":this.state.user.username, "image_url":this.state.user.image_url, "password":this.state.user.password, "email":this.state.user.email, "fname":this.state.user.fname, "lname":this.state.user.lname, "isAdmin":this.state.user.admin};
                         window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
                         window.location.replace('/dashboard');
                 });
@@ -107,7 +108,7 @@ class Loginbox extends React.Component {
                 // if it didnt fail anymore
                 if (user !== null && user !== -1) {
                         // create user session with db values
-                        const usersess = {"_id":this.state.user._id, "username":this.state.user.username, "password":this.state.user.password, "email":this.state.user.email, "fname":this.state.user.fname, "lname":this.state.user.lname, "isAdmin":this.state.user.admin};
+                        const usersess = {"_id":this.state.user._id, "username":this.state.user.username, "image_url":this.state.user.image_url, "password":this.state.user.password, "email":this.state.user.email, "fname":this.state.user.fname, "lname":this.state.user.lname, "isAdmin":this.state.user.admin};
                         window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
                         console.log(usersess);
                         // go to home page
