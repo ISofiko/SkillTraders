@@ -10,7 +10,8 @@ const schema = new mongoose.Schema({
 	numSessions: Number,
 	content: String,
 	avatar: String,
-	meetingLink: String
+	meetingLink: String,
+	image_url: String
 });
 
 module.exports = mongoose.model("Posting", schema);

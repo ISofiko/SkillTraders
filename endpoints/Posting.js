@@ -54,7 +54,8 @@ router.post("/", (req, res) => {
         avatar: req.body.avatar,
         numSessions: req.body.numSessions,
         content: req.body.content,
-        meetingLink: req.body.meetingLink
+        meetingLink: req.body.meetingLink,
+        image_url: req.body.image_url
     })
 
     posting.save().then((result) => {
@@ -97,6 +98,7 @@ router.post("/:id", (req, res) => {
             result.numSessions = req.body.numSessions ? req.body.numSessions : result.numSessions
             result.content = req.body.content ? req.body.content : result.content
             result.meetingLink = req.body.meetingLink ? req.body.meetingLink : result.meetingLink
+            result.image_url = req.body.image_url ? req.body.image_url : result.image_url
 
             result.save().then((result) => {
                 res.send(result)
