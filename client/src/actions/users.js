@@ -29,7 +29,7 @@ async function createUser(user, newuserrecord) {
 
     // POST request
     try {
-        const url = `http://localhost:5000/api/user/`;
+        const url = "/api/user/";
         let response = await fetch(url, {  
             method: 'POST',
             headers: {

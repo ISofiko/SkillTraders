@@ -49,14 +49,26 @@ router.post("/", (req, res) => {
 
 
 /**
-* Gets user info by username
+* Gets user info by username or id
 */
 router.get("/:username", (req, res) => {
     const username = req.params.username
 
     User.findOne({username: username}).then((result) => {
     if (!result) {
-        res.status(404).send('Resource not found')
+        if (!ObjectID.isValid(username)) {
+            res.status(404).send('Resource not found')
+            return;
+        }
+        User.findOne({"_id": username}).then((result) => {
+            if (!result) {
+                res.status(404).send('Resource not found')
+            } else {
+                res.send(result);
+            }
+        }).catch((error) => {
+            res.sendStatus(500);
+        });
     } else {
         res.send(result);
     }
