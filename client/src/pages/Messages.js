@@ -5,7 +5,7 @@ import Sidebar from '../components/Sidebar';
 import { useLocation } from 'react-router-dom';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import ProfileImage from '../components/ProfileImage';
-import tempProfile from '../resources/templateposting.png';
+import defaultAvatar from '../resources/avatar.png';
 
 const axios = require("axios");
 const serverURL = "";
@@ -132,7 +132,7 @@ class Messages extends React.Component {
 
     setMessagePicture(avatar) {
         if (avatar == null) {
-            return tempProfile;
+            return defaultAvatar;
         }
         return avatar;
     }
@@ -159,7 +159,7 @@ class Messages extends React.Component {
                 </div>
                 <div>
                     <div className="selected-contact">
-                        <ProfileImage self="false" className="messages-logo" src={this.setMessagePicture(this.state.personReceiving.avatar)} uid={this.state.personReceiving._id}></ProfileImage>
+                        <ProfileImage self="false" className="messages-logo" src={this.setMessagePicture(this.state.personReceiving.image_url)} uid={this.state.personReceiving._id}></ProfileImage>
                         <a className="selected-contact-name" href={"/userprofile?uid=" + this.state.personReceiving._id}>{this.state.personReceiving.fname} {this.state.personReceiving.lname}</a>
                         <a className="selected-contact-time">Last Seen: {String(new Date(this.state.personReceiving.lastSeen)).split(" ").splice(1, 3).join(" ")}</a>
                     </div>
