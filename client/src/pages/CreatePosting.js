@@ -11,15 +11,22 @@ import edit from "../resources/edit.png";
 import save from "../resources/save.png";
 import template from "../resources/templateposting.png";
 import { getCategories } from './../actions/categories';
+import { createPost } from '../actions/postings';
 //var mockCategories = require('../mockData/MockPostingCategories')
+
 
 require('./CreatePosting.css')
 require('./Dashboard.css');
+const axios = require("axios");
+const serverURL = "http://localhost:5000";
+const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
 
 function createPosting() {
     // front end animation
     const createbox = document.getElementsByClassName("posting-details")[0];
     createbox.style.WebkitAnimation = "upload 2.3s forwards";
+    const createbox2 = document.getElementsByClassName("posting-details")[1];
+    createbox2.style.WebkitAnimation = "upload 2.3s forwards";
     const after = document.getElementById("afterthought");
     after.style.display = "block";
     after.style.WebkitAnimation = "fade-in 2.5s forwards";
@@ -99,7 +106,7 @@ class CreatePosting extends React.Component {
         }
 
         // sending photo file over to state to be saved to db eventually -- WIP
-        this.handlePhotoChange(file);
+        //this.handlePhotoChange(file);
     }
 
     handleSummaryChange(event) {
@@ -116,14 +123,47 @@ class CreatePosting extends React.Component {
 
     // we will handle the real implementation for creating a posting through the server
     handleSubmit(event) {
-        console.log('A posting was made: ' + this.state.value);
-        // DB code goes here -> uploading
-        // first check if all fields are full and not empty
-
-        // DB - ONGOING SESSIONS ARE those >=900 number of sessions
-
-        createPosting(); // call asynch animation
         event.preventDefault();
+
+        // first check if all fields are full and not empty
+        if (this.postingtitle.value === "" || this.state.tags === [] || this.sessions.value === null || this.price.value == null || this.description.value === "") {
+            alert("Not all fields have been filled in! Please note that all fields are required!");
+            return;
+        } else {
+            const image_url = this.image_url;
+            const temppost = {
+                title: this.postingtitle.value, 
+                categories: this.state.tags, 
+                image_url: image_url,
+                userId: usersess._id,
+                price: parseInt(this.price.value),
+                numSessions: parseInt(this.sessions.value),
+                content: this.description.value,
+                meetingLink: ""
+            };
+            // DB - ONGOING SESSIONS ARE those >=900 number of sessions
+            console.log(temppost);
+            
+            createPost(temppost).then((result) => {
+                console.log('A posting was made: ');
+                console.log(result);
+                createPosting(); // call asynch animation
+            });
+        }
+    }
+
+    submitPhoto(e) {
+        e.preventDefault();
+        const form = new FormData(e.target);
+        const request = new Request(serverURL + "/api/image", {
+            method: "post",
+            body: form
+        });
+
+        fetch(request).then(async (result) => {
+            this.image_url = (await result.json()).url;
+            console.log(this.image_url)
+        });
     }
 
     setTag = event => {
@@ -152,19 +192,23 @@ class CreatePosting extends React.Component {
                 <div className='new-posting'>
                     <h1>Create a new Skill Posting</h1>
                     <ScrollToBottom>
-                    <form className='posting-details'>
+                    <form className='posting-details' form method="post" encType="multipart/form-data" onSubmit={this.submitPhoto.bind(this)}>
                         <div>
                             <br/>
                             <div className="imageareaposting">
-						        <img id="innerpicture" src={template}></img>
+                                <img id="innerpicture" src={template}></img>
                             </div>
                             <div className="buttonareaposting">
                             <label for="file-input-posting" class="custom-file-upload"> Choose Picture</label>
-                                <input id="file-input-posting" ref={input => this.inputElement = input} type="file" accept=".png, .jpeg, .jpg" name="name" onChange={this.changePhoto} />
+                                <input id="file-input-posting" type="file" accept=".png, .jpeg, .jpg" name="image" onChange={this.changePhoto} />
+                                <button id="save" type="submit">Save</button>
                             </div>
                         </div><br/>
+                    </form>
+
+                    <form className='posting-details'>
                         <label> Posting Title <br/> </label>
-                        <input class="input" type="text" id="postingtitle" value={this.state.title} onChange={this.handleTitleChange}/><br/>
+                        <input class="input" type="text" id="postingtitle" ref={(c) => this.postingtitle = c}  value={this.state.title} onChange={this.handleTitleChange}/><br/>
                         <label> Select applicable categories <br/> </label>
 
                         <div className="categories-bars">
@@ -178,10 +222,11 @@ class CreatePosting extends React.Component {
                             className='summary'
                             type="text"
                             id="summary"
+                            ref={(c) => this.description = c} 
                             value={this.state.summary}
                             onChange={this.handleSummaryChange}/><br/>
                         <label> {'Price (per session): ' + checkPrice(this.state.price)} <br/> </label>
-                        <input class="slider" type="range" min="0" max="1000" placeholder={0} value={this.state.price} onChange={this.handlePriceChange}/><br/>
+                        <input class="slider" type="range" min="0" max="1000" ref={(c) => this.price = c}  placeholder={0} value={this.state.price} onChange={this.handlePriceChange}/><br/>
 
                         {/* this slider is not working, might try to fix in the future
                         <Slider class='slider'
@@ -194,7 +239,7 @@ class CreatePosting extends React.Component {
                           />
                          */}
                         <label> {'Number of sessions: ' + checkSessions(this.state.numSessions)} </label>
-                        <input class="slider" type="range" min="1" max="1000" placeholder={1} value={this.state.numSessions} onChange={this.handleNumSessionsChange}/>
+                        <input class="slider" type="range" min="1" max="1000" ref={(c) => this.sessions = c}  placeholder={1} value={this.state.numSessions} onChange={this.handleNumSessionsChange}/>
 
                          {/*
                           <Slider class='slider'

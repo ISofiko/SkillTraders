@@ -31,7 +31,8 @@ router.post("/", (req, res) => {
         numRatings: 0,
         reviewers:[],
         firstLogin: new Date(),
-        lastSeen: new Date()
+        lastSeen: new Date(),
+        image_url: req.body.image_url
     })
 
     user.save().then((result) => {
@@ -52,12 +53,6 @@ router.post("/", (req, res) => {
 */
 router.get("/:username", (req, res) => {
     const username = req.params.username
-
-    if (mongoose.connection.readyState != 1) {
-        log('Issue with mongoose connection')
-        res.status(500).send('Internal server error')
-        return;
-    }
 
     User.findOne({username: username}).then((result) => {
     if (!result) {

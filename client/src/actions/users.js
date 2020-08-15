@@ -2,45 +2,58 @@ const log = console.log
 
 // gets user by username from mongo
 async function getUserByUserName(user, username, password) {
-    log(user, username, password)
-    let response = await fetch(`/api/user/${username}`);
-    let data = await response.json();
-    if (!data) {
-        log("Not found")
+    log(user, username, password);
+    try {
+        let response = await fetch(`/api/user/${username}`);
+        let data = await response.json();
+        if (!data) {
+            log("Not found")
+            return -1;
+        }
+        if (data.password === password) {
+            log("passwords match");
+            user.setState({ "user": data });
+        } else {
+            log("Passwords dont match");
+            user.setState({"user": null});
+            return -1;
+        }
+        return data;
+    } catch (e) {
+        return -1;
     }
-    if (data.password === password) {
-        log("passwords match");
-        user.setState({ "user": data });
-    } else {
-        log("Passwords dont match");
-        user.setState({"user": null});
-    }
-    return data;
 }
 
 // create user for mongo
-const createUser = (user, newuserrecord) => {
+async function createUser(user, newuserrecord) {
 
     // POST request
-    const url = "/api/user/";
-    fetch(url, {
-        method: 'post',
-        body: JSON.stringify(newuserrecord)
-      })
-        .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            } else {
-                alert("Could not create user");
-            }
-        })
-        .then(json => {
-            // the resolved promise with the JSON body
-            user.setState({ "user": json });
-        })
-        .catch(error => {
-            console.log(error);
-        })
+    try {
+        const url = `http://localhost:5000/api/user/`;
+        let response = await fetch(url, {  
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newuserrecord)
+        });
+
+        let data = await response.json();
+        console.log(data);
+        if (data !== null) {
+          console.log('Request success: ', data);
+          user.setState({ "user": data });
+        } else {  
+          console.log('Request failure: ');
+          alert("There was an error creating this account. Please try again later");
+        }
+
+        return data;
+    } catch (e) {
+        console.log(e);
+        alert("There was an error creating this account. Try again later");
+    }
 }
 
 

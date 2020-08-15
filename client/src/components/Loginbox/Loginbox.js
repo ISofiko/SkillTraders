@@ -80,18 +80,16 @@ class Loginbox extends React.Component {
                         password:this.newpassword.value,
                         fname: "Skill",
                         lname: "Trader",
-                        admin: false
+                        admin: false,
+                        image_url:null
                 };
 
-                let caughtdata = {_id:null};
-
-                createUser(caughtdata, userdata);
-
-                // create user session with db values                                                             
-                const usersess = {"id":caughtdata._id, "username":userdata.username, "password":userdata.password, "email":userdata.email, "fname":userdata.fname, "lname":userdata.lname, "isAdmin":userdata.admin};
-                window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
-
-                window.location.replace('/dashboard');
+                createUser(this, userdata).then((user) => {
+                        // create user session with db values                                                         
+                        const usersess = {"id":this.state.user._id, "username":this.state.user.username, "image_url":this.state.user.image_url, "password":this.state.user.password, "email":this.state.user.email, "fname":this.state.user.fname, "lname":this.state.user.lname, "isAdmin":this.state.user.admin};
+                        window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
+                        window.location.replace('/dashboard');
+                });
         }
 
         checkAlreadySignedIn() {
@@ -108,18 +106,18 @@ class Loginbox extends React.Component {
             // try logging in with username
             getUserByUserName(this, this.username.value, this.password.value).then((user) => {
                 // if it didnt fail anymore
-                if (this.state.user !== null) {
+                if (user !== null && user !== -1) {
                         // create user session with db values
-                        const usersess = {"id":this.state.user._id, "username":this.state.user.username, "password":this.state.user.password, "email":this.state.user.email, "fname":this.state.user.fname, "lname":this.state.user.lname, "isAdmin":this.state.user.admin};
-                        window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(this.state.user));
-
+                        const usersess = {"_id":this.state.user._id, "username":this.state.user.username, "image_url":this.state.user.image_url, "password":this.state.user.password, "email":this.state.user.email, "fname":this.state.user.fname, "lname":this.state.user.lname, "isAdmin":this.state.user.admin};
+                        window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
+                        console.log(usersess);
                         // go to home page
                         window.location.replace('/dashboard');
                 } else {
                         // flash text saying inccorect login info
                         this.rewriteMessage(message);
                 }
-            })
+            });
         }
 
 	render() {

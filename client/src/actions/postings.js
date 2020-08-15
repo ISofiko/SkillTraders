@@ -36,7 +36,41 @@ const getPostingsByUser = (userId, postingsList) => {
     getPostings(userId, postingsList)
 }
 
+// create user for mongo
+async function createPost(newpost, context = null) {
+
+    // POST request
+    try {
+
+        const url = `http://localhost:5000/api/posting/`;
+        let response = await fetch(url, {  
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newpost)
+        });
+
+        let data = await response.json();
+        console.log(data);
+        if (data !== null) {
+          console.log('Request success: ', data);
+          context.setState({ "posting": data });
+           return true;
+        } else {  
+          console.log('Request failure: ');
+          alert("There was an error creating this post. Please try again later");
+        }
+
+        return data;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 
 export {getAllPostings}
+export {createPost}
 export {getPostingsByCategory}
 export {getPostingsByUser}
