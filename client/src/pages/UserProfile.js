@@ -69,7 +69,7 @@ class UserProfile extends React.Component {
 				<div className="right-side">
 					<div className="content">
 						<div>
-							<img className="profile" src={this.state.image_url}></img>
+							<img className="profile" src={this.state.image_url || defaultAvatar}></img>
 							<div className="myprofile">
 								<div id="header">{this.state.user.fname + " " + this.state.user.lname}</div>
 								Joined {this.state.joined}<br/>

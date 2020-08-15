@@ -3,6 +3,7 @@ import { uid } from "react-uid";
 import './style.css';
 import User from './User';
 import Console from './Console';
+import defaultAvatar from "../../resources/avatar.png";
 const axios = require("axios");
 const serverURL = "";
 
@@ -60,7 +61,7 @@ class AdminPanel extends React.Component {
 						username={user.username}
 						fname={user.fname} 
 						lname={user.lname}
-						avatar={user.image_url} 
+						avatar={user.image_url || defaultAvatar} 
 						stars={Math.round(user.avgRating * 100) / 100} 
 						joindate={String(new Date(user.firstLogin)).split(" ").splice(1, 3).join(" ")} 
 						lastseen={String(new Date(user.lastSeen)).split(" ").splice(1, 3).join(" ")} 
