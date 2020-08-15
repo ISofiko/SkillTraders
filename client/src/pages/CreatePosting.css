@@ -95,13 +95,13 @@ label {
     margin-top: 15px;
     overflow: auto;
     transition: color 0.3s ;
+    margin-bottom: 5px;
     &:hover {
       color: #666666FF ;
       };
     
     position: relative;
     border: 3px solid rgb(59, 82, 105);
-    border-radius: 15px;
     background-color: #8fc4c4;
 
     display: flex;
@@ -118,6 +118,17 @@ textarea {
 
 label {
     padding: 10px;
+}
+
+#image-upload-form {
+  margin-bottom: -17px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+#content-upload-form {
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 input[type=range] {

@@ -214,7 +214,7 @@ class CreatePosting extends React.Component {
                         </div><br/>
                     </form>
 
-                    <form className='posting-details'>
+                    <form id="content-upload-form" className='posting-details'>
                         <label> Posting Title <br/> </label>
                         <input class="input" type="text" id="postingtitle" ref={(c) => this.postingtitle = c}  value={this.state.title} onChange={this.handleTitleChange}/><br/>
                         <label> Select applicable categories <br/> </label>
