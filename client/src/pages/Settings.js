@@ -98,9 +98,13 @@ class Settings extends React.Component {
 
     	fetch(request).then(async (result) => {
     		const image_url = (await result.json()).url;
-    		console.log(image_url)
+			console.log(image_url)
+
+			usersess.image_url = image_url;
+			window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
+			
     		axios.post(serverURL + "/api/user/" + usersess._id, {
-    			image_url: image_url
+				image_url: image_url
     		}).then((result) => {
     			console.log(result);
     		}).catch((error) => {
@@ -150,6 +154,14 @@ class Settings extends React.Component {
 				document.querySelector("#infoemail").value = "";
 			};
 			set().then(() => {
+
+				usersess.username = this.state.username;
+				usersess.password = this.state.password;
+				usersess.fname = this.state.fname;
+				usersess.lname = this.state.lname;
+				usersess.email = this.state.email;
+				window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
+
 				axios.post(serverURL + "/api/user/" + usersess._id, {
 	    			fname: this.state.fname,
 	    			lname: this.state.lname,
