@@ -126,7 +126,16 @@ class CreatePosting extends React.Component {
             return;
         } else {
             const avatarsrc = String(document.getElementById("innerpicture").src);
-            const temppost = {title:this.postingtitle.value, categories:this.state.tags, avatar:avatarsrc, userId:usersess._id, price:parseInt(this.price.value), numSessions:parseInt(this.sessions.value), content:this.description.value, meetingLink:""};
+            const temppost = {
+                title: this.postingtitle.value, 
+                categories: this.state.tags, 
+                avatar: avatarsrc,
+                userId: usersess._id,
+                price: parseInt(this.price.value),
+                numSessions: parseInt(this.sessions.value),
+                content: this.description.value,
+                meetingLink: ""
+            };
             // DB - ONGOING SESSIONS ARE those >=900 number of sessions
             createPost(temppost).then((result) => {
                 console.log('A posting was made: ');

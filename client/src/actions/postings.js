@@ -41,7 +41,7 @@ async function createPost(newpost, context = null) {
 
     // POST request
     try {
-        console.log(newpost);
+        
         const url = `http://localhost:5000/api/posting/`;
         let response = await fetch(url, {  
             method: 'POST',
