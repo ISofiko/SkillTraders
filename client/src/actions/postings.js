@@ -41,7 +41,7 @@ async function createPost(newpost, context = null) {
 
     // POST request
     try {
-        
+
         const url = `http://localhost:5000/api/posting/`;
         let response = await fetch(url, {  
             method: 'POST',
@@ -66,7 +66,6 @@ async function createPost(newpost, context = null) {
         return data;
     } catch (e) {
         console.log(e);
-        alert("There was an error creating this post. Try again later");
     }
 }
 
