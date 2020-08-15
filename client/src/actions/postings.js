@@ -1,28 +1,23 @@
 const log = console.log
 
 // generic function to get a list of postings, id is optional
-function getPostings(id, postingsList) {
-    const url = "/api/postings/" + id
-    fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            } else {
-                alert("Could not load postings");
-            }
-        })
-        .then(json => {
-            // the resolved promise with the JSON body
-            log("json", json)
-            postingsList.setState({ "postings": json });
-        })
-        .catch(error => {
-            console.log(error);
-        })
+async function getPostings(id, postingsList) {
+    try {
+        let response = await fetch(`/api/postings/${id}`)
+        let data = await response.json();
+        if (!data) {
+            log("Not found")
+            return null;
+        }
+        postingsList.setState({ "postings": data });
+    } catch (e) {
+        log(e)
+        return null;
+    }
 }
 
 // gets all the postings from the database
-const getAllPostings = (postingsList) => {
+function getAllPostings(postingsList) {
     getPostings('', postingsList)
 }
 
@@ -71,6 +66,6 @@ async function createPost(newpost, context = null) {
 
 
 export {getAllPostings}
-export {createPost}
 export {getPostingsByCategory}
 export {getPostingsByUser}
+export {createPost}

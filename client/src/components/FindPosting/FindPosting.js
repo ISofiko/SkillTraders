@@ -19,12 +19,7 @@ class FindPosting extends React.Component {
 		query: "",
 		categories: [],
 		tags: [],
-		postings: [
-			{ title: "Game Development in Unity", user: "Moe Ali", date: "June 28, 2020", price: "0", numsessions:"4", rating:"3.5", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", tags: "technology gaming", image: "https://oyster.ignimgs.com/wordpress/stg.ign.com/2020/04/sale_21892_primary_image_wide.jpg" },
-			{ title: "Personal Accounting", user: "Sofia Ilina", date: "June 25, 2020", price: "70.30", numsessions:"1", rating:"3.8", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", tags: "finance", image: "https://www.cpacanada.ca/-/media/site/operational/ec-education-certification/images/g10266-ec.jpg" },
-			{ title: "Piano Lessons", user: "David Chen", date: "June 14, 2020", price: "100",  numsessions:"5", rating:"4.5", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", tags: "music", image: "https://www.musicnotes.com/images2/promos/store/900x520_piano-min.jpg" }
-		],
-		users: ["Moe Ali", "Sofia Ilina", "David Chen"]
+		postings: []
 	};
 
 	controlInput = event => {
@@ -59,14 +54,28 @@ class FindPosting extends React.Component {
 				<h2>Categories</h2>
 				<div className="categories">
 					{this.state.categories.map(category => (
-						<Category key={uid(category)} title={category.name} icon={category.icon} click={this.setTag} />
+						<Category
+						key={uid(category)}
+						title={category.name}
+						icon={category.icon}
+						click={this.setTag} />
 					))}
 				</div>
 
 				<h2>Search Results</h2><br/>
 				<div className="postings">
 					{this.state.postings.filter(posting => (posting.title.toLowerCase().includes(this.state.query) || posting.user.toLowerCase().includes(this.state.query)) && this.state.tags.every(tag => posting.tags.includes(tag))).map(posting => (
-						<Posting key={posting._id} title={posting.title} userId={posting.userId} date={posting.timestamp} price={posting.price} numsessions={posting.numSessions} content={posting.content} tags={posting.categories} />
+						<Posting
+						key={posting._id}
+						title={posting.title}
+						userId={posting.userId}
+						date={posting.timestamp}
+						price={posting.price}
+						numsessions={posting.numSessions}
+						content={posting.content}
+						tags={posting.categories}
+						image_url={posting.image_url}
+						 />
 					))}
 				</div>
 			</div>

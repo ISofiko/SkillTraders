@@ -23,6 +23,7 @@ class Posting extends React.Component {
     componentWillMount() {
         getUser(this, this.props.userId)
         getCategoryNames(this, this.props.tags)
+        log("this.props.tags", this.props.tags)
         log(this.state)
     }
 
@@ -72,7 +73,8 @@ class Posting extends React.Component {
 	};
 
 	render() {
-		const { title, userId, date, price, numsessions, content, tags, image } = this.props;
+		const { title, userId, date, price, numsessions, content, tags, image_url } = this.props;
+		log("Image url: ", image_url)
 //		let tagList = ["NONE"];
 //		if (tags !== undefined) {
 //			tagList = categories.toUpperCase().split(" ");
@@ -83,8 +85,8 @@ class Posting extends React.Component {
 		return (
 			<div className={[this.props.className, "posting", "innerpoststyle"].join(" ")} id={this.props.id}>
 				<div id="innerpoststyleheader">
-						<img id="innerpicture" src={"https://oyster.ignimgs.com/wordpress/stg.ign.com/2020/04/sale_21892_primary_image_wide.jpg"}></img><br/>
-						<div><a id="innerpoststyleheadername" href={"/userprofile?uid=" + userId}>{this.state.user.username}</a></div><br/>
+						<img id="innerpicture" src={image_url}></img><br/>
+						<div><a id="innerpoststyleheadername" href={"/userprofile?uid=" + userId}>{this.state.user.fname} {this.state.user.lname}</a></div><br/>
 						{date}<br/>
 				</div><br/>
 				<div id="innerpoststylelistingtitle">{title}</div> <br/>
