@@ -17,7 +17,7 @@ import { getPostings } from './../actions/postings'
 const axios = require("axios");
 const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
 const serverURL = "";
-const log = console.log
+const log = console.log;
 
 class UserProfile extends React.Component {
 	constructor(props) {
@@ -44,7 +44,14 @@ class UserProfile extends React.Component {
                     "user": user,
                     "image_url": user.image_url,
                     "joined": String(new Date(user.firstLogin)).split(" ").splice(1, 3).join(" ")
-                })
+				})
+
+				// removing, if same person
+				if (String(usersess.id) === String(this.state.user._id)) {
+					document.getElementsByClassName("create-review-component")[0].style.display = "none";
+					document.getElementsByClassName("create-review-component")[1].style.display = "none";
+				}
+
 		    } else {
                 this.setState({
                     "image_url": defaultAvatar
@@ -57,7 +64,8 @@ class UserProfile extends React.Component {
             log(postings)
             this.setState({"postings": postings})
             log(this.state)
-        })
+		})
+		
 	}
 
 	render() {
@@ -75,15 +83,15 @@ class UserProfile extends React.Component {
 								Joined {this.state.joined}<br/>
 								<div>
 									<ReactStars className="headerstar" count={5} size={40} value={this.state.user.avgRating} edit={false} color2={'#ffd700'} color1={'#595d78'}/>
-									<div id="startitle">{this.state.user.avgRating} Star Patron</div>
+									<div id="startitle">{(Math.round(this.state.user.avgRating * 10) / 10)} Star Patron</div>
 								</div><br/>
 							</div>
 						</div>
 						<br/>
 						<hr></hr><br/>
-						<StarRating/>
+						<StarRating className="create-review-component" revieweeID={this.state.user._id} revieweeReviewers={this.state.user.reviewers}/>
 						<br/>
-						<hr/><br/>
+						<hr className="create-review-component"/><br/>
 
 						<div className="postings">
                             {this.state.postings.map(posting => (

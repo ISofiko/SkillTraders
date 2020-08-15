@@ -5,6 +5,8 @@ import { uid } from "react-uid";
 import './style.css';
 import StyledButton from '../StyledButton';
 
+const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
+
 class StarRating extends React.Component {
 
         constructor(props){
@@ -18,20 +20,18 @@ class StarRating extends React.Component {
         }
 
         submitreview() {
-                // FILLER! db code goes here
-                // get userids of reviewer and reviewee
-                let reviewee = this.props.uid;
-                const urlParams = new URLSearchParams(window.location.search);
-                let reviewer = urlParams.get('uid');
-                console.log(reviewer);
-                // get star rating and review
-                let rating = Number(localStorage.getItem("SkillTraders2020!tempstar"));
-                let review = this.review.value;
-                // check if user already submitted review for this user
-                // if not, push all this info to db otherwise prompt error
-                // FILLER! db code goes here
-                if (true) {
+                if (this.props.revieweeReviewers.includes(usersess.username)) {
                         window.alert("You've already submitted a review for this user!");
+                } else {
+                        let updatedreviewers = this.props.revieweeReviewers.push(usersess.username);
+                        let rating = Number(localStorage.getItem("SkillTraders2020!tempstar"));
+
+                        const urlParams = new URLSearchParams(window.location.search);
+                        let uid = urlParams.get('uid');
+
+                        // db post code goes here
+                        // update user (by uid) -> update reviewers array
+                        // post new review
                 }
         }
 

@@ -80,7 +80,7 @@ class PostingDetails extends React.Component {
                         <div id="innerpoststyledescription">
                                 {description}<br/> <br/>
                                 Total Sessions: {numsessions}<br/><br/>
-                                <i>{rating} Star Patron</i><br/>
+                                <i>{(Math.round(rating * 10) / 10)} Star Patron</i><br/>
                                 <StyledButton id="tomessageskilltrader" innerclass="contactskilltrader2" text="Message SkillTrader" onClick={() => { this.SkillTradertoMessages(uid) }}></StyledButton>
                         </div><br/>
                         <StyledButton id="postmoveon" innerclass="contactskilltrader" text="View Details" onClick={(e) => { this.switchState(e) }}></StyledButton>
