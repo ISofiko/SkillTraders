@@ -12,9 +12,12 @@ import profile2 from "../resources/sample2.png";
 import profile3 from "../resources/sample3.jpg";
 import edit from "../resources/edit.png";
 import save from "../resources/save.png";
+import { getUser } from './../actions/users'
+import { getPostings } from './../actions/postings'
 const axios = require("axios");
 const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
 const serverURL = "http://localhost:5000";
+const log = console.log
 
 class UserProfile extends React.Component {
 	constructor(props) {
@@ -26,34 +29,35 @@ class UserProfile extends React.Component {
 				fname: "Loading...",
 				lname: "",
 				avgRating: 0
-			}
+			},
+			postings: []
 		};
 	}
 
 	componentDidMount() {
 		const url = window.location.href;
-		this.username = url.substring(url.search("username=") + 9);
+		this.username = url.split("?uid=").pop();
+		log("username: ", this.username)
+		getUser(this, this.username).then((user) => {
+		    if (user){
+                this.setState({
+                    "user": user,
+                    "image_url": user.image_url,
+                    "joined": String(new Date(user.firstLogin)).split(" ").splice(1, 3).join(" ")
+                })
+		    } else {
+                this.setState({
+                    "image_url": defaultAvatar
+                });
 
-		const getProfileInfo = async () => {
-			await axios.get(serverURL + "/api/user/" + this.username).then((result) => {
-				if (result.data.image_url) {
-					this.setState({
-						image_url: result.data.image_url
-					});
-				} else {
-					this.setState({
-						image_url: defaultAvatar
-					});
-				}
-				this.setState({
-					user: result.data,
-					joined: String(new Date(result.data.firstLogin)).split(" ").splice(1, 3).join(" ")
-				});
-			});
-		};
-		getProfileInfo().then(() => {
-			console.log(this.state)
-		});
+		    }
+        })
+
+        getPostings(this.username, this).then((postings) => {
+            log(postings)
+            this.setState({"postings": postings})
+            log(this.state)
+        })
 	}
 
 	render() {
@@ -70,7 +74,7 @@ class UserProfile extends React.Component {
 								<div id="header">{this.state.user.fname + " " + this.state.user.lname}</div>
 								Joined {this.state.joined}<br/>
 								<div>
-									<ReactStars className="headerstar" count={5} size={40} value={this.state.user.avgRating} edit={false} color2={'#ffd700'} color1={'#595d78'}/> 
+									<ReactStars className="headerstar" count={5} size={40} value={this.state.user.avgRating} edit={false} color2={'#ffd700'} color1={'#595d78'}/>
 									<div id="startitle">{this.state.user.avgRating} Star Patron</div>
 								</div><br/>
 							</div>
@@ -80,11 +84,23 @@ class UserProfile extends React.Component {
 						<StarRating/>
 						<br/>
 						<hr/><br/>
-						{// FILLER! db code goes here Sample elements currently drawn
-						}
-						<PostingDetails uid={123567} pid={1003942} />
-						<PostingDetails uid={123567} pid={1003942} />
-						<PostingDetails uid={123567} pid={1003942} />
+
+						<div className="postings">
+                            {this.state.postings.map(posting => (
+                                <PostingDetails
+                                key={posting._id}
+                                title={posting.title}
+                                username={this.state.user.fname + " " + this.state.user.lname}
+                                date={String(new Date(posting.timestamp)).split(" ").splice(1, 3).join(" ")}
+                                price={posting.price}
+                                numsessions={posting.numSessions}
+                                rating={this.state.user.avgRating}
+                                content={posting.content}
+                                tags={posting.categories}
+                                image_url={posting.image_url}
+                                 />
+                            ))}
+                        </div>
 
 						<br/>
 						<hr></hr>

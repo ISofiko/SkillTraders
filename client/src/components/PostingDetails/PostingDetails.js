@@ -56,25 +56,20 @@ class PostingDetails extends React.Component {
 
 
 	render() {
-
-                // temp vars FILLER (use getPostInfo and db values in prod) GET ALL THE FOLLOWING FROM DB USING THE PID
-                const uid = this.props.uid // or just get uid from pid instead of as props
-                const username = "Natalie Watson";
-                const listingtitle = "One-on-One Acting Coaching Lessons in Belleville";
-                const numsessions = 8;
-                const rating = 4.3;
-                const strprice = this.convertPricetoString(88, numsessions);
-                const postdate = "May 21, 2020";
-                const description = "Join me, Natalie Watson, to undergo an 8 week virtual acting coaching class! Not only would you be" +
-                " supporting me a local community famous theatre actress but you will also be building up you or your child's career" +
-                "! Classes take place on Zoom and are weekly. No refunds. I have been working in film, cinema and theatre for over 10 years"
-                + " and have 3 years of teaching experience here in Belleville.";
-                
+        const uid = this.props.key
+        const username = this.props.username;
+        const listingtitle = this.props.title;
+        const numsessions = this.props.numlessons;
+        const rating = this.props.rating;
+        const strprice = this.convertPricetoString(this.props.price, numsessions);
+        const postdate = this.props.date;
+        const description = this.props.content;
+        const image = this.props.image_url ? this.props.image_url : profile3
 
 		return (
             <div className={[this.props.className, "innerpoststyle"].join(" ")} id={this.props.id}>
                         <div id="innerpoststyleheader">
-                                <img id="innerpicture" src={profile3}></img><br/>
+                                <img id="innerpicture" src={image}></img><br/>
                                 <div id="innerpoststyleheader">
                                         <div id="innerpoststyleheadername">{username}</div><br/>
                                         {postdate}<br/>
