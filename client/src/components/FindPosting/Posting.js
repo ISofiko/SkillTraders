@@ -79,14 +79,14 @@ class Posting extends React.Component {
 				<div id="innerpoststyleheader">
 						<img id="innerpicture" src={image_url}></img><br/>
 						<div><a id="innerpoststyleheadername" href={"/userprofile?uid=" + userId}>{this.state.user.fname} {this.state.user.lname}</a></div><br/>
-						{date}<br/>
+						{String(new Date(date)).split(" ").splice(1, 3).join(" ")}<br/>
 				</div><br/>
 				<div id="innerpoststylelistingtitle">{title}</div> <br/>
 				<div id="innerpoststylestrprice">{strprice}</div><br/>
 				<div id="innerpoststyledescription">
 						{content}<br/> <br/>
 						Total Sessions: {numsessions}<br/><br/>
-						<i>{this.state.user.avgRating} Star Patron</i><br/>
+						<i>{(Math.round(this.state.user.avgRating * 100) / 100)} Star Patron</i><br/>
 						<div className="tags">
 								<h2>Tags:&nbsp;</h2>
 								{tags.map(tag => (
