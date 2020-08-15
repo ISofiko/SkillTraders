@@ -12,9 +12,11 @@ import profile2 from "../resources/sample2.png";
 import profile3 from "../resources/sample3.jpg";
 import edit from "../resources/edit.png";
 import save from "../resources/save.png";
+import { getUser } from './../actions/users'
 const axios = require("axios");
 const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
 const serverURL = "http://localhost:5000";
+const log = console.log
 
 class UserProfile extends React.Component {
 	constructor(props) {
@@ -32,28 +34,43 @@ class UserProfile extends React.Component {
 
 	componentDidMount() {
 		const url = window.location.href;
-		this.username = url.substring(url.search("username=") + 9);
+		this.username = url.split("?uid=").pop();
+		log("username: ", this.username)
+		getUser(this, this.username).then((user) => {
+		    if (user){
+                this.setState({
+                    "user": user,
+                    "image_url": user.image_url,
+                    "joined": String(new Date(user.firstLogin)).split(" ").splice(1, 3).join(" ")
+                })
+		    } else {
+                this.setState({
+                    "image_url": defaultAvatar
+                });
 
-		const getProfileInfo = async () => {
-			await axios.get(serverURL + "/api/user/" + this.username).then((result) => {
-				if (result.data.image_url) {
-					this.setState({
-						image_url: result.data.image_url
-					});
-				} else {
-					this.setState({
-						image_url: defaultAvatar
-					});
-				}
-				this.setState({
-					user: result.data,
-					joined: String(new Date(result.data.firstLogin)).split(" ").splice(1, 3).join(" ")
-				});
-			});
-		};
-		getProfileInfo().then(() => {
-			console.log(this.state)
-		});
+		    }
+        })
+
+//		const getProfileInfo = async () => {
+//			await axios.get(serverURL + "/api/user/" + this.username).then((result) => {
+//				if (result.data.image_url) {
+//					this.setState({
+//						image_url: result.data.image_url
+//					});
+//				} else {
+//					this.setState({
+//						image_url: defaultAvatar
+//					});
+//				}
+//				this.setState({
+//					user: result.data,
+//					joined: String(new Date(result.data.firstLogin)).split(" ").splice(1, 3).join(" ")
+//				});
+//			});
+//		};
+//		getProfileInfo().then(() => {
+//			console.log(this.state)
+//		});
 	}
 
 	render() {

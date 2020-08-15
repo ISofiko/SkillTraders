@@ -55,8 +55,8 @@ class AdminPanel extends React.Component {
 				<div className="users">
 					{this.state.users.filter(user => user.username.toLowerCase().includes(this.state.query)).map(user => (
 						<User 
-						key={uid(user)}
-						uid={uid(user)} 
+						key={user._id}
+						uid={user._id}
 						username={user.username}
 						fname={user.fname} 
 						lname={user.lname}
