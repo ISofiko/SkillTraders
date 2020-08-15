@@ -49,7 +49,7 @@ class FindPosting extends React.Component {
 		return (
 			<div className="find-posting">
 				<h1>Find Posting</h1>
-				<input className="search-bar" type="search" placeholder="Search by posting title or user" value={this.state.query} onChange={this.controlInput}></input>
+				<input className="search-bar" type="search" placeholder="Search by posting title or content" value={this.state.query} onChange={this.controlInput}></input>
 
 				<h2>Categories</h2>
 				<div className="categories">
@@ -64,7 +64,7 @@ class FindPosting extends React.Component {
 
 				<h2>Search Results</h2><br/>
 				<div className="postings">
-					{this.state.postings.filter(posting => (posting.title.toLowerCase().includes(this.state.query)) && this.state.tags.every(tag => posting.categories.includes(tag))).map(posting => (
+					{this.state.postings.filter(posting => (posting.title.toLowerCase().includes(this.state.query) || posting.content.toLowerCase().includes(this.state.query)) && this.state.tags.every(tag => posting.categories.includes(tag))).map(posting => (
 						<Posting
 						key={posting._id}
 						title={posting.title}
