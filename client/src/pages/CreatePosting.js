@@ -73,6 +73,8 @@ class CreatePosting extends React.Component {
             photo: null
         };
 
+        this.image_url = "";
+
         this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleSummaryChange = this.handleSummaryChange.bind(this);
         this.handlePhotoChange = this.handlePhotoChange.bind(this);
@@ -132,12 +134,16 @@ class CreatePosting extends React.Component {
             alert("Not all fields have been filled in! Please note that all fields are required!");
             return;
         } else {
-            let image_url = template;
-            if (typeof this.image_url !== "undefined" || this.image_url !== null) {
+            console.log(123);
+            console.log(this.image_url);
+            let image_url = document.getElementById("innerpicture").src;
+            console.log(this.image_url !== "" || this.image_url !== null);
+            if (this.image_url !== "" && this.image_url !== null) {
                 image_url = this.image_url;
             }
+            console.log(image_url);
             const temppost = {
-                title: this.postingtitle.value, 
+                title: this.postingtitle.value,
                 categories: this.state.tags, 
                 image_url: image_url,
                 userId: usersess.id,
