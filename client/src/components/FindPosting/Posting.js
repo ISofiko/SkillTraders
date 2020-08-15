@@ -86,7 +86,7 @@ class Posting extends React.Component {
 				<div id="innerpoststyledescription">
 						{content}<br/> <br/>
 						Total Sessions: {numsessions}<br/><br/>
-						<i>{(Math.round(this.state.user.avgRating * 100) / 100)} Star Patron</i><br/>
+						<i>{(Math.round(this.state.user.avgRating * 10) / 10)} Star Patron</i><br/>
 						<div className="tags">
 								<h2>Tags:&nbsp;</h2>
 								{tags.map(tag => (

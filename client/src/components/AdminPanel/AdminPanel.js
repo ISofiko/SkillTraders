@@ -10,7 +10,7 @@ const serverURL = "";
 const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
 let isAdmin = false;
 if (usersess !== null) {
-  isAdmin = usersess["isAdmin"] === true;
+  isAdmin = usersess["isAdmin"];
 }
 let title = "Find User";
 let styling = {visibility: "hidden"};
