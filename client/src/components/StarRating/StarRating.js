@@ -32,6 +32,14 @@ class StarRating extends React.Component {
                         // db post code goes here
                         // update user (by uid) -> update reviewers array
                         // post new review
+                        axios.post("/api/review", {
+                            userId: uid,
+                            reviewer: usersess.id,
+                            rating: rating,
+                            content: this.review.value
+                        }).then((result) => {
+                            console.log(result);
+                        });
                 }
         }
 
