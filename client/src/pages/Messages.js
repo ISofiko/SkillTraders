@@ -41,7 +41,7 @@ class Messages extends React.Component {
     componentDidMount() {
         this.socket = require("socket.io-client")(serverURL);
         this.socket.on("message", (message) => {
-            if (message.receiver === this.state.personSending.uid && message.sender === this.state.personReceiving._id) {
+            if (message.receiver === this.state.personSending._id && message.sender === this.state.personReceiving._id) {
                 this.setState({
                     messages: this.state.messages.concat(message)
                 });
@@ -87,7 +87,7 @@ class Messages extends React.Component {
         event.preventDefault();
         const message = {
             content: this.state.message,
-            sender: this.state.personSending.uid,
+            sender: this.state.personSending._id,
             receiver: this.state.personReceiving._id
         };
         this.setState({
@@ -123,7 +123,7 @@ class Messages extends React.Component {
     }
 
     setMessageStyle(message) {
-        if (message.sender === this.state.personSending.uid) {
+        if (message.sender === this.state.personSending._id) {
             return "me";
         } else {
             return "other";
