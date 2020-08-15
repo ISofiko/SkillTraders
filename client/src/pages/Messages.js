@@ -8,7 +8,7 @@ import ProfileImage from '../components/ProfileImage';
 import tempProfile from '../resources/templateposting.png';
 
 const axios = require("axios");
-const serverURL = "http://localhost:5000";
+const serverURL = "";
 
 require('./Messages.css');
 require('./Dashboard.css');

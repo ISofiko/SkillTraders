@@ -4,7 +4,7 @@ import './style.css';
 import User from './User';
 import Console from './Console';
 const axios = require("axios");
-const serverURL = "http://localhost:5000";
+const serverURL = "";
 
 const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
 let isAdmin = false;
