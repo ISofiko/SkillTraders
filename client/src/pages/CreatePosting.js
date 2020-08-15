@@ -18,7 +18,7 @@ import { createPost } from '../actions/postings';
 require('./CreatePosting.css')
 require('./Dashboard.css');
 const axios = require("axios");
-const serverURL = "http://localhost:5000";
+const serverURL = "";
 const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
 
 function createPosting() {

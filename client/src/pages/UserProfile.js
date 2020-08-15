@@ -16,7 +16,7 @@ import { getUser } from './../actions/users'
 import { getPostings } from './../actions/postings'
 const axios = require("axios");
 const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
-const serverURL = "http://localhost:5000";
+const serverURL = "";
 const log = console.log
 
 class UserProfile extends React.Component {

@@ -13,7 +13,6 @@ import edit from "../resources/edit.png";
 import save from "../resources/save.png";
 const axios = require("axios");
 const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
-const serverURL = "http://localhost:5000";
 
 class Settings extends React.Component {
 	constructor(props) {
@@ -48,7 +47,7 @@ class Settings extends React.Component {
 
 	componentDidMount() {
 		const getProfileInfo = async () => {
-			axios.get(serverURL + "/api/user/" + usersess.username).then((result) => {
+			axios.get("/api/user/" + usersess.username).then((result) => {
 				if (result.data.image_url) {
 					this.setState({
 						image_url: result.data.image_url
@@ -93,7 +92,7 @@ class Settings extends React.Component {
     submitPhoto(e) {
     	e.preventDefault();
     	const form = new FormData(e.target);
-    	const request = new Request(serverURL + "/api/image", {
+    	const request = new Request("/api/image", {
     		method: "post",
     		body: form
     	});
@@ -109,7 +108,7 @@ class Settings extends React.Component {
 
 			alert("Your profile picture has been updated!");
 			
-    		axios.post(serverURL + "/api/user/" + usersess.id, {
+    		axios.post("/api/user/" + usersess.id, {
 				image_url: image_url
     		}).then((result) => {
 				console.log(result);
@@ -171,7 +170,7 @@ class Settings extends React.Component {
 				usersess.email = this.state.email;
 				window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
 
-				axios.post(serverURL + "/api/user/" + usersess.id, {
+				axios.post("/api/user/" + usersess.id, {
 	    			fname: this.state.fname,
 	    			lname: this.state.lname,
 	    			password: this.state.password,
