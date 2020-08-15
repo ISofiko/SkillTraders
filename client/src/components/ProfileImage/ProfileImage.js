@@ -3,6 +3,7 @@ import ReactStars from 'react-stars'
 import { BrowserRouter as Router, Route,Switch, Redirect, useHistory} from 'react-router-dom';
 import { uid } from "react-uid";
 import './style.css';
+import defaultAvatar from "../../resources/avatar.png";
 
 class ProfileImage extends React.Component {
 
@@ -24,7 +25,7 @@ class ProfileImage extends React.Component {
 
 		return (
             <div>
-                        <img alt="Profile" className={[this.props.className, "innerprofileimagemgmt"].join(" ")} onClick={() => this.moveToProfile(self)} src={this.props.src} id={this.props.id} ></img>
+                        <img alt="Profile" className={[this.props.className, "innerprofileimagemgmt"].join(" ")} onClick={() => this.moveToProfile(self)} src={this.props.src || defaultAvatar} id={this.props.id} ></img>
             </div>
 		);
 	}
