@@ -109,7 +109,7 @@ class Settings extends React.Component {
 
 			alert("Your profile picture has been updated!");
 			
-    		axios.post(serverURL + "/api/user/" + usersess._id, {
+    		axios.post(serverURL + "/api/user/" + usersess.id, {
 				image_url: image_url
     		}).then((result) => {
 				console.log(result);
