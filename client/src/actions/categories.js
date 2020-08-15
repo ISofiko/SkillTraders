@@ -1,35 +1,30 @@
 const log = console.log
 
 // gets a category by id
-function getCategory(id) {
-    const url = "/api/category/" + id
-    fetch(url)
-        .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            } else {
-                alert("Could not load categories");
-            }
-        })
-        .then(json => {
-            // the resolved promise with the JSON body
-            log("\n\n~~category\n\n")
-            log(json)
-            return json
-        })
-        .catch(error => {
-            console.log(error);
-        })
+async function getCategory(id) {
+    try {
+        let response = await fetch(`/api/category/${id}`)
+        let data = await response.json
+        if (!data) {
+            log("Not found")
+            return null;
+        }
+        return data
+    } catch (e) {
+        log(e)
+        return null;
+    }
+
 }
 
 const getCategoryNames = (categoriesList, ids) => {
     const result = []
     for (const id in ids) {
-        result.push(getCategory(id))
+        getCategory(id).then((data) => {
+            result.push(data.name)
+        })
     }
-    log(result)
-//    categoriesList.setState({"tagList": result.toUpperCase().split(" ")})
-    categoriesList.setState({"tagList": "result"})
+    categoriesList.setState({"tagList": result})
 }
 
 

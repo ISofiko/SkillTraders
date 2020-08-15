@@ -3,6 +3,10 @@ import { uid } from 'react-uid';
 import './style.css';
 import StyledButton from '../StyledButton';
 import Placeholder from '../../resources/placeholder.jpg';
+import { getUser } from './../../actions/users'
+import { getCategoryNames } from './../../actions/categories'
+
+const log = console.log
 
 const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
 let isAdmin = false;
@@ -16,12 +20,21 @@ if (isAdmin) {
 
 class Posting extends React.Component {
 
+    componentWillMount() {
+        getUser(this, this.props.userId)
+        getCategoryNames(this, this.props.tags)
+    }
+
+    state = {
+        user: {},
+        tagList: []
+    }
+
 	switchState = (e) => {
 		e.preventDefault();
 		let currentstatebutton = e.target.parentNode.parentNode.childNodes[9].childNodes[0];
 		let currentstatetile = e.target.parentNode.parentNode;
 		let currentstatedescription = e.target.parentNode.parentNode.childNodes[7];
-		console.log(currentstatebutton)
 		if (currentstatebutton.textContent === "View Details") {
 				currentstatetile.style.WebkitAnimation = "small-to-big 1.5s forwards";
 				currentstatebutton.textContent = "Close Details";
@@ -33,16 +46,10 @@ class Posting extends React.Component {
 		}
 	}
 
-	SkillTradertoMessages(user) {
-			window.location.replace("/messages?uid=" + user);
+	SkillTradertoMessages(userId) {
+			window.location.replace("/messages?uid=" + userId);
 
 			// DB CODE GOES HERE
-	}
-
-	getPostInfo(pid) {
-			// ?? with given listing post id
-			// FILLER! db code goes here Sample elements currently drawn				}
-			// connecting to db and getting stuff like username, listing title, listing description, uid, price and price frequency
 	}
 
 	convertPricetoString(numprice, pricefreq) {
@@ -56,41 +63,37 @@ class Posting extends React.Component {
 			// otherwise, return just the price
 			return (numprice + "$");
 	}
-	
+
 	redirect = event => {
 		const post = event.currentTarget.children[1].children[0].innerText; // TODO: Replace with post id (also replace with user id below)
 		window.location.assign("/posting/" + post);
 	};
 
 	render() {
-		const { title, user, date, price, numsessions, rating, description, tags, image } = this.props;
-		let tagList = ["NONE"];
-		if (tags !== undefined) {
-			tagList = tags.toUpperCase().split(" ");
-		}
+		const { title, userId, date, price, numsessions, content, tags, image_url } = this.props;
 
 		const strprice = this.convertPricetoString(parseInt(price), parseFloat(numsessions));
 
 		return (
 			<div className={[this.props.className, "posting", "innerpoststyle"].join(" ")} id={this.props.id}>
 				<div id="innerpoststyleheader">
-						<img id="innerpicture" src={image}></img><br/>
-						<div><a id="innerpoststyleheadername" href={"/userprofile?uid=" + user}>{user}</a></div><br/>
+						<img id="innerpicture" src={image_url}></img><br/>
+						<div><a id="innerpoststyleheadername" href={"/userprofile?uid=" + userId}>{this.state.user.fname} {this.state.user.lname}</a></div><br/>
 						{date}<br/>
 				</div><br/>
 				<div id="innerpoststylelistingtitle">{title}</div> <br/>
 				<div id="innerpoststylestrprice">{strprice}</div><br/>
 				<div id="innerpoststyledescription">
-						{description}<br/> <br/>
+						{content}<br/> <br/>
 						Total Sessions: {numsessions}<br/><br/>
-						<i>{rating} Star Patron</i><br/>
+						<i>{this.state.user.avgRating} Star Patron</i><br/>
 						<div className="tags">
 								<h2>Tags:&nbsp;</h2>
-								{tagList.map(tag => (
+								{tags.map(tag => (
 									<span key={uid(tag)} className="tag">{tag}</span>
 								))}
 						</div><br/>
-						<StyledButton id="tomessageskilltrader" innerclass="contactskilltrader2" text="Message SkillTrader" onClick={() => { this.SkillTradertoMessages(user) }}></StyledButton>
+						<StyledButton id="tomessageskilltrader" innerclass="contactskilltrader2" text="Message SkillTrader" onClick={() => { this.SkillTradertoMessages(userId) }}></StyledButton>
 				</div><br/>
 				<StyledButton id="postmoveon" innerclass="contactskilltrader" text="View Details" onClick={(e) => { this.switchState(e) }}></StyledButton>
 				<div className="actions" style={styling}>

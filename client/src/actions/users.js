@@ -1,8 +1,26 @@
 const log = console.log
 
-// gets user by username from mongo
+/**
+* Get user by username or id
+**/
+async function getUser(user, username) {
+    try {
+        let response = await fetch(`/api/user/${username}`);
+        let data = await response.json();
+        if (!data) {
+            log("Not found")
+            return null;
+        }
+        user.setState({ "user": data });
+        return data;
+    } catch (e) {
+        return null;
+    }
+}
+
+
+// gets user by username from mongo, and verifies password
 async function getUserByUserName(user, username, password) {
-    log(user, username, password);
     try {
         let response = await fetch(`/api/user/${username}`);
         let data = await response.json();
@@ -57,4 +75,4 @@ async function createUser(user, newuserrecord) {
 }
 
 
-export {getUserByUserName, createUser}
+export {getUser, getUserByUserName, createUser}
