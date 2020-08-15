@@ -121,7 +121,7 @@ label {
 }
 
 input[type=range] {
-    height: 47px;
+    height: 4px;
     -webkit-appearance: none;
     margin: 10px 0;
     width: 100%;
@@ -222,6 +222,10 @@ input[type=range] {
     padding-right: 15px;
     overflow: auto;
     outline: none;
+}
+
+#save{
+  visibility: hidden;
 }
 
 .categories-bars {
