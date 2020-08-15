@@ -171,7 +171,7 @@ class Settings extends React.Component {
 				usersess.email = this.state.email;
 				window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
 
-				axios.post(serverURL + "/api/user/" + usersess._id, {
+				axios.post(serverURL + "/api/user/" + usersess.id, {
 	    			fname: this.state.fname,
 	    			lname: this.state.lname,
 	    			password: this.state.password,
