@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route,Switch, Redirect, useHistory} from 'reac
 import { uid } from "react-uid";
 import './style.css';
 import StyledButton from '../StyledButton';
+const axios = require("axios");
 
 const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
 
