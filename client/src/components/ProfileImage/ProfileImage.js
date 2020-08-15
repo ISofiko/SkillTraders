@@ -15,7 +15,7 @@ class ProfileImage extends React.Component {
                 if (self === "true") {
                         window.location.replace("/settings");
                 } else {
-                        window.location.replace("/userprofile?uid="+this.props.uid);
+                        window.location.replace("/userprofile?username="+this.props.username);
                 }
         }
 
