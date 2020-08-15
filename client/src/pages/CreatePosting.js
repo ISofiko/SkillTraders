@@ -105,8 +105,10 @@ class CreatePosting extends React.Component {
           preview.src = "";
         }
 
-        // sending photo file over to state to be saved to db eventually -- WIP
-        //this.handlePhotoChange(file);
+        // sending photo file over to state to be saved to db eventually
+        const imgform = document.getElementById('image-upload-form');
+        const savebutton = document.getElementById('save');
+        savebutton.click();
     }
 
     handleSummaryChange(event) {
@@ -130,12 +132,15 @@ class CreatePosting extends React.Component {
             alert("Not all fields have been filled in! Please note that all fields are required!");
             return;
         } else {
-            const image_url = this.image_url;
+            let image_url = template;
+            if (typeof this.image_url !== "undefined" || this.image_url !== null) {
+                image_url = this.image_url;
+            }
             const temppost = {
                 title: this.postingtitle.value, 
                 categories: this.state.tags, 
                 image_url: image_url,
-                userId: usersess._id,
+                userId: usersess.id,
                 price: parseInt(this.price.value),
                 numSessions: parseInt(this.sessions.value),
                 content: this.description.value,
@@ -164,6 +169,9 @@ class CreatePosting extends React.Component {
             this.image_url = (await result.json()).url;
             console.log(this.image_url)
         });
+
+        console.log("IMAGE GONE THRU");
+        console.log(this.image_url);
     }
 
     setTag = event => {
@@ -192,7 +200,7 @@ class CreatePosting extends React.Component {
                 <div className='new-posting'>
                     <h1>Create a new Skill Posting</h1>
                     <ScrollToBottom>
-                    <form className='posting-details' form method="post" encType="multipart/form-data" onSubmit={this.submitPhoto.bind(this)}>
+                    <form id="image-upload-form" className='posting-details' form method="post" encType="multipart/form-data" onSubmit={this.submitPhoto.bind(this)}>
                         <div>
                             <br/>
                             <div className="imageareaposting">
