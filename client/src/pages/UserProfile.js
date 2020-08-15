@@ -14,6 +14,7 @@ import edit from "../resources/edit.png";
 import save from "../resources/save.png";
 import { getUser } from './../actions/users'
 import { getPostings } from './../actions/postings'
+import { getReviews } from './../actions/reviews'
 const axios = require("axios");
 const usersess = JSON.parse(window.localStorage.getItem("SkillTraders2020!UserSession"));
 const serverURL = "";
@@ -30,7 +31,8 @@ class UserProfile extends React.Component {
 				lname: "",
 				avgRating: 0
 			},
-			postings: []
+			postings: [],
+			reviews: []
 		};
 	}
 
@@ -56,6 +58,11 @@ class UserProfile extends React.Component {
         getPostings(this.username, this).then((postings) => {
             log(postings)
             this.setState({"postings": postings})
+        })
+
+        getReviews(this.username).then((reviews) => {
+            log(reviews)
+            this.setState({"reviews": reviews})
             log(this.state)
         })
 	}
@@ -106,11 +113,14 @@ class UserProfile extends React.Component {
 						<hr></hr>
 						<br/>
 						<div id="userreviews">
-							{// FILLER! db code goes here Sample elements currently drawn
-							}
-							<Review className="review" stars={5} reviewername="David Ali" reviewerimage={profile} review="Good teacher"></Review>
-							<Review className="review" stars={4.7} reviewername="Ali Ilina" reviewerimage={profile3} review="He would put on a yoga video and watch me doing the exercise while eating a bag of doritos. Great!"></Review>
-							<Review className="review" stars={3.7} reviewername="Sofia Chen" reviewerimage={save} review="Always makes out time to help me out! Great person!"></Review><br/><br/>
+                            {this.state.reviews.map(review => (
+                                <Review
+                                    className="review"
+                                    stars={review.rating}
+                                    reviewername={review.reviewer}
+                                    review={review.content}
+                                 />
+                            ))}
 						</div>
 						<br/>
 					</div>
