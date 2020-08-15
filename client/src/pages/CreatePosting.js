@@ -169,9 +169,6 @@ class CreatePosting extends React.Component {
             this.image_url = (await result.json()).url;
             console.log(this.image_url)
         });
-
-        console.log("IMAGE GONE THRU");
-        console.log(this.image_url);
     }
 
     setTag = event => {

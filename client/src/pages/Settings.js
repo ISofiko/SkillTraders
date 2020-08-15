@@ -85,7 +85,9 @@ class Settings extends React.Component {
 		preview.src = "";
 		}
 
-		// DB CODE GOES HERE -> REPLACE IMG TO DB
+		// sending photo file over to state to be saved to db eventually
+		const savebutton = document.getElementById('save');
+		savebutton.click();
     }
 
     submitPhoto(e) {
@@ -102,15 +104,22 @@ class Settings extends React.Component {
 
 			usersess.image_url = image_url;
 			window.localStorage.setItem("SkillTraders2020!UserSession", JSON.stringify(usersess));
+
+			document.getElementById("settings-profile-image").src = image_url;
+
+			alert("Your profile picture has been updated!");
 			
     		axios.post(serverURL + "/api/user/" + usersess._id, {
 				image_url: image_url
     		}).then((result) => {
-    			console.log(result);
+				console.log(result);
     		}).catch((error) => {
     			console.log(error);
     		});
-    	});
+		});
+		
+		console.log("IMAGE GONE THRU");
+        console.log(usersess.image_url);
     }
 
 	startEdit(e) {
@@ -188,7 +197,7 @@ class Settings extends React.Component {
 				<div className="right-side">
 					<div className="content">
 						<div>
-							<ProfileImage className="profile" src={this.state.image_url} uid="filler101"></ProfileImage>
+							<ProfileImage id="settings-profile-image" className="profile" src={this.state.image_url} uid={usersess.id}></ProfileImage>
 							<div className="myprofile">
 								<div id="header">My Profile</div><br/>
 								<label htmlFor="file-input-posting" className="custom-file-upload"> Choose  Profile  Picture </label>
