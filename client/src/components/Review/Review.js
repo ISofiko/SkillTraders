@@ -65,7 +65,7 @@ class Review extends React.Component {
 		return (
             <div className={[this.props.className, "innerreviewstyle"].join(" ")} id={this.props.id}>
                     <div id='innerreviewstyleheader'>
-                        <ProfileImage id="innerreviewstylepicture" src={this.state.image_url} uid="filler101"></ProfileImage>
+                        <ProfileImage id="innerreviewstylepicture" src={this.state.image_url} uid={this.state.user._id}></ProfileImage>
                         <div id="innerreviewstylename">
                                 <ReactStars count={5} value={this.props.stars} size={35} color2={'#ffd700'} edit={false}/>
                                 {this.state.name} says...

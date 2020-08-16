@@ -26,7 +26,6 @@ class User extends React.Component {
 					<p style={styling}><strong>Last Seen on:</strong> {lastseen}<br/>
 					<strong>Admin Status:</strong> {admin}<br/></p>
 					<div className="actions" style={styling}>
-						<a className="fa fa-pencil" href={"/userprofile?uid=" + uid}></a>
 						<a className="fa fa-trash" onClick={(e) => alert("User has been deleted!")}></a>
 					</div>
 				</div>

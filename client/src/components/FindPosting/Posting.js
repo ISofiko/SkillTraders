@@ -97,7 +97,6 @@ class Posting extends React.Component {
 				</div><br/>
 				<StyledButton id="postmoveon" innerclass="contactskilltrader" text="View Details" onClick={(e) => { this.switchState(e) }}></StyledButton>
 				<div className="actions" style={styling}>
-							<a className="fa fa-pencil" onClick={this.redirect}></a>
 							<a className="fa fa-trash" onClick={(e) => alert("Posting has been deleted!")}></a>
 				</div>
 			</div>

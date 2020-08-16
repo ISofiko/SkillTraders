@@ -21,6 +21,7 @@ class StarRating extends React.Component {
         }
 
         submitreview() {
+                console.log(this.props.revieweeReviewers);
                 if (this.props.revieweeReviewers.includes(usersess.username)) {
                         window.alert("You've already submitted a review for this user!");
                 } else {
